@@ -20,7 +20,7 @@ exports.login = async (req, res) => {
 
         const token = generateToken(user);
 
-        res.json({ token, user: user });
+        res.json({ token, user: { ...user, token } });
     } catch (error) {
         res.status(500).json({ error: getErrorMessage(error) });
     }
@@ -44,6 +44,10 @@ exports.register = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: getErrorMessage(error) });
     }
+}
+
+exports.logout = (req, res) => {
+    res.status(204).json({});
 }
 
 

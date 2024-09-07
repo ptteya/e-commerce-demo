@@ -17,6 +17,11 @@ async function requester(method, url, data = null, token = null) {
     }
 
     const response = await fetch(`${host}/${url}`, options);
+
+    if (response.status === 204) {
+        return {};
+    }
+
     const result = await response.json();
 
     if (!response.ok) {

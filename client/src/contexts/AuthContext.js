@@ -33,12 +33,23 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const logout = async () => {
+        try {
+            await authService.logout(user.token);
+            localStorage.removeItem('token');
+            setUser({});
+        } catch (err) {
+            console.error(err.error);
+        }
+    }
+
     const context = {
         user,
+        token: user.token,
+        isAuthenticated: !!user.token,
         login,
         register,
-        token: user.token,
-        isAuthenticated: !!user.token
+        logout,
     }
 
     return (

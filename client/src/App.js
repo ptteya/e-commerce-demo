@@ -8,6 +8,7 @@ import { About } from './components/About/About';
 import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
 import { AuthProvider } from './contexts/AuthContext';
+import { Logout } from './components/Logout/Logout';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/about' element={<About />}></Route>
           <Route path='/auth/login' element={<Login />}></Route>
           <Route path='/auth/register' element={<Register />}></Route>
+          <Route path='/auth/logout' element={<Logout />}></Route>
         </Routes>
       </main >
       <Footer />

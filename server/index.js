@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const routes = require('./routes');
+const { authentication } = require('./middlewares/authMiddleware');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 5000;
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(cors({
     origin: 'http://localhost:3000'
 }));
+app.use(authentication);
 app.use(routes);
 
 mongoose.connect(DB_CONNECTION_STRING)
