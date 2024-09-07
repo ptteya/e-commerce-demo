@@ -1,0 +1,138 @@
+.subscribe {
+    background-color: var(--yellow-color);
+    color: white;
+    padding: 20px 110px 20px 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.subscribe-info h3 {
+    font-size: 18px;
+}
+
+.subscribe-info p {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.subscribe-container input[type="text"] {
+    padding: 10px;
+    max-width: 350px;
+    width: 300px;
+    border: 1px solid white;
+    background-color: var(--yellow-color);
+}
+
+.subscribe-container input[type="text"]::placeholder {
+    color: white;
+}
+
+.subscribe-container input[type="text"]:focus {
+    outline: none;
+    border-color: rgb(85, 84, 84);
+}
+
+.subscribe-btn {
+    padding: 10px;
+    border: none;
+    background-color: white;
+    color: var(--yellow-color);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.subscribe-container .error-message {
+    color: rgb(27, 1, 1);
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.footer-section {
+    background: white;
+}
+
+.footer-content {
+    padding: 45px 0px;
+    margin: 0px 110px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.col-title {
+    font-size: 22px;
+    color: var(--dark-gray-color);
+    margin-bottom: 15px;
+}
+
+.links-col ul {
+    list-style-type: none;
+}
+
+.links-col ul li {
+    margin-bottom: 8px;
+}
+
+.links-col ul li:hover {
+    text-decoration: underline;
+}
+
+.links-col ul li a {
+    text-decoration: none;
+    color: var(--dark-gray-color);
+    font-size: 18px;
+}
+
+.contacts-col .contact-info,
+.information-col .info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contacts-col .contact-info p,
+.information-col .info p {
+    font-size: 18px;
+}
+
+.contacts-col .contact-info p i {
+    margin-right: 10px;
+    color: var(--yellow-color);
+}
+
+.icons-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.icons-row a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: var(--yellow-color);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.icons-row a:hover {
+    background-color: var(--dark-gray-color);
+}
+
+.icons-row i {
+    font-size: 25px;
+}
+
+.rights {
+    color: var(--dark-gray-color);
+    font-size: 18px;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    padding: 15px 0px;
+}

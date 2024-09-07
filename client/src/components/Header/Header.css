@@ -1,0 +1,330 @@
+.navbar {
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid rgb(203, 203, 203);
+}
+
+/* Top Header */
+.top-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 40px;
+    padding: 0px 110px;
+    background-color: #e7e4e4;
+    position: relative;
+}
+
+.top-header-services {
+    display: flex;
+    gap: 30px;
+    color: rgb(126, 125, 125);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+.top-header-services p {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.top-header-services p:nth-child(-n+3) {
+    font-size: 16px;
+    border-right: 1px solid var(--border-color);
+    padding-right: 30px;
+}
+
+/* Top Header Actions */
+.top-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-wrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.favorite-icon,
+.login-icon,
+.shopping-card-icon {
+    font-size: 20px;
+    color: var(--dark-gray-color);
+}
+
+.favorite-icon,
+.shopping-card-icon {
+    padding: 0 10px 0px 0px;
+    cursor: pointer;
+}
+
+.icon-wrapper:hover .favorite-icon,
+.shopping-card-icon:hover,
+.user-menu:hover .login-icon {
+    color: var(--yellow-color);
+}
+
+.favoriteItems-num {
+    background-color: var(--yellow-color);
+    position: absolute;
+    padding: 2px 7px;
+    border-radius: 50%;
+    top: -5px;
+    left: -12px;
+    font-size: 13px;
+    color: white;
+    display: none;
+}
+
+.cartItems-num {
+    background-color: var(--yellow-color);
+    position: absolute;
+    padding: 2px 7px;
+    border-radius: 50%;
+    top: -5px;
+    left: -12px;
+    font-size: 13px;
+    color: white;
+    display: none;
+}
+
+.login-icon {
+    cursor: pointer;
+}
+
+/* Dropdown Menu */
+.user-menu {
+    position: relative;
+}
+
+.user-menu .dropdown-container {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: -10px;
+    z-index: 1000;
+}
+
+.dropdown-container.show {
+    display: block;
+}
+
+.dropdown-container.hide {
+    display: none;
+}
+
+.dropdown-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #e7e4e4;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 370px;
+    height: 250px;
+    gap: 20px;
+}
+
+.dropdown-title,
+.dropdown-welcome {
+    color: black;
+    font-size: 20px;
+}
+
+.dropdown-content p {
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-content a {
+    width: 100px;
+    padding: 10px 0px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout-section,
+.login-section {
+    padding: 15px 0px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.login-section .login-link,
+.logout-section .logout-link {
+    border: 3px solid var(--yellow-color);
+    color: var(--yellow-color);
+}
+
+.login-section .login-link:hover,
+.logout-section .logout-link:hover {
+    background-color: var(--yellow-color);
+    color: white;
+}
+
+.register-section .register-link,
+.see-profile-section .profile-link {
+    border: 3px solid var(--yellow-color);
+    background-color: var(--yellow-color);
+    color: white;
+}
+
+.logout-container .logout-btn,
+.see-profile-container .profile-btn {
+    background-color: var(--yellow-color);
+    color: white;
+}
+
+/* Main Header */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    margin: 0px 110px;
+    position: relative;
+}
+
+.main-header .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 250px;
+}
+
+.main-header .logo-container .logo-image {
+    height: 48px;
+    width: 48px;
+    background-image: url('../../../public/images/logo-image.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+.main-header .logo-container .logo {
+    color: black;
+    text-decoration: none;
+    font-size: 23px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.main-header .nav-group {
+    display: flex;
+    gap: 45px;
+}
+
+.main-header .nav-item {
+    position: relative;
+    list-style-type: none;
+}
+
+.main-header .nav-item a {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 17px;
+    text-decoration: none;
+    color: black;
+}
+
+.main-header .nav-item a:hover {
+    color: var(--yellow-color);
+}
+
+.header-catalog-link {
+    position: relative;
+}
+
+.header-catalog-link .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    list-style: none;
+    width: 170px;
+    height: 295px;
+    background-color: white;
+    z-index: 2000;
+    text-align: center;
+    display: none;
+    padding-top: 30px;
+    border-radius: 10px;
+}
+
+.header-catalog-link .dropdown-menu li {
+    text-decoration: none;
+    font-size: 18px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    cursor: pointer;
+}
+
+.header-catalog-link .dropdown-menu li:not(:last-child) {
+    border-bottom: 1px solid rgb(223, 222, 222);
+}
+
+.header-catalog-link .dropdown-menu li:hover {
+    background-color: var(--yellow-color);
+}
+
+.header-catalog-link .dropdown-menu li:hover a {
+    color: white;
+}
+
+.header-catalog-link .dropdown-menu li:last-child:hover {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.header-catalog-link .dropdown-menu li a:hover {
+    color: white;
+}
+
+.arrow-icon {
+    color: gray;
+}
+
+.header-catalog-link:hover .arrow-icon {
+    transform: rotate(180deg);
+}
+
+.header-catalog-link:hover .dropdown-menu {
+    display: block;
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+#search-input {
+    border: none;
+    outline: none;
+    padding: 8px 15px;
+    flex: 1;
+    font-size: 16px;
+}
+
+#search-btn {
+    border: none;
+    background: none;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+.search-icon {
+    font-size: 16px;
+    color: var(--dark-gray-color);
+}
+
+.search-bar {
+    height: 40px;
+}
