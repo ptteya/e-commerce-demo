@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './About.css';
 
 export const About = () => {
@@ -21,7 +22,7 @@ export const About = () => {
                         Whether you seek classNameic elegance, modern minimalism, or eclectic charm, our collection is crafted to
                         help you create a space that is truly your own.
                     </p>
-                    <a href="/furniture/catalog/couches" className="yellow-btn">See Products</a>
+                    <Link to="/furniture/catalog/couches" className="yellow-btn">See Products</Link>
                 </div>
                 <div className="about-right">
                     <div className="image-container">

@@ -1,4 +1,5 @@
 import './Home.css';
+import { Link } from 'react-router-dom';
 import { CatalogItem } from '../Catalog/CatalogItem/CatalogItem';
 import { useFurniture } from '../../hooks/useFurniture';
 
@@ -15,7 +16,7 @@ export const Home = () => {
                         <p className="welcome-subtext">Transform your space with timeless furniture pieces that blend style and
                             comfort.
                         </p>
-                        <a href="/furniture/catalog/couches" className="catalog-btn">See Catalog</a>
+                        <Link to="/furniture/catalog/couches" className="catalog-btn">See Catalog</Link>
                     </div>
                 </div>
             </div>
@@ -93,7 +94,7 @@ export const Home = () => {
                             <p className="percent">25% OFF</p>
                             <p className="text">Selected Sofas</p>
                         </div>
-                        <a href="/furniture/catalog/couches" className="banner-btn">See Catalog</a>
+                        <Link to="/furniture/catalog/couches" className="banner-btn">See Catalog</Link>
                     </div>
                 </div>
             </div>
