@@ -1,6 +1,15 @@
+import { useState } from 'react';
 import './Contacts.css';
 
 export const Contacts = () => {
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        event.target.reset();
+        setIsSubmitted(true);
+    }
+
     return (
         <section className="contact_section">
             <section className="hero">
@@ -10,7 +19,7 @@ export const Contacts = () => {
             <div className="contact_row">
                 <iframe className="map"
                     src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=6-ti%20Septemvri%2017,%20Sofia+(Map)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-                    frameborder="0" allowfullscreen></iframe>
+                    frameBorder="0" allowFullScreen></iframe>
 
                 <div className="form">
                     <div className="contacts_container">
@@ -35,13 +44,14 @@ export const Contacts = () => {
                         </div>
                     </div>
 
-                    <form id="contact-form">
-                        <input type="text" placeholder="Full Name" className="box" name="fullName" />
-                        <input type="email" placeholder="Email" className="box" name="email" />
-                        <input type="tel" placeholder="Phone" className="box" name="phone" />
-                        <textarea name="message" placeholder="Your Message" className="box" cols="30" rows="5"></textarea>
-                        <input type="submit" value="Send Message" className="button" />
+                    <form id="contact-form" onSubmit={handleSubmit}>
+                        <input type="text" placeholder="Full Name" className="box" name="fullName" required />
+                        <input type="email" placeholder="Email" className="box" name="email" required />
+                        <input type="tel" placeholder="Phone" className="box" name="phone" pattern="[0-9]{10}" title="Please enter a 10-digit phone number" required />
+                        <textarea name="message" placeholder="Your Message" className="box" cols="30" rows="5" required ></textarea>
+                        <input type="submit" value="Send Message" className="button" required />
                     </form>
+                    {isSubmitted && <p className='thank-you-message'>Thank you for reaching out!</p>}
                 </div>
             </div>
         </section>
