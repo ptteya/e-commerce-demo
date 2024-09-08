@@ -2,34 +2,43 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 import { useState, useRef, useEffect, useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
+import * as furnitureService from '../../services/furnitureService';
 
 export const Header = () => {
-    const { isAuthenticated } = useContext(AuthContext);
+    const { user, isAuthenticated } = useContext(AuthContext);
     const [isDropdownVisible, setDropdownVisible] = useState(false);
+    const [count, setCount] = useState(0);
     const dropdownRef = useRef(null);
     const iconRef = useRef(null);
 
-    const toggleDropdown = () => {
-        setDropdownVisible(state => !state);
-    }
+    useEffect(() => {
+        const fetchLikedFurniture = async () => {
+            if (isAuthenticated && user) {
+                const items = await furnitureService.getLikedFurniture(user);
+                setCount(items.length || 0);
+            }
+        };
+
+        fetchLikedFurniture();
+    }, [user, isAuthenticated]);
 
     useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                dropdownRef.current && !dropdownRef.current.contains(event.target) &&
+                iconRef.current && !iconRef.current.contains(event.target)
+            ) {
+                setDropdownVisible(false);
+            }
+        };
+
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    const handleClickOutside = (event) => {
-        if ((
-            dropdownRef.current && !dropdownRef.current.contains(event.target) &&
-            iconRef.current && !iconRef.current.contains(event.target))
-        ) {
-            setDropdownVisible(false);
-        }
-    }
+    const toggleDropdown = () => setDropdownVisible(state => !state);
 
-    const handleLinkClick = () => {
-        setDropdownVisible(false);
-    }
+    const handleLinkClick = () => setDropdownVisible(false);
 
     return (
         <header>
@@ -46,13 +55,18 @@ export const Header = () => {
                             <Link to="/furniture/favorites">
                                 <i className="far fa-heart favorite-icon"></i>
                             </Link>
-                            <h4 className="favoriteItems-num"></h4>
+                            <h4
+                                className="favoriteItems-num"
+                                style={{ display: count > 0 ? 'block' : 'none' }}
+                            >
+                                {count}
+                            </h4>
                         </div>
                         <div className="icon-wrapper">
                             <Link to="/cart">
                                 <i className="fas fa-shopping-cart shopping-card-icon"></i>
                             </Link>
-                            <h4 className="cartItems-num"></h4>
+                            <h4 className="cartItems-num">{count}</h4>
                         </div>
                         <div className="user-menu" onClick={toggleDropdown}>
                             <p><i className="fas fa-user login-icon" ref={iconRef}></i></p>
@@ -60,7 +74,7 @@ export const Header = () => {
                                 <div className="dropdown-content" onClick={(e) => e.stopPropagation()}>
                                     {isAuthenticated ? (
                                         <>
-                                            <h3 className="dropdown-welcome">Welcome, !</h3>
+                                            <h3 className="dropdown-welcome">Welcome, {user.username}!</h3>
                                             <div className="logout-section">
                                                 <p>Logout of the profile <Link to="/auth/logout" className="logout-link" onClick={handleLinkClick}>Logout</Link></p>
                                             </div>
@@ -112,6 +126,6 @@ export const Header = () => {
                     </div>
                 </div>
             </nav>
-        </header>
+        </header >
     );
 }
