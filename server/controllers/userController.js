@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-const authService = require('../services/authService');
+const userService = require('../services/userService');
 const { getErrorMessage } = require('../utils/errorUtil');
 const { generateToken } = require('../utils/tokenUtil');
 
@@ -8,7 +8,7 @@ exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        const user = await authService.getUserByEmail(email);
+        const user = await userService.getUserByEmail(email);
         if (!user) {
             return res.status(401).json({ error: 'Invalid email or password' });
         }
@@ -19,8 +19,9 @@ exports.login = async (req, res) => {
         }
 
         const token = generateToken(user);
+        const userInfo = createUserInfoObj(user, token);
 
-        res.json({ token, user: { ...user, token } });
+        res.status(200).json({ token, user: userInfo });
     } catch (error) {
         res.status(500).json({ error: getErrorMessage(error) });
     }
@@ -38,9 +39,11 @@ exports.register = async (req, res) => {
         const hashedPass = await bcrypt.hash(password, 10);
         const newUser = new User({ email, username, password: hashedPass });
         await newUser.save();
-        const token = generateToken(newUser);
 
-        res.json({ token, user: { ...newUser, token } });
+        const token = generateToken(newUser);
+        const userInfo = createUserInfoObj(newUser, token);
+
+        res.status(200).json({ token, user: userInfo });
     } catch (error) {
         res.status(500).json({ error: getErrorMessage(error) });
     }
@@ -50,8 +53,24 @@ exports.logout = (req, res) => {
     res.status(204).json({});
 };
 
+exports.toggleFavorites = async (req, res) => {
+    const { userId, furnitureId } = req.body;
+    const action = req.params.action;
+
+    try {
+        if (action !== 'add' && action !== 'remove') {
+            return res.status(400).json({ error: 'Invalid action' });
+        }
+
+        const favorites = await userService.toggleFavorites(action, userId, furnitureId);
+        res.status(200).json({ message: `Successfully ${action}ed to favorites`, favorites });
+    } catch (error) {
+        res.status(409).json({ error: error.message });
+    }
+}
+
 async function validateRegisterData({ email, username, password, repeatPass }) {
-    const existingUser = await authService.checkIfUserExists(email, username);
+    const existingUser = await userService.checkIfUserExists(email, username);
     if (existingUser) {
         return 'Email or username already exists';
     }
@@ -78,5 +97,12 @@ async function validateRegisterData({ email, username, password, repeatPass }) {
     }
 
     return null;
+}
+
+function createUserInfoObj(user, token) {
+    const userObj = user.toObject();
+    const { password: _, ...userInfo } = userObj;
+    userInfo.token = token;
+    return userInfo;
 }
 

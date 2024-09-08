@@ -27,6 +27,10 @@ const UserSchema = new mongoose.Schema({
             message: 'Password must be at least 6 characters long, contain at least one number, one lowercase and uppercase letter.'
         }
     },
+    favorites: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'Furniture'
+    }],
 });
 
 const User = mongoose.model('User', UserSchema);

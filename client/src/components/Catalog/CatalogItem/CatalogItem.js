@@ -1,3 +1,7 @@
+import { useContext, useState, useEffect } from 'react';
+import { AuthContext } from '../../../contexts/AuthContext';
+import * as userService from '../../../services/userService';
+
 export const CatalogItem = ({
     _id,
     name,
@@ -6,6 +10,28 @@ export const CatalogItem = ({
     images,
     rating
 }) => {
+    const { user, isAuthenticated, updateFavorites } = useContext(AuthContext);
+    const [liked, setLiked] = useState(false);
+
+    useEffect(() => {
+        if (user && user.favorites) {
+            setLiked(user.favorites.includes(_id));
+        }
+    }, [user, isAuthenticated, _id]);
+
+    const toggleLike = async () => {
+        if (isAuthenticated) {
+            try {
+                const action = liked ? 'remove' : 'add';
+                const result = await userService.updateFavorites(action, user._id, _id);
+                setLiked(prevLiked => !prevLiked);
+                updateFavorites(result.favorites);
+            } catch (error) {
+                console.log(error.error);
+            }
+        }
+    };
+
     const renderStars = () => {
         const fullStars = Math.floor(rating);
         const halfStar = rating - fullStars >= 0.5;
@@ -31,7 +57,7 @@ export const CatalogItem = ({
         <div className="product-card" id={_id}>
             <div className="image-container">
                 <img src={images.mainImage} alt="couch" />
-                <i className="fas fa-heart heart-icon favorites far fa-heart heart-icon"></i>
+                <i className={`heart-icon ${liked ? 'fas fa-heart favorites' : 'far fa-heart'}`} onClick={toggleLike}></i>
             </div>
             <div className="product-info">
                 <div className="left-side">
