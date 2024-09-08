@@ -44,12 +44,11 @@ exports.register = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: getErrorMessage(error) });
     }
-}
+};
 
 exports.logout = (req, res) => {
     res.status(204).json({});
-}
-
+};
 
 async function validateRegisterData({ email, username, password, repeatPass }) {
     const existingUser = await authService.checkIfUserExists(email, username);

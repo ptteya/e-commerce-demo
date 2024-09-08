@@ -246,13 +246,12 @@
     transform: translateX(-50%);
     list-style: none;
     width: 170px;
-    height: 295px;
+    height: 285px;
     background-color: white;
     z-index: 2000;
     text-align: center;
     display: none;
     padding-top: 30px;
-    border-radius: 10px;
 }
 
 .header-catalog-link .dropdown-menu li {
@@ -269,18 +268,6 @@
 
 .header-catalog-link .dropdown-menu li:hover {
     background-color: var(--yellow-color);
-}
-
-.header-catalog-link .dropdown-menu li:hover a {
-    color: white;
-}
-
-.header-catalog-link .dropdown-menu li:last-child:hover {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-.header-catalog-link .dropdown-menu li a:hover {
     color: white;
 }
 

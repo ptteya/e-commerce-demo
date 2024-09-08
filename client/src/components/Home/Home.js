@@ -1,6 +1,10 @@
 import './Home.css';
+import { CatalogItem } from '../Catalog/CatalogItem/CatalogItem';
+import { useFurniture } from '../../hooks/useFurniture';
 
 export const Home = () => {
+    const { furniture } = useFurniture();
+
     return (
         <div className="homepage-wrapper">
             <div className="welcome">
@@ -64,14 +68,20 @@ export const Home = () => {
                 </div>
             </div>
 
-            <div className="recent-items">
-                <div className="section-title">
-                    <h1>Recent Items</h1>
+            {furniture.length > 0 && (<>
+                <div className="recent-items">
+                    <div className="section-title">
+                        <h1>Recent Items</h1>
+                    </div>
+
+                    <div className="product-container">
+                        <div className="product-cards">
+                            {furniture.map((f) => <CatalogItem key={f._id} {...f} />)}
+                        </div>
+                    </div>
                 </div>
 
-                <div className="product-container">
-                </div>
-            </div>
+            </>)}
 
             <div className="mid-page-banner">
                 <div className="image-container">

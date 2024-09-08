@@ -9,6 +9,7 @@ import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
 import { AuthProvider } from './contexts/AuthContext';
 import { Logout } from './components/Logout/Logout';
+import { Catalog } from './components/Catalog/Catalog';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='/auth/login' element={<Login />}></Route>
           <Route path='/auth/register' element={<Register />}></Route>
           <Route path='/auth/logout' element={<Logout />}></Route>
+          <Route path='/furniture/catalog/:category' element={<Catalog />}></Route>
         </Routes>
       </main >
       <Footer />

@@ -89,16 +89,16 @@ export const Header = () => {
                     <ul className="nav-group">
                         <li className="nav-item"><Link to="/">Home</Link></li>
                         <li className="nav-item header-catalog-link">
-                            <a>
+                            <a className='catalog'>
                                 Catalog
                                 <i className="fas fa-chevron-down arrow-icon"></i>
                             </a>
                             <ul className="dropdown-menu">
-                                <li><Link to="/furniture/catalog/couches">Couches</Link></li>
-                                <li><Link to="/furniture/catalog/beds">Beds</Link></li>
-                                <li><Link to="/furniture/catalog/nightstands">Chairs</Link></li>
-                                <li><Link to="/furniture/catalog/tables">Tables</Link></li>
-                                <li><Link to="/furniture/catalog/lamps">Lamps</Link></li>
+                                <Link to="/furniture/catalog/couches"><li>Couches</li></Link>
+                                <Link to="/furniture/catalog/beds"><li>Beds</li></Link>
+                                <Link to="/furniture/catalog/chairs"><li>Chairs</li></Link>
+                                <Link to="/furniture/catalog/tables"><li>Tables</li></Link>
+                                <Link to="/furniture/catalog/lamps"><li>Lamps</li></Link>
                             </ul>
                         </li>
                         <li className="nav-item"><Link to="/about">About</Link></li>
