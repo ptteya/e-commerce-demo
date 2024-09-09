@@ -13,6 +13,7 @@ import { Catalog } from './components/Catalog/Catalog';
 import { NotFound } from './components/404/404';
 import { Contacts } from './components/Contacts/Contacts';
 import { Favorites } from './components/Favorites/Favorites';
+import { Details } from './components/Details/Details';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/auth/register' element={<Register />}></Route>
           <Route path='/auth/logout' element={<Logout />}></Route>
           <Route path='/furniture/catalog/:category' element={<Catalog />}></Route>
+          <Route path='/furniture/:furnitureId' element={<Details />}></Route>
           <Route path='/contacts' element={<Contacts />}></Route>
           <Route path='/favorites' element={<Favorites />}></Route>
           <Route path='/*' element={<NotFound />}></Route>

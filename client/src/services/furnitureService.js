@@ -8,6 +8,8 @@ export const getGuestFavoritesIds = () => {
     return JSON.parse(localStorage.getItem('likedFurniture')) || [];
 }
 
+export const getDetails = (id) => request.get(`furniture/${id}`);
+
 export const getFavoriteItems = async (user, isAuthenticated) => {
     const favoritesIds = user && isAuthenticated
         ? user.favorites

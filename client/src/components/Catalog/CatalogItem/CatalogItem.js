@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../../contexts/AuthContext';
 import * as userService from '../../../services/userService';
 import * as furnitureService from '../../../services/furnitureService';
+import { useNavigate } from 'react-router-dom';
 
 export const CatalogItem = ({
     _id,
@@ -13,6 +14,7 @@ export const CatalogItem = ({
 }) => {
     const { user, isAuthenticated, updateFavorites, updateGuestFavorites } = useContext(AuthContext);
     const [liked, setLiked] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (user && user.favorites) {
@@ -47,6 +49,12 @@ export const CatalogItem = ({
         }
     };
 
+    const handleCardClick = (e) => {
+        if (!e.target.classList.contains('heart-icon')) {
+            navigate(`/furniture/${_id}`);
+        }
+    }
+
     const renderStars = () => {
         const fullStars = Math.floor(rating);
         const halfStar = rating - fullStars >= 0.5;
@@ -69,7 +77,7 @@ export const CatalogItem = ({
     }
 
     return (
-        <div className="product-card" id={_id}>
+        <div className="product-card" onClick={handleCardClick}>
             <div className="image-container">
                 <img src={images.mainImage} alt="couch" />
                 <i className={`heart-icon ${liked ? 'fas fa-heart favorites' : 'far fa-heart'}`} onClick={toggleLike}></i>

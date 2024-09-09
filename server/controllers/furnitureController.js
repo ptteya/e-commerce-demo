@@ -19,3 +19,13 @@ exports.getAllItems = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 }
+
+exports.getDetails = async (req, res) => {
+    try {
+        const furnitureId = req.params.furnitureId;
+        const furniture = await furnitureService.getById(furnitureId).lean();
+        res.status(200).json({ furniture });
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
