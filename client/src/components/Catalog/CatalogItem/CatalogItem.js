@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../../contexts/AuthContext';
 import * as userService from '../../../services/userService';
+import * as furnitureService from '../../../services/furnitureService';
 
 export const CatalogItem = ({
     _id,
@@ -10,12 +11,15 @@ export const CatalogItem = ({
     images,
     rating
 }) => {
-    const { user, isAuthenticated, updateFavorites } = useContext(AuthContext);
+    const { user, isAuthenticated, updateFavorites, updateGuestFavorites } = useContext(AuthContext);
     const [liked, setLiked] = useState(false);
 
     useEffect(() => {
         if (user && user.favorites) {
             setLiked(user.favorites.includes(_id));
+        } else {
+            const localFavorites = furnitureService.getGuestFavorites();
+            setLiked(localFavorites.includes(_id));
         }
     }, [user, isAuthenticated, _id]);
 
@@ -29,6 +33,18 @@ export const CatalogItem = ({
             } catch (error) {
                 console.log(error.error);
             }
+        } else {
+            let updatedFavorites = furnitureService.getGuestFavorites();
+
+            if (liked) {
+                updatedFavorites = updatedFavorites.filter(id => id !== _id);
+            } else {
+                updatedFavorites.push(_id);
+            }
+
+            localStorage.setItem('likedFurniture', JSON.stringify(updatedFavorites));
+            updateGuestFavorites(updatedFavorites);
+            setLiked(prevLiked => !prevLiked);
         }
     };
 

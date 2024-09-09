@@ -2,7 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const userService = require('../services/userService');
 const { getErrorMessage } = require('../utils/errorUtil');
-const { generateToken } = require('../utils/tokenUtil');
+const { generateToken, verifyToken } = require('../utils/tokenUtil');
 
 exports.login = async (req, res) => {
     try {
@@ -52,6 +52,14 @@ exports.register = async (req, res) => {
 exports.logout = (req, res) => {
     res.status(204).json({});
 };
+
+exports.getUserData = async (req, res) => {
+    const token = req.headers['authorization'];
+    const payload = verifyToken(token);
+    const user = await userService.getById(payload._id);
+    const userInfo = createUserInfoObj(user, token);
+    res.json({ user: userInfo });
+}
 
 exports.toggleFavorites = async (req, res) => {
     const { userId, furnitureId } = req.body;

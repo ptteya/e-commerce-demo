@@ -4,7 +4,7 @@ export const getByCategory = (category) => request.get(`furniture/catalog/${cate
 
 export const getAll = () => request.get('furniture/catalog');
 
-export const getLikedFurniture = async (user) => {
+export const getUserFavorites = async (user) => {
     try {
         const result = await getAll();
         const furniture = result.furniture;
@@ -13,4 +13,8 @@ export const getLikedFurniture = async (user) => {
     } catch (error) {
         console.error("Error fetching liked furniture:", error.error)
     }
+}
+
+export const getGuestFavorites = () => {
+    return JSON.parse(localStorage.getItem('likedFurniture')) || [];
 }

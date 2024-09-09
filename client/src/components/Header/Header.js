@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 import * as furnitureService from '../../services/furnitureService';
 
 export const Header = () => {
-    const { user, isAuthenticated } = useContext(AuthContext);
+    const { user, isAuthenticated, guestFavorites } = useContext(AuthContext);
     const [isDropdownVisible, setDropdownVisible] = useState(false);
     const [count, setCount] = useState(0);
     const dropdownRef = useRef(null);
@@ -13,14 +13,17 @@ export const Header = () => {
 
     useEffect(() => {
         const fetchLikedFurniture = async () => {
-            if (isAuthenticated && user) {
-                const items = await furnitureService.getLikedFurniture(user);
+            if (user && isAuthenticated) {
+                const items = await furnitureService.getUserFavorites(user);
                 setCount(items.length || 0);
+            } else {
+                const localFavorites = furnitureService.getGuestFavorites();
+                setCount(localFavorites.length || 0);
             }
         };
 
         fetchLikedFurniture();
-    }, [user, isAuthenticated]);
+    }, [user, isAuthenticated, guestFavorites]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {

@@ -1,14 +1,11 @@
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
-const JWT_SECRET = process.env.JWT_SECRET;
+const { verifyToken } = require('../utils/tokenUtil');
 
 exports.authentication = (req, res, next) => {
     const header = req.headers['authorization'];
 
     if (header) {
         try {
-            const user = jwt.verify(header, JWT_SECRET)
-            req.user = user;
+            req.user = verifyToken(header);
         } catch (error) {
             return res.status(403).json({ error: 'Invalid token' });
         }
