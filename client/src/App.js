@@ -14,6 +14,7 @@ import { NotFound } from './components/404/404';
 import { Contacts } from './components/Contacts/Contacts';
 import { Favorites } from './components/Favorites/Favorites';
 import { Details } from './components/Details/Details';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Header />
       <main>
         <div className="overlay"></div>
+        <ScrollToTop />
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/about' element={<About />}></Route>
