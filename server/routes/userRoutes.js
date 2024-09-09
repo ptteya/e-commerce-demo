@@ -9,5 +9,6 @@ router.post('/auth/register', userController.register);
 router.get('/auth/logout', requireAuth, userController.logout);
 router.get('/auth/me', userController.getUserData);
 router.post('/favorites/:action', userController.toggleFavorites);
+router.post('/cart/:action', userController.modifyCart);
 
 module.exports = router;

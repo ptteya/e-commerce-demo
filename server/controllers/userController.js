@@ -78,6 +78,14 @@ exports.getUserData = async (req, res) => {
 }
 
 exports.toggleFavorites = async (req, res) => {
+    handleAction(req, res, 'favorites');
+}
+
+exports.modifyCart = async (req, res) => {
+    handleAction(req, res, 'cart');
+}
+
+async function handleAction(req, res, collectionName) {
     const { userId, furnitureId } = req.body;
     const action = req.params.action;
 
@@ -86,9 +94,9 @@ exports.toggleFavorites = async (req, res) => {
             return res.status(400).json({ error: 'Invalid action' });
         }
 
-        const favorites = await userService.toggleFavorites(action, userId, furnitureId);
+        const result = await userService.modifyCollection(collectionName, action, userId, furnitureId);
 
-        res.status(200).json({ message: `Successfully ${action}ed to favorites`, favorites });
+        res.status(200).json({ [collectionName]: result });
     } catch (error) {
         res.status(500).json({ error: 'Internal server error' });
     }

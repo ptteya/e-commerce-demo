@@ -15,27 +15,28 @@ const checkIfUserExists = async (email, username) => {
     return user;
 }
 
-const toggleFavorites = async (action, userId, furnitureId) => {
+const modifyCollection = async (collectionName, action, userId, furnitureId) => {
     const user = await getById(userId);
+    const collection = user[collectionName];
 
     if (action === 'add') {
-        if (!user.favorites.includes(furnitureId)) {
-            user.favorites.push(furnitureId);
+        if (!collection.includes(furnitureId)) {
+            collection.push(furnitureId);
         } else {
-            throw new Error('Furniture is already liked');
+            throw new Error(`Furniture is already in the ${collectionName}`);
         }
     } else if (action === 'remove') {
-        user.favorites = user.favorites.filter(id => id.toString() !== furnitureId);
+        user[collectionName] = collection.filter(id => id.toString() !== furnitureId);
     }
 
     await user.save();
 
-    return user.favorites;
-}
+    return user[collectionName];
+};
 
 module.exports = {
     getUserByEmail,
     checkIfUserExists,
     getById,
-    toggleFavorites
+    modifyCollection,
 }

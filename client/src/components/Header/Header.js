@@ -7,16 +7,22 @@ import * as furnitureService from '../../services/furnitureService';
 export const Header = () => {
     const { user, isAuthenticated, guestFavorites } = useContext(AuthContext);
     const [isDropdownVisible, setDropdownVisible] = useState(false);
-    const [count, setCount] = useState(0);
+    const [favoritesCount, setFavoritesCount] = useState(0);
+    const [cartCount, setCartCount] = useState(0);
     const dropdownRef = useRef(null);
     const iconRef = useRef(null);
 
     useEffect(() => {
-        const favoritesLength = user.favorites && isAuthenticated
+        const favoritesNum = user.favorites && isAuthenticated
             ? user.favorites.length
             : furnitureService.getGuestFavoritesIds().length;
 
-        setCount(favoritesLength || 0);
+        const itemsInCartNum = user.cart && isAuthenticated
+            ? user.cart.length
+            : [];
+
+        setFavoritesCount(favoritesNum || 0);
+        setCartCount(itemsInCartNum || 0)
     }, [user, isAuthenticated, guestFavorites]);
 
     useEffect(() => {
@@ -54,16 +60,21 @@ export const Header = () => {
                             </Link>
                             <h4
                                 className="favoriteItems-num"
-                                style={{ display: count > 0 ? 'block' : 'none' }}
+                                style={{ display: favoritesCount > 0 ? 'block' : 'none' }}
                             >
-                                {count}
+                                {favoritesCount}
                             </h4>
                         </div>
                         <div className="icon-wrapper">
                             <Link to="/cart">
-                                <i className="fas fa-shopping-cart shopping-card-icon"></i>
+                                <i className="fas fa-shopping-cart shopping-cart-icon"></i>
                             </Link>
-                            <h4 className="cartItems-num">{count}</h4>
+                            <h4
+                                className="cartItems-num"
+                                style={{ display: cartCount > 0 ? 'block' : 'none' }}
+                            >
+                                {cartCount}
+                            </h4>
                         </div>
                         <div className="user-menu" onClick={toggleDropdown}>
                             <p><i className="fas fa-user login-icon" ref={iconRef}></i></p>

@@ -51,19 +51,19 @@
 
 .favorite-icon,
 .login-icon,
-.shopping-card-icon {
+.shopping-cart-icon {
     font-size: 20px;
     color: var(--dark-gray-color);
 }
 
 .favorite-icon,
-.shopping-card-icon {
+.shopping-cart-icon {
     padding: 0 10px 0px 0px;
     cursor: pointer;
 }
 
 .icon-wrapper:hover .favorite-icon,
-.shopping-card-icon:hover,
+.shopping-cart-icon:hover,
 .user-menu:hover .login-icon {
     color: var(--yellow-color);
 }
@@ -88,7 +88,6 @@
     left: -12px;
     font-size: 13px;
     color: white;
-    display: none;
 }
 
 .login-icon {

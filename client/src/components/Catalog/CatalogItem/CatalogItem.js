@@ -12,7 +12,7 @@ export const CatalogItem = ({
     images,
     rating
 }) => {
-    const { user, isAuthenticated, updateFavorites, updateGuestFavorites } = useContext(AuthContext);
+    const { user, isAuthenticated, updateItems, updateGuestFavorites } = useContext(AuthContext);
     const [liked, setLiked] = useState(false);
     const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ export const CatalogItem = ({
                 const action = liked ? 'remove' : 'add';
                 const result = await userService.updateFavorites(action, user._id, _id);
                 setLiked(prevLiked => !prevLiked);
-                updateFavorites(result.favorites);
+                updateItems('favorites', result.favorites);
             } catch (error) {
                 console.error("Failed to update favorites:", error.message);
             }

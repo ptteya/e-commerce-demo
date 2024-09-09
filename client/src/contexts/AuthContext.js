@@ -62,10 +62,10 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    const updateFavorites = (newFavorites) => {
-        setUser((state) => ({
+    const updateItems = (propertyName, newItems) => {
+        setUser(state => ({
             ...state,
-            favorites: newFavorites
+            [propertyName]: newItems
         }));
     }
 
@@ -81,9 +81,9 @@ export const AuthProvider = ({ children }) => {
         login,
         register,
         logout,
-        updateFavorites,
+        updateItems,
         guestFavorites,
-        updateGuestFavorites
+        updateGuestFavorites,
     }
 
     return (
