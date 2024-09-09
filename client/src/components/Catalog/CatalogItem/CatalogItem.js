@@ -18,7 +18,7 @@ export const CatalogItem = ({
         if (user && user.favorites) {
             setLiked(user.favorites.includes(_id));
         } else {
-            const localFavorites = furnitureService.getGuestFavorites();
+            const localFavorites = furnitureService.getGuestFavoritesIds();
             setLiked(localFavorites.includes(_id));
         }
     }, [user, isAuthenticated, _id]);
@@ -34,7 +34,7 @@ export const CatalogItem = ({
                 console.error("Failed to update favorites:", error.message);
             }
         } else {
-            let updatedFavorites = furnitureService.getGuestFavorites();
+            let updatedFavorites = furnitureService.getGuestFavoritesIds();
 
             if (liked) {
                 updatedFavorites = updatedFavorites.filter(id => id !== _id);
@@ -42,7 +42,6 @@ export const CatalogItem = ({
                 updatedFavorites.push(_id);
             }
 
-            localStorage.setItem('likedFurniture', JSON.stringify(updatedFavorites));
             updateGuestFavorites(updatedFavorites);
             setLiked(prevLiked => !prevLiked);
         }

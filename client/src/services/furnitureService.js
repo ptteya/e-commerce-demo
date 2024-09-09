@@ -4,17 +4,21 @@ export const getByCategory = (category) => request.get(`furniture/catalog/${cate
 
 export const getAll = () => request.get('furniture/catalog');
 
-export const getUserFavorites = async (user) => {
+export const getGuestFavoritesIds = () => {
+    return JSON.parse(localStorage.getItem('likedFurniture')) || [];
+}
+
+export const getFavoriteItems = async (user, isAuthenticated) => {
+    const favoritesIds = user && isAuthenticated
+        ? user.favorites
+        : getGuestFavoritesIds();
+
     try {
         const result = await getAll();
-        const furniture = result.furniture;
-        const likedItems = furniture.filter(f => user.favorites.includes(f._id));
-        return likedItems;
+        const allFurniture = result.furniture;
+        const furniture = allFurniture.filter(f => favoritesIds.includes(f._id));
+        return furniture;
     } catch (error) {
         console.error("Error fetching liked furniture:", error.message)
     }
-}
-
-export const getGuestFavorites = () => {
-    return JSON.parse(localStorage.getItem('likedFurniture')) || [];
 }

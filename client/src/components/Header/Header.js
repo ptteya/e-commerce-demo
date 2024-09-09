@@ -12,17 +12,11 @@ export const Header = () => {
     const iconRef = useRef(null);
 
     useEffect(() => {
-        const fetchLikedFurniture = async () => {
-            if (user && isAuthenticated) {
-                const items = await furnitureService.getUserFavorites(user);
-                setCount(items.length || 0);
-            } else {
-                const localFavorites = furnitureService.getGuestFavorites();
-                setCount(localFavorites.length || 0);
-            }
-        };
+        const favoritesLength = user.favorites && isAuthenticated
+            ? user.favorites.length
+            : furnitureService.getGuestFavoritesIds().length;
 
-        fetchLikedFurniture();
+        setCount(favoritesLength || 0);
     }, [user, isAuthenticated, guestFavorites]);
 
     useEffect(() => {
@@ -55,7 +49,7 @@ export const Header = () => {
                     </div>
                     <div className="top-header-actions">
                         <div className="icon-wrapper">
-                            <Link to="/furniture/favorites">
+                            <Link to="/favorites">
                                 <i className="far fa-heart favorite-icon"></i>
                             </Link>
                             <h4

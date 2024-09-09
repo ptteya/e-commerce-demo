@@ -12,6 +12,7 @@ import { Logout } from './components/Logout/Logout';
 import { Catalog } from './components/Catalog/Catalog';
 import { NotFound } from './components/404/404';
 import { Contacts } from './components/Contacts/Contacts';
+import { Favorites } from './components/Favorites/Favorites';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/auth/logout' element={<Logout />}></Route>
           <Route path='/furniture/catalog/:category' element={<Catalog />}></Route>
           <Route path='/contacts' element={<Contacts />}></Route>
+          <Route path='/favorites' element={<Favorites />}></Route>
           <Route path='/*' element={<NotFound />}></Route>
         </Routes>
       </main >

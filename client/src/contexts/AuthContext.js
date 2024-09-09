@@ -70,6 +70,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const updateGuestFavorites = (newFavorites) => {
+        localStorage.setItem('likedFurniture', JSON.stringify(newFavorites));
         setGuestFavorites(newFavorites);
     }
 
