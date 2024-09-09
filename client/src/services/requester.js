@@ -25,7 +25,8 @@ async function requester(method, url, data = null, token = null) {
     const result = await response.json();
 
     if (!response.ok) {
-        throw result;
+        const errorMessage = result.error || result.message || 'Something went wrong';
+        throw new Error(errorMessage);
     }
 
     return result;

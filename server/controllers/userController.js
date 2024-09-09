@@ -54,11 +54,27 @@ exports.logout = (req, res) => {
 };
 
 exports.getUserData = async (req, res) => {
-    const token = req.headers['authorization'];
-    const payload = verifyToken(token);
-    const user = await userService.getById(payload._id);
-    const userInfo = createUserInfoObj(user, token);
-    res.json({ user: userInfo });
+    try {
+        const token = req.headers['authorization'];
+        if (!token) {
+            return res.status(401).json({ error: 'Authorization token is missing' });
+        }
+
+        const payload = verifyToken(token);
+        if (!payload) {
+            return res.status(401).json({ error: 'Invalid or expired token' });
+        }
+
+        const user = await userService.getById(payload._id);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        const userInfo = createUserInfoObj(user, token);
+        res.status(200).json({ user: userInfo });
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
 }
 
 exports.toggleFavorites = async (req, res) => {
@@ -71,9 +87,10 @@ exports.toggleFavorites = async (req, res) => {
         }
 
         const favorites = await userService.toggleFavorites(action, userId, furnitureId);
+
         res.status(200).json({ message: `Successfully ${action}ed to favorites`, favorites });
     } catch (error) {
-        res.status(409).json({ error: error.message });
+        res.status(500).json({ error: 'Internal server error' });
     }
 }
 

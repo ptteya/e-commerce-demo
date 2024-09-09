@@ -5,17 +5,17 @@ exports.getCatalogItems = async (req, res) => {
 
     try {
         const furniture = await furnitureService.getByCategory(category).lean();
-        res.json({ furniture });
+        res.status(200).json({ furniture });
     } catch (error) {
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({ error: 'Internal server error' });
     }
 };
 
 exports.getAllItems = async (req, res) => {
     try {
         const furniture = await furnitureService.getAll();
-        res.json({ furniture });
+        res.status(200).json({ furniture });
     } catch (error) {
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({ error: 'Internal server error' });
     }
 }

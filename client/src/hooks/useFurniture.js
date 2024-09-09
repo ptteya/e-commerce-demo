@@ -15,7 +15,7 @@ export const useFurniture = (category = null) => {
                 }
                 setFurniture(result.furniture);
             } catch (error) {
-                console.log('Error fetching furniture:', error.error || error.message);
+                console.log('Error fetching furniture:', error.message);
             }
         }
 

@@ -31,7 +31,7 @@ export const CatalogItem = ({
                 setLiked(prevLiked => !prevLiked);
                 updateFavorites(result.favorites);
             } catch (error) {
-                console.log(error.error);
+                console.error("Failed to update favorites:", error.message);
             }
         } else {
             let updatedFavorites = furnitureService.getGuestFavorites();

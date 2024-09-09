@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
                     setUser(result.user);
                 }
             } catch (error) {
-                console.error("Failed to verify token:", error);
+                console.error("Failed to verify token:", error.message);
             }
         }
 
@@ -36,8 +36,8 @@ export const AuthProvider = ({ children }) => {
             setUserData(data.token, data.user);
             localStorage.removeItem('likedFurniture');
             navigate('/');
-        } catch (err) {
-            throw new Error(err.error);
+        } catch (error) {
+            throw new Error(error.message);
         }
     }
 
@@ -47,8 +47,8 @@ export const AuthProvider = ({ children }) => {
             setUserData(data.token, data.user);
             localStorage.removeItem('likedFurniture');
             navigate('/')
-        } catch (err) {
-            throw new Error(err.error);
+        } catch (error) {
+            throw new Error(error.message);
         }
     }
 
@@ -57,8 +57,8 @@ export const AuthProvider = ({ children }) => {
             await userService.logout(user.token);
             localStorage.removeItem('token');
             setUser({});
-        } catch (err) {
-            console.error(err.error);
+        } catch (error) {
+            console.error("Error:", error.message);
         }
     }
 

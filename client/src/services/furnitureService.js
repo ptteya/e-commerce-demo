@@ -11,7 +11,7 @@ export const getUserFavorites = async (user) => {
         const likedItems = furniture.filter(f => user.favorites.includes(f._id));
         return likedItems;
     } catch (error) {
-        console.error("Error fetching liked furniture:", error.error)
+        console.error("Error fetching liked furniture:", error.message)
     }
 }
 
