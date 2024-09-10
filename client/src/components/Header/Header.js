@@ -5,7 +5,7 @@ import { AuthContext } from 'contexts/AuthContext';
 import * as furnitureService from 'services/furnitureService';
 
 const Header = () => {
-    const { user, isAuthenticated, guestFavorites } = useContext(AuthContext);
+    const { user, isAuthenticated, guestFavorites, guestCart, } = useContext(AuthContext);
     const [isDropdownVisible, setDropdownVisible] = useState(false);
     const [favoritesCount, setFavoritesCount] = useState(0);
     const [cartCount, setCartCount] = useState(0);
@@ -13,17 +13,12 @@ const Header = () => {
     const iconRef = useRef(null);
 
     useEffect(() => {
-        const favoritesNum = user.favorites && isAuthenticated
-            ? user.favorites.length
-            : furnitureService.getGuestFavoritesIds().length;
+        const getFavoritesCount = () => isAuthenticated ? user.favorites?.length : furnitureService.getLocalCollection('favorites').length;
+        const getCartCount = () => isAuthenticated ? user.cart?.length : furnitureService.getLocalCollection('cart').length;
 
-        const itemsInCartNum = user.cart && isAuthenticated
-            ? user.cart.length
-            : [];
-
-        setFavoritesCount(favoritesNum || 0);
-        setCartCount(itemsInCartNum || 0)
-    }, [user, isAuthenticated, guestFavorites]);
+        setFavoritesCount(getFavoritesCount() || 0);
+        setCartCount(getCartCount() || 0)
+    }, [user, isAuthenticated, guestFavorites, guestCart]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -58,27 +53,24 @@ const Header = () => {
                             <Link to="/favorites">
                                 <i className="far fa-heart favorite-icon"></i>
                             </Link>
-                            <h4
-                                className="favoriteItems-num"
-                                style={{ display: favoritesCount > 0 ? 'block' : 'none' }}
-                            >
-                                {favoritesCount}
-                            </h4>
+                            {favoritesCount > 0 && (
+                                <h4 className="favoriteItems-num">{favoritesCount}</h4>
+                            )}
                         </div>
                         <div className="icon-wrapper">
                             <Link to="/cart">
                                 <i className="fas fa-shopping-cart shopping-cart-icon"></i>
                             </Link>
-                            <h4
-                                className="cartItems-num"
-                                style={{ display: cartCount > 0 ? 'block' : 'none' }}
-                            >
-                                {cartCount}
-                            </h4>
+                            {cartCount > 0 && (
+                                <h4 className="cartItems-num">{cartCount}</h4>
+                            )}
                         </div>
                         <div className="user-menu" onClick={toggleDropdown}>
                             <p><i className="fas fa-user login-icon" ref={iconRef}></i></p>
-                            <div ref={dropdownRef} className={`dropdown-container ${isDropdownVisible ? 'show' : 'hide'}`}>
+                            <div
+                                ref={dropdownRef}
+                                className={`dropdown-container ${isDropdownVisible ? 'show' : 'hide'}`}
+                            >
                                 <div className="dropdown-content" onClick={(e) => e.stopPropagation()}>
                                     {isAuthenticated ? (
                                         <>

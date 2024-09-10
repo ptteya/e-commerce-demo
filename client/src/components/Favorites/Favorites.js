@@ -10,7 +10,7 @@ const Favorites = () => {
 
     useEffect(() => {
         const fetchLikedFurniture = async () => {
-            const likedFurniture = await furnitureService.getFavoriteItems(user, isAuthenticated);
+            const likedFurniture = await furnitureService.getCollectionItems('favorites', user, isAuthenticated);
             setFurniture(likedFurniture);
         };
 

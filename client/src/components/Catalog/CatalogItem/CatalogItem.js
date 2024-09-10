@@ -1,8 +1,5 @@
-import { useContext, useState, useEffect } from 'react';
-import { AuthContext } from 'contexts/AuthContext';
-import * as userService from 'services/userService';
-import * as furnitureService from 'services/furnitureService';
 import { useNavigate } from 'react-router-dom';
+import useToggle from 'hooks/useToggle';
 
 export const CatalogItem = ({
     _id,
@@ -12,42 +9,8 @@ export const CatalogItem = ({
     images,
     rating
 }) => {
-    const { user, isAuthenticated, updateItems, updateGuestFavorites } = useContext(AuthContext);
-    const [liked, setLiked] = useState(false);
+    const { added, handleToggle } = useToggle(_id, 'favorites');
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (user && user.favorites) {
-            setLiked(user.favorites.includes(_id));
-        } else {
-            const localFavorites = furnitureService.getGuestFavoritesIds();
-            setLiked(localFavorites.includes(_id));
-        }
-    }, [user, isAuthenticated, _id]);
-
-    const toggleLike = async () => {
-        if (isAuthenticated) {
-            try {
-                const action = liked ? 'remove' : 'add';
-                const result = await userService.updateFavorites(action, user._id, _id);
-                setLiked(prevLiked => !prevLiked);
-                updateItems('favorites', result.favorites);
-            } catch (error) {
-                console.error("Failed to update favorites:", error.message);
-            }
-        } else {
-            let updatedFavorites = furnitureService.getGuestFavoritesIds();
-
-            if (liked) {
-                updatedFavorites = updatedFavorites.filter(id => id !== _id);
-            } else {
-                updatedFavorites.push(_id);
-            }
-
-            updateGuestFavorites(updatedFavorites);
-            setLiked(prevLiked => !prevLiked);
-        }
-    };
 
     const handleCardClick = (e) => {
         if (!e.target.classList.contains('heart-icon')) {
@@ -80,7 +43,7 @@ export const CatalogItem = ({
         <div className="product-card" onClick={handleCardClick}>
             <div className="image-container">
                 <img src={images.mainImage} alt="couch" />
-                <i className={`heart-icon ${liked ? 'fas fa-heart favorites' : 'far fa-heart'}`} onClick={toggleLike}></i>
+                <i className={`heart-icon ${added ? 'fas fa-heart favorites' : 'far fa-heart'}`} onClick={handleToggle}></i>
             </div>
             <div className="product-info">
                 <div className="left-side">

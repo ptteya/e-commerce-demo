@@ -8,6 +8,4 @@ export const logout = (token) => request.get('auth/logout', null, token);
 
 export const getUserData = (token) => request.get('auth/me', null, token);
 
-export const updateFavorites = (action, userId, furnitureId) => request.post(`favorites/${action}`, { userId, furnitureId });
-
-export const updateCart = (action, userId, furnitureId) => request.post(`cart/${action}`, { userId, furnitureId });
+export const updateCollection = (action, collectionName, userId, furnitureId) => request.post(`${collectionName}/${action}`, { userId, furnitureId });

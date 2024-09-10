@@ -4,16 +4,16 @@ export const getByCategory = (category) => request.get(`furniture/catalog/${cate
 
 export const getAll = () => request.get('furniture/catalog');
 
-export const getGuestFavoritesIds = () => {
-    return JSON.parse(localStorage.getItem('likedFurniture')) || [];
-}
-
 export const getDetails = (id) => request.get(`furniture/${id}`);
 
-export const getFavoriteItems = async (user, isAuthenticated) => {
+export const getLocalCollection = (collectionName) => {
+    return JSON.parse(localStorage.getItem(collectionName)) || [];
+}
+
+export const getCollectionItems = async (collectionName, user, isAuthenticated) => {
     const favoritesIds = user && isAuthenticated
-        ? user.favorites
-        : getGuestFavoritesIds();
+        ? user[collectionName]
+        : getLocalCollection(collectionName);
 
     try {
         const result = await getAll();
@@ -21,6 +21,6 @@ export const getFavoriteItems = async (user, isAuthenticated) => {
         const furniture = allFurniture.filter(f => favoritesIds.includes(f._id));
         return furniture;
     } catch (error) {
-        console.error("Error fetching liked furniture:", error.message)
+        console.error(`Error fetching furniture:`, error.message)
     }
 }

@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
     const navigate = useNavigate();
     const [guestFavorites, setGuestFavorites] = useState([]);
+    const [guestCart, setGuestCart] = useState([]);
 
     useEffect(() => {
         const verifyToken = async () => {
@@ -34,7 +35,8 @@ export const AuthProvider = ({ children }) => {
         try {
             const data = await userService.login(userData);
             setUserData(data.token, data.user);
-            localStorage.removeItem('likedFurniture');
+            localStorage.removeItem('favorites');
+            localStorage.removeItem('cart');
             navigate('/');
         } catch (error) {
             throw new Error(error.message);
@@ -45,7 +47,8 @@ export const AuthProvider = ({ children }) => {
         try {
             const data = await userService.register(userData);
             setUserData(data.token, data.user);
-            localStorage.removeItem('likedFurniture');
+            localStorage.removeItem('favorites');
+            localStorage.removeItem('cart');
             navigate('/')
         } catch (error) {
             throw new Error(error.message);
@@ -62,16 +65,21 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    const updateItems = (propertyName, newItems) => {
+    const updateCollection = (collectionName, newItems) => {
         setUser(state => ({
             ...state,
-            [propertyName]: newItems
+            [collectionName]: newItems
         }));
     }
 
-    const updateGuestFavorites = (newFavorites) => {
-        localStorage.setItem('likedFurniture', JSON.stringify(newFavorites));
-        setGuestFavorites(newFavorites);
+    const updateLocalCollection = (collectionName, newItems) => {
+        localStorage.setItem(collectionName, JSON.stringify(newItems));
+
+        if (collectionName === 'favorites') {
+            setGuestFavorites(newItems);
+        } else if (collectionName === 'cart') {
+            setGuestCart(newItems)
+        }
     }
 
     const context = {
@@ -81,9 +89,10 @@ export const AuthProvider = ({ children }) => {
         login,
         register,
         logout,
-        updateItems,
+        updateCollection,
         guestFavorites,
-        updateGuestFavorites,
+        guestCart,
+        updateLocalCollection,
     }
 
     return (

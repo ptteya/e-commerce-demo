@@ -1,27 +1,21 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState, useRef, useContext } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './Details.css';
 import * as furnitureService from 'services/furnitureService';
-import * as userService from 'services/userService';
-import { AuthContext } from 'contexts/AuthContext';
+import useToggle from 'hooks/useToggle';
 
 const Details = () => {
     const { furnitureId } = useParams();
-    const { user, isAuthenticated, updateItems } = useContext(AuthContext);
     const [furniture, setFurniture] = useState({});
-    const [liked, setLiked] = useState(false);
+    const { added, handleToggle } = useToggle(furnitureId, 'cart');
     const mainImageRef = useRef(null);
     const imageRefs = useRef([]);
 
     useEffect(() => {
         furnitureService.getDetails(furnitureId)
             .then(result => setFurniture(result.furniture))
-            .catch((error) => console.error('Error:', error.message));
-
-        if (user && isAuthenticated) {
-            setLiked(user.cart.includes(furnitureId));
-        }
-    }, [furnitureId, user, isAuthenticated]);
+            .catch((error) => console.error('Error fetching furniture details:', error.message));
+    }, [furnitureId]);
 
     const handleImageClick = (event) => {
         const clickedImageSrc = event.target.getAttribute('src');
@@ -31,14 +25,6 @@ const Details = () => {
 
         imageRefs.current.forEach(img => img.classList.remove('activeImg'));
         event.target.classList.add('activeImg');
-    }
-
-    const handleAddToCart = async () => {
-        if (isAuthenticated) {
-            const result = await userService.updateCart('add', user._id, furnitureId);
-            setLiked(prevLiked => !prevLiked);
-            updateItems('cart', result.cart);
-        }
     }
 
     const images = furniture.images || {};
@@ -84,10 +70,10 @@ const Details = () => {
                     </div>
                     <p className="product-description">{furniture.description}</p>
                     <div className="product-buttons">
-                        {liked ? (
+                        {added ? (
                             <button className="btn add-to-cart" disabled>Added to Cart</button>
                         ) : (
-                            <button className="btn add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
+                            <button className="btn add-to-cart" onClick={handleToggle}>Add to Cart</button>
                         )}
                     </div>
                 </div>
