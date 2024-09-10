@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './404.css';
 
-export const NotFound = () => {
+const NotFound = () => {
     return (
         <div className="not-found">
             <div className="error-container">
@@ -16,3 +16,5 @@ export const NotFound = () => {
         </div>
     );
 };
+
+export default NotFound;

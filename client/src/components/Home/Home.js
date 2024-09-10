@@ -1,9 +1,9 @@
 import './Home.css';
 import { Link } from 'react-router-dom';
-import { CatalogItem } from '../Catalog/CatalogItem/CatalogItem';
-import { useFurniture } from '../../hooks/useFurniture';
+import { CatalogItem } from 'components/Catalog/CatalogItem/CatalogItem';
+import { useFurniture } from 'hooks/useFurniture';
 
-export const Home = () => {
+const Home = () => {
     const { furniture } = useFurniture();
 
     return (
@@ -165,3 +165,5 @@ export const Home = () => {
         </div>
     );
 }
+
+export default Home;

@@ -1,9 +1,9 @@
 import './Catalog.css';
 import { Link, useParams } from 'react-router-dom';
 import { CatalogItem } from './CatalogItem/CatalogItem';
-import { useFurniture } from '../../hooks/useFurniture';
+import { useFurniture } from 'hooks/useFurniture';
 
-export const Catalog = () => {
+const Catalog = () => {
     const { category } = useParams();
     const categoryTitle = category[0].toUpperCase() + category.substring(1);
     const { furniture } = useFurniture(category);
@@ -73,3 +73,5 @@ export const Catalog = () => {
         </div>
     );
 }
+
+export default Catalog;

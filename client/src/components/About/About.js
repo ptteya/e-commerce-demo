@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './About.css';
 
-export const About = () => {
+const About = () => {
     return (
         <section className="about-section">
             <section className="hero">
@@ -37,3 +37,5 @@ export const About = () => {
         </section >
     );
 }
+
+export default About;

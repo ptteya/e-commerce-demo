@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import './Header.css';
 import { useState, useRef, useEffect, useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
-import * as furnitureService from '../../services/furnitureService';
+import { AuthContext } from 'contexts/AuthContext';
+import * as furnitureService from 'services/furnitureService';
 
-export const Header = () => {
+const Header = () => {
     const { user, isAuthenticated, guestFavorites } = useContext(AuthContext);
     const [isDropdownVisible, setDropdownVisible] = useState(false);
     const [favoritesCount, setFavoritesCount] = useState(0);
@@ -137,3 +137,5 @@ export const Header = () => {
         </header >
     );
 }
+
+export default Header;

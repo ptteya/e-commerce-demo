@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Contacts.css';
 
-export const Contacts = () => {
+const Contacts = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleSubmit = (event) => {
@@ -57,3 +57,5 @@ export const Contacts = () => {
         </section>
     );
 }
+
+export default Contacts;

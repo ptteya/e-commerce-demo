@@ -1,4 +1,4 @@
-import * as request from '../services/requester';
+import * as request from 'services/requester';
 
 export const getByCategory = (category) => request.get(`furniture/catalog/${category}`);
 

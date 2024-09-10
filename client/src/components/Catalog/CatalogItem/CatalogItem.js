@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
-import { AuthContext } from '../../../contexts/AuthContext';
-import * as userService from '../../../services/userService';
-import * as furnitureService from '../../../services/furnitureService';
+import { AuthContext } from 'contexts/AuthContext';
+import * as userService from 'services/userService';
+import * as furnitureService from 'services/furnitureService';
 import { useNavigate } from 'react-router-dom';
 
 export const CatalogItem = ({

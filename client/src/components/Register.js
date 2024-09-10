@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import '../SharedStyles/login-register.css';
-import { useForm } from '../../hooks/useForm';
+import 'components/SharedStyles/login-register.css';
+import { useForm } from 'hooks/useForm';
 import { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from 'contexts/AuthContext';
 
-export const Register = () => {
+const Register = () => {
     const { register } = useContext(AuthContext);
     const { values, changeHandler, onSubmit, error } = useForm({
         email: '',
@@ -44,3 +44,5 @@ export const Register = () => {
         </div>
     );
 }
+
+export default Register;

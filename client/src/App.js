@@ -1,20 +1,19 @@
-import { Routes, Route } from 'react-router-dom';
 import './index.css';
-
-import { Header } from './components/Header/Header';
-import { Footer } from './components/Footer/Footer';
-import { Home } from './components/Home/Home';
-import { About } from './components/About/About';
-import { Login } from './components/Login/Login';
-import { Register } from './components/Register/Register';
+import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
-import { Logout } from './components/Logout/Logout';
-import { Catalog } from './components/Catalog/Catalog';
-import { NotFound } from './components/404/404';
-import { Contacts } from './components/Contacts/Contacts';
-import { Favorites } from './components/Favorites/Favorites';
-import { Details } from './components/Details/Details';
-import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import Header from 'components/Header/Header';
+import Footer from 'components/Footer/Footer';
+import Home from 'components/Home/Home';
+import About from 'components/About/About';
+import Login from 'components/Login';
+import Register from 'components/Register';
+import Logout from 'components/Logout';
+import Catalog from 'components/Catalog/Catalog';
+import NotFound from 'components/404/404';
+import Contacts from 'components/Contacts/Contacts';
+import Favorites from 'components/Favorites/Favorites';
+import Details from 'components/Details/Details';
+import ScrollToTop from 'components/ScrollToTop';
 
 function App() {
   return (

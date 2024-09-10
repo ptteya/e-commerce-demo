@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState, useRef, useContext } from 'react';
 import './Details.css';
-import * as furnitureService from '../../services/furnitureService';
-import * as userService from '../../services/userService';
-import { AuthContext } from '../../contexts/AuthContext';
+import * as furnitureService from 'services/furnitureService';
+import * as userService from 'services/userService';
+import { AuthContext } from 'contexts/AuthContext';
 
-export const Details = () => {
+const Details = () => {
     const { furnitureId } = useParams();
     const { user, isAuthenticated, updateItems } = useContext(AuthContext);
     const [furniture, setFurniture] = useState({});
@@ -95,3 +95,5 @@ export const Details = () => {
         </div>
     );
 };
+
+export default Details;

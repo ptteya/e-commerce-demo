@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import * as furnitureService from '../services/furnitureService';
+import * as furnitureService from 'services/furnitureService';
 
 export const useFurniture = (category = null) => {
     const [furniture, setFurniture] = useState([]);

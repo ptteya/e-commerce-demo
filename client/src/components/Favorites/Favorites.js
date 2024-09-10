@@ -1,10 +1,10 @@
 import { useContext, useState, useEffect } from "react";
-import { CatalogItem } from "../Catalog/CatalogItem/CatalogItem";
-import { AuthContext } from "../../contexts/AuthContext";
 import './Favorites.css';
-import * as furnitureService from '../../services/furnitureService';
+import { CatalogItem } from "components/Catalog/CatalogItem/CatalogItem";
+import { AuthContext } from "contexts/AuthContext";
+import * as furnitureService from 'services/furnitureService';
 
-export const Favorites = () => {
+const Favorites = () => {
     const { user, isAuthenticated, guestFavorites } = useContext(AuthContext);
     const [furniture, setFurniture] = useState([]);
 
@@ -32,3 +32,5 @@ export const Favorites = () => {
         </div>
     );
 }
+
+export default Favorites;
