@@ -1,8 +1,8 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const userService = require('../services/userService');
-const { getErrorMessage } = require('../utils/errorUtil');
-const { generateToken, verifyToken } = require('../utils/tokenUtil');
+const { handleErrorResponse } = require('../utils/errorUtil');
+const { generateToken, addTokenToUser, getUserFromToken } = require('../utils/tokenUtil');
 
 exports.login = async (req, res) => {
     try {
@@ -10,20 +10,20 @@ exports.login = async (req, res) => {
 
         const user = await userService.getUserByEmail(email);
         if (!user) {
-            return res.status(401).json({ error: 'Invalid email or password' });
+            return handleErrorResponse(res, 401, 'Invalid email or password');
         }
 
         const passwordMatch = await bcrypt.compare(password, user.password);
         if (!passwordMatch) {
-            return res.status(401).json({ error: 'Invalid email or password' });
+            return handleErrorResponse(res, 401, 'Invalid email or password');
         }
 
         const token = generateToken(user);
-        const userInfo = createUserInfoObj(user, token);
+        const userInfo = addTokenToUser(user, token);
 
         res.status(200).json({ token, user: userInfo });
     } catch (error) {
-        res.status(500).json({ error: getErrorMessage(error) });
+        handleErrorResponse(res, 500, null, error);
     }
 };
 
@@ -41,11 +41,10 @@ exports.register = async (req, res) => {
         await newUser.save();
 
         const token = generateToken(newUser);
-        const userInfo = createUserInfoObj(newUser, token);
-
+        const userInfo = addTokenToUser(newUser, token);
         res.status(200).json({ token, user: userInfo });
     } catch (error) {
-        res.status(500).json({ error: getErrorMessage(error) });
+        handleErrorResponse(res, 500, null, error);
     }
 };
 
@@ -54,26 +53,16 @@ exports.logout = (req, res) => {
 };
 
 exports.getUserData = async (req, res) => {
+    const token = req.headers['authorization'];
+    if (!token) {
+        return handleErrorResponse(res, 401, 'Authorization token is missing');
+    }
+
     try {
-        const token = req.headers['authorization'];
-        if (!token) {
-            return res.status(401).json({ error: 'Authorization token is missing' });
-        }
-
-        const payload = verifyToken(token);
-        if (!payload) {
-            return res.status(401).json({ error: 'Invalid or expired token' });
-        }
-
-        const user = await userService.getById(payload._id);
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' });
-        }
-
-        const userInfo = createUserInfoObj(user, token);
-        res.status(200).json({ user: userInfo });
+        const user = await getUserFromToken(token);
+        res.status(200).json({ user });
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        handleErrorResponse(res, 401, null, error);
     }
 }
 
@@ -89,16 +78,15 @@ async function handleAction(req, res, collectionName) {
     const { userId, furnitureId } = req.body;
     const action = req.params.action;
 
+    if (action !== 'add' && action !== 'remove') {
+        return handleErrorResponse(res, 400, 'Invalid action');
+    }
+
     try {
-        if (action !== 'add' && action !== 'remove') {
-            return res.status(400).json({ error: 'Invalid action' });
-        }
-
         const result = await userService.modifyCollection(collectionName, action, userId, furnitureId);
-
         res.status(200).json({ [collectionName]: result });
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        handleErrorResponse(res, 500);
     }
 }
 
@@ -131,11 +119,3 @@ async function validateRegisterData({ email, username, password, repeatPass }) {
 
     return null;
 }
-
-function createUserInfoObj(user, token) {
-    const userObj = user.toObject();
-    const { password: _, ...userInfo } = userObj;
-    userInfo.token = token;
-    return userInfo;
-}
-

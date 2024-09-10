@@ -1,4 +1,5 @@
 const { verifyToken } = require('../utils/tokenUtil');
+const { handleErrorResponse } = require('../utils/errorUtil');
 
 exports.authentication = (req, res, next) => {
     const header = req.headers['authorization'];
@@ -7,7 +8,7 @@ exports.authentication = (req, res, next) => {
         try {
             req.user = verifyToken(header);
         } catch (error) {
-            return res.status(403).json({ error: 'Invalid token' });
+            return handleErrorResponse(res, 403, 'Invalid token');
         }
     }
 
@@ -18,6 +19,6 @@ exports.requireAuth = (req, res, next) => {
     if (req.user) {
         next();
     } else {
-        res.status(401).json({ error: 'Authentication required' });
+        handleErrorResponse(res, 401, 'Authentication required')
     }
 };
