@@ -1,6 +1,6 @@
 import './Home.css';
 import { Link } from 'react-router-dom';
-import { CatalogItem } from 'components/Catalog/CatalogItem/CatalogItem';
+import CatalogItem from 'components/Catalog/CatalogItem';
 import { useFurniture } from 'hooks/useFurniture';
 
 const Home = () => {

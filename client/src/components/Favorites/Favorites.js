@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import './Favorites.css';
-import { CatalogItem } from "components/Catalog/CatalogItem/CatalogItem";
+import CatalogItem from "components/Catalog/CatalogItem";
 import { AuthContext } from "contexts/AuthContext";
 import * as furnitureService from 'services/furnitureService';
 

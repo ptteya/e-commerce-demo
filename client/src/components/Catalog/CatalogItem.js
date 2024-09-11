@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import useToggle from 'hooks/useToggle';
 
-export const CatalogItem = ({
+const CatalogItem = ({
     _id,
     name,
     price,
@@ -43,7 +43,7 @@ export const CatalogItem = ({
         <div className="product-card" onClick={handleCardClick}>
             <div className="image-container">
                 <img src={images.mainImage} alt="couch" />
-                <i className={`heart-icon ${added ? 'fas fa-heart favorites' : 'far fa-heart'}`} onClick={handleToggle}></i>
+                <i className={`heart-icon ${added ? 'fas fa-heart favorites' : 'far fa-heart'}`} onClick={() => handleToggle()}></i>
             </div>
             <div className="product-info">
                 <div className="left-side">
@@ -59,3 +59,5 @@ export const CatalogItem = ({
         </div>
     );
 }
+
+export default CatalogItem;

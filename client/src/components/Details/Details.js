@@ -73,7 +73,7 @@ const Details = () => {
                         {added ? (
                             <button className="btn add-to-cart" disabled>Added to Cart</button>
                         ) : (
-                            <button className="btn add-to-cart" onClick={handleToggle}>Add to Cart</button>
+                            <button className="btn add-to-cart" onClick={() => handleToggle()}>Add to Cart</button>
                         )}
                     </div>
                 </div>

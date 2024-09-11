@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 const getUserByEmail = (email) => User.findOne({ email });
 
-const getById = (id) => User.findById(id);
+const getById = async (id) => User.findById(id);
 
 const checkIfUserExists = async (email, username) => {
     const user = await User.findOne({
@@ -15,24 +15,46 @@ const checkIfUserExists = async (email, username) => {
     return user;
 }
 
-const modifyCollection = async (collectionName, action, userId, furnitureId) => {
+const modifyCollection = async (collectionName, action, userId, furnitureId, quantity) => {
     const user = await getById(userId);
-    const collection = user[collectionName];
+    let collection = user[collectionName].toObject();
 
     if (action === 'add') {
-        if (!collection.includes(furnitureId)) {
-            collection.push(furnitureId);
-        } else {
-            throw new Error(`Furniture is already in the ${collectionName}`);
-        }
+        collection = addToCollection(collectionName, collection, furnitureId, quantity);
     } else if (action === 'remove') {
-        user[collectionName] = collection.filter(id => id.toString() !== furnitureId);
+        collection = collection.filter((el) => el.furnitureId.toString() !== furnitureId);
+    } else if (action === 'update' && collectionName === 'cart') {
+        collection = updateItemQuantity(collection, furnitureId, quantity);
     }
 
+    user[collectionName] = collection;
     await user.save();
-
-    return user[collectionName];
+    return collection;
 };
+
+function addToCollection(collectionName, collection, furnitureId, quantity) {
+    const isInCollection = collection.some((el) => el.furnitureId === furnitureId);
+
+    if (isInCollection) {
+        throw new Error(`Furniture is already in the ${collectionName}`)
+    }
+
+    const item = { furnitureId, ...(collectionName === 'cart' && { quantity }) };
+    collection.push(item);
+
+    return collection;
+}
+
+function updateItemQuantity(collection, furnitureId, quantity) {
+    const cartItemIndex = collection.findIndex(el => el.furnitureId.toString() === furnitureId);
+
+    if (cartItemIndex === -1) {
+        throw new Error('Can not update furniture quantity');
+    }
+
+    collection[cartItemIndex].quantity = quantity;
+    return collection;
+}
 
 module.exports = {
     getUserByEmail,

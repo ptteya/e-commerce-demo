@@ -75,18 +75,18 @@ exports.modifyCart = async (req, res) => {
 }
 
 async function handleAction(req, res, collectionName) {
-    const { userId, furnitureId } = req.body;
+    const { userId, furnitureId, quantity } = req.body;
     const action = req.params.action;
 
-    if (action !== 'add' && action !== 'remove') {
+    if (action !== 'add' && action !== 'remove' && action !== 'update') {
         return handleErrorResponse(res, 400, 'Invalid action');
     }
 
     try {
-        const result = await userService.modifyCollection(collectionName, action, userId, furnitureId);
+        const result = await userService.modifyCollection(collectionName, action, userId, furnitureId, quantity);
         res.status(200).json({ [collectionName]: result });
     } catch (error) {
-        handleErrorResponse(res, 500);
+        handleErrorResponse(res, 500, null, error);
     }
 }
 

@@ -1,51 +1,61 @@
 import { AuthContext } from "contexts/AuthContext";
 import { useContext, useEffect, useState } from "react";
-const furnitureService = require('services/furnitureService');
-const userService = require('services/userService');
+import * as furnitureService from 'services/furnitureService';
+import * as userService from 'services/userService';
 
 const useToggle = (id, collectionName) => {
     const { user, isAuthenticated, updateCollection, updateLocalCollection } = useContext(AuthContext);
     const [added, setAdded] = useState(false);
+    const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
-        const collection = user[collectionName];
-        if (user && isAuthenticated) {
-            setAdded(collection.includes(id));
-        } else {
-            const localCollection = furnitureService.getLocalCollection(collectionName);
-            setAdded(localCollection.includes(id));
+        const loadInitialState = () => {
+            const collection = isAuthenticated
+                ? user[collectionName]
+                : furnitureService.getLocalCollection(collectionName);
+
+            const item = furnitureService.getItemFromCollection(collection, id);
+
+            if (item) {
+                if (collectionName === 'cart') {
+                    setQuantity(item.quantity);
+                }
+                setAdded(!!item);
+            }
         }
+        loadInitialState();
     }, [id, user, isAuthenticated, collectionName]);
 
 
-    const handleToggle = async () => {
+    const handleToggle = async (newQuantity = 1, update = false) => {
         if (isAuthenticated) {
-            try {
-                const action = added ? 'remove' : 'add';
-                const result = await userService.updateCollection(action, collectionName, user._id, id);
-                setAdded(prevState => !prevState);
-                updateCollection(collectionName, result[collectionName]);
-            } catch (error) {
-                console.error(`Failed to update ${collectionName}:`, error.message);
-            }
+            let action = added
+                ? (update ? 'update' : 'remove')
+                : 'add';
+            await userService.handleAuthToggle(action, collectionName, user._id, id, newQuantity, updateCollection);
         } else {
-            let updatedCollection = furnitureService.getLocalCollection(collectionName);
+            furnitureService.handleLocalToggle(id, added, collectionName, newQuantity, update, updateLocalCollection);
+        }
 
-            if (added) {
-                updatedCollection = updatedCollection.filter(currId => currId !== id);
-            } else {
-                updatedCollection.push(id);
-            }
+        handleState(collectionName, newQuantity, update);
+    }
 
-            updateLocalCollection(collectionName, updatedCollection);
+    function handleState(collectionName, quantity, update) {
+        if (update && collectionName === 'cart') {
+            setQuantity(quantity);
+        } else {
             setAdded(prevState => !prevState);
         }
     }
 
     return {
         added,
-        handleToggle
+        handleToggle,
+        quantity,
     }
 }
 
 export default useToggle;
+
+
+

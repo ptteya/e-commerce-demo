@@ -28,12 +28,22 @@ const UserSchema = new mongoose.Schema({
         }
     },
     favorites: [{
-        type: mongoose.Types.ObjectId,
-        ref: 'Furniture'
+        furnitureId: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Furniture',
+            required: true
+        }
     }],
     cart: [{
-        type: mongoose.Types.ObjectId,
-        ref: 'Furniture'
+        furnitureId: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Furniture',
+            required: true
+        },
+        quantity: {
+            type: Number,
+            default: 1
+        }
     }]
 });
 

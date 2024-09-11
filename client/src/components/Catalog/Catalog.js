@@ -1,6 +1,6 @@
 import './Catalog.css';
 import { Link, useParams } from 'react-router-dom';
-import { CatalogItem } from './CatalogItem/CatalogItem';
+import CatalogItem from './CatalogItem';
 import { useFurniture } from 'hooks/useFurniture';
 
 const Catalog = () => {

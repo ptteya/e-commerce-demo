@@ -1,0 +1,138 @@
+.cart-container {
+    margin: 50px 0px;
+    min-height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cart-container h1 {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 30px;
+}
+
+.cart-container .product-container {
+    width: 60%;
+}
+
+.cart-container .no-content {
+    text-align: center;
+    font-size: 25px;
+}
+
+.cart-container .product {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(208, 208, 208);
+}
+
+.cart-container .product img {
+    width: 180px;
+    height: 150px;
+}
+
+.cart-container .product .image-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.cart-container .product .price {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.quantity-container {
+    width: 23%;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-container .quantity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 3px;
+    width: 110px;
+}
+
+.decrease,
+.increase {
+    border: none;
+    background-color: white;
+}
+
+.decrease i,
+.increase i {
+    padding: 8px;
+    color: gray;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.remove-furniture {
+    color: black;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.remove-furniture:hover {
+    text-decoration: none;
+}
+
+.total-price {
+    background-color: rgb(247, 247, 247);
+    padding: 20px;
+    text-align: end;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.cart-container .buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-container .btn {
+    padding: 12px;
+    margin-top: 20px;
+    width: 200px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.cart-container .btn-buy {
+    background-color: var(--yellow-color);
+    color: white;
+    border: none;
+}
+
+.cart-container .btn-buy:hover {
+    background-color: rgb(182, 136, 67);
+}
+
+.cart-container .btn-back {
+    background-color: white;
+    color: var(--yellow-color);
+    border: 2px solid var(--yellow-color);
+}
+
+.cart-container .btn-back:hover {
+    background-color: var(--yellow-color);
+    color: white;
+}

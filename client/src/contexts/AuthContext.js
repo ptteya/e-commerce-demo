@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import * as userService from 'services/userService';
+import * as furnitureService from 'services/furnitureService';
 import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
@@ -72,13 +73,17 @@ export const AuthProvider = ({ children }) => {
         }));
     }
 
-    const updateLocalCollection = (collectionName, newItems) => {
-        localStorage.setItem(collectionName, JSON.stringify(newItems));
+    const updateLocalCollection = (collectionName, updatedCollection) => {
+        if (updatedCollection.length === 0) {
+            localStorage.removeItem(collectionName);
+        } else {
+            furnitureService.updateLocalCollection(collectionName, updatedCollection);
+        }
 
         if (collectionName === 'favorites') {
-            setGuestFavorites(newItems);
+            setGuestFavorites(updatedCollection);
         } else if (collectionName === 'cart') {
-            setGuestCart(newItems)
+            setGuestCart(updatedCollection)
         }
     }
 
