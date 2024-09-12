@@ -1,10 +1,10 @@
 import './Home.css';
 import { Link } from 'react-router-dom';
 import CatalogItem from 'components/Catalog/CatalogItem';
-import { useFurniture } from 'hooks/useFurniture';
+import { useFetchFurniture } from 'hooks/useFetchFurniture ';
 
 const Home = () => {
-    const furniture = useFurniture();
+    const furniture = useFetchFurniture();
 
     return (
         <div className="homepage-wrapper">

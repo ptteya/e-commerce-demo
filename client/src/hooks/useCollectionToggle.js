@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import * as furnitureService from 'services/furnitureService';
 import * as userService from 'services/userService';
 
-const useToggle = (id, collectionName) => {
+export const useCollectionToggle = (id, collectionName) => {
     const { user, isAuthenticated, updateCollection, updateLocalCollection } = useContext(AuthContext);
     const [added, setAdded] = useState(false);
     const [quantity, setQuantity] = useState(1);
@@ -54,8 +54,6 @@ const useToggle = (id, collectionName) => {
         quantity,
     }
 }
-
-export default useToggle;
 
 
 

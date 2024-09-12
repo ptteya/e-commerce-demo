@@ -2,12 +2,12 @@ import './Catalog.css';
 import { Link, useLocation } from 'react-router-dom';
 import CatalogItem from './CatalogItem';
 import PriceFilter from 'components/PriceFilter';
-import { useFurniture } from 'hooks/useFurniture';
+import { useFetchFurniture } from 'hooks/useFetchFurniture ';
 
 const Catalog = () => {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-    const furniture = useFurniture(queryParams.toString());
+    const furniture = useFetchFurniture(queryParams.toString());
 
     const category = queryParams.get('category') || '';
     let categoryTitle = category

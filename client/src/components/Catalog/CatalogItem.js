@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import useToggle from 'hooks/useToggle';
+import { useCollectionToggle } from 'hooks/useCollectionToggle';
 
 const CatalogItem = ({
     _id,
@@ -9,7 +9,7 @@ const CatalogItem = ({
     images,
     rating
 }) => {
-    const { added, handleToggle } = useToggle(_id, 'favorites');
+    const { added, handleToggle } = useCollectionToggle(_id, 'favorites');
     const navigate = useNavigate();
 
     const handleCardClick = (e) => {

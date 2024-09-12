@@ -1,4 +1,4 @@
-import useToggle from 'hooks/useToggle';
+import { useCollectionToggle } from 'hooks/useCollectionToggle';
 
 const CartItem = ({
     _id,
@@ -7,7 +7,7 @@ const CartItem = ({
     images,
     size,
 }) => {
-    let { handleToggle, quantity } = useToggle(_id, 'cart');
+    let { handleToggle, quantity } = useCollectionToggle(_id, 'cart');
 
     const updateQuantity = (action) => {
         if (action === 'increase') {

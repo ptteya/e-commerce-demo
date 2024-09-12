@@ -2,12 +2,12 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import './Details.css';
 import * as furnitureService from 'services/furnitureService';
-import useToggle from 'hooks/useToggle';
+import { useCollectionToggle } from 'hooks/useCollectionToggle';
 
 const Details = () => {
     const { furnitureId } = useParams();
     const [furniture, setFurniture] = useState({});
-    const { added, handleToggle } = useToggle(furnitureId, 'cart');
+    const { added, handleToggle } = useCollectionToggle(furnitureId, 'cart');
     const mainImageRef = useRef(null);
     const imageRefs = useRef([]);
 
