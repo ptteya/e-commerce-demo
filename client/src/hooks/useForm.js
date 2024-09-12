@@ -8,11 +8,16 @@ export const useForm = (initialValues, submitHandler) => {
         setValues(state => ({ ...state, [e.target.name]: e.target.value }));
     }
 
+    const resetForm = () => {
+        setValues(initialValues);
+    }
+
     const onSubmit = async (e) => {
         e.preventDefault();
 
         try {
             await submitHandler(values);
+            resetForm();
         } catch (error) {
             setError(error.message);
         }
@@ -22,6 +27,7 @@ export const useForm = (initialValues, submitHandler) => {
         values,
         changeHandler,
         onSubmit,
+        resetForm,
         error
     }
 };

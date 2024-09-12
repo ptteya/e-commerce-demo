@@ -3,11 +3,12 @@ import { useQueryHandler } from 'hooks/useQueryManager';
 
 const Search = () => {
     const { handleSearch } = useQueryHandler();
-    const { values, changeHandler, onSubmit } = useForm({ searchQuery: '' }, handleSearch);
+    const { values, changeHandler, onSubmit, resetForm } = useForm({ searchQuery: '' }, handleSearch);
 
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
-            handleSearch({ searchQuery: e.target.value })
+            handleSearch({ searchQuery: e.target.value });
+            resetForm();
         }
     }
 
