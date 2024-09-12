@@ -2,7 +2,7 @@ const furnitureService = require('../services/furnitureService');
 const { handleErrorResponse } = require('../utils/errorUtil');
 
 exports.getFurniture = async (req, res) => {
-    const { category, searchQuery } = req.query;
+    const { category, searchQuery, minPrice, maxPrice } = req.query;
 
     let filter = {};
     if (category) {
@@ -11,6 +11,10 @@ exports.getFurniture = async (req, res) => {
 
     if (searchQuery) {
         filter['$text'] = { $search: searchQuery };
+    }
+
+    if (minPrice && maxPrice) {
+        filter.price = { $gte: minPrice, $lte: maxPrice };
     }
 
     try {

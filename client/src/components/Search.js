@@ -1,21 +1,13 @@
 import { useForm } from 'hooks/useForm';
-import { useNavigate } from 'react-router-dom';
+import { useQueryHandler } from 'hooks/useQueryManager';
 
 const Search = () => {
-    const { values, changeHandler, onSubmit } = useForm({ query: '' }, handleSearch);
-    const navigate = useNavigate();
-
-    async function handleSearch(values) {
-        const { query } = values;
-        navigate({
-            pathname: '/furniture/catalog',
-            search: `?searchQuery=${encodeURIComponent(query)}`
-        });
-    }
+    const { handleSearch } = useQueryHandler();
+    const { values, changeHandler, onSubmit } = useForm({ searchQuery: '' }, handleSearch);
 
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
-            handleSearch({ query: e.target.value })
+            handleSearch({ searchQuery: e.target.value })
         }
     }
 
@@ -25,8 +17,8 @@ const Search = () => {
                 <input
                     id="search-input"
                     type="text"
-                    name="query"
-                    value={values.query}
+                    name="searchQuery"
+                    value={values.searchQuery}
                     onChange={changeHandler}
                     onKeyDown={handleKeyPress}
                     placeholder="Search here..."

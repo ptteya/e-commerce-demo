@@ -1,6 +1,7 @@
 import './Catalog.css';
 import { Link, useLocation } from 'react-router-dom';
 import CatalogItem from './CatalogItem';
+import PriceFilter from 'components/PriceFilter';
 import { useFurniture } from 'hooks/useFurniture';
 
 const Catalog = () => {
@@ -34,16 +35,7 @@ const Catalog = () => {
                             </ul>
                         </div>
                         <div className="filter-category">
-                            <h2 className="filter-title" htmlFor="price-range">Price Range <i
-                                className="fas fa-regular fa-chevron-up arrow arrow-icon"></i></h2>
-                            <div className="filter-content">
-                                <form className="price-inputs">
-                                    <input type="number" id="min-price" name="min-price" min="0" max="1000" defaultValue="100" />
-                                    <span className="range-symbol">-</span>
-                                    <input type="number" id="max-price" name="max-price" min="0" max="1000" defaultValue="900" />
-                                    <button className="price-range-search-btn" type="submit">Filter</button>
-                                </form>
-                            </div>
+                            <PriceFilter />
                         </div>
                         <div className="filter-category">
                             <h2 className="filter-title">Color <i className="fas fa-regular fa-chevron-up arrow arrow-icon"></i>
