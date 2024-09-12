@@ -1,5 +1,5 @@
 import { useForm } from 'hooks/useForm';
-import { useQueryHandler } from 'hooks/useQueryManager';
+import { useQueryHandler } from 'hooks/useQueryHandler';
 
 const Search = () => {
     const { handleSearch } = useQueryHandler();

@@ -1,5 +1,5 @@
 import { useForm } from 'hooks/useForm';
-import { useQueryHandler } from 'hooks/useQueryManager';
+import { useQueryHandler } from 'hooks/useQueryHandler';
 
 const PriceFilter = () => {
     const { handleFilter } = useQueryHandler();
