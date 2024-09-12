@@ -2,7 +2,7 @@ import * as request from 'services/requester';
 
 export const getByCategory = (category) => request.get(`furniture/catalog/${category}`);
 
-export const getAll = () => request.get('furniture/catalog');
+export const getFurniture = (queryString) => request.get(`furniture/catalog?${queryString}`);
 
 export const getDetails = (id) => request.get(`furniture/${id}`);
 
@@ -56,7 +56,7 @@ export const handleLocalToggle = (id, added, collectionName, newQuantity = 1, up
 }
 
 async function fetchAndFilterFurniture(collection) {
-    const result = await getAll();
+    const result = await getFurniture();
     const allFurniture = result.furniture;
     return allFurniture.filter(f => collection.some((el) => el.furnitureId === f._id))
 }

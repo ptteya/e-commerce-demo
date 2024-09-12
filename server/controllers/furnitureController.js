@@ -1,20 +1,20 @@
 const furnitureService = require('../services/furnitureService');
 const { handleErrorResponse } = require('../utils/errorUtil');
 
-exports.getCatalogItems = async (req, res) => {
-    const { category } = req.params;
+exports.getFurniture = async (req, res) => {
+    const { category, searchQuery } = req.query;
 
-    try {
-        const furniture = await furnitureService.getByCategory(category).lean();
-        res.status(200).json({ furniture });
-    } catch (error) {
-        handleErrorResponse(res, 500);
+    let filter = {};
+    if (category) {
+        filter.category = category;
     }
-};
 
-exports.getAllItems = async (req, res) => {
+    if (searchQuery) {
+        filter['$text'] = { $search: searchQuery };
+    }
+
     try {
-        const furniture = await furnitureService.getAll();
+        const furniture = await furnitureService.getFurniture(filter);
         res.status(200).json({ furniture });
     } catch (error) {
         handleErrorResponse(res, 500);
@@ -30,3 +30,4 @@ exports.getDetails = async (req, res) => {
         handleErrorResponse(res, 500);
     }
 }
+

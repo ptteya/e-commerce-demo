@@ -1,18 +1,23 @@
 import './Catalog.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import CatalogItem from './CatalogItem';
 import { useFurniture } from 'hooks/useFurniture';
 
 const Catalog = () => {
-    const { category } = useParams();
-    const categoryTitle = category[0].toUpperCase() + category.substring(1);
-    const { furniture } = useFurniture(category);
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const furniture = useFurniture(queryParams.toString());
+
+    const category = queryParams.get('category') || '';
+    let categoryTitle = category
+        ? category[0].toUpperCase() + category.substring(1)
+        : 'Search Result';
 
     return (
         <div className="catalog-wrapper">
             <div className="catalog-title">
                 <h3>Category</h3>
-                {category && <h1>{categoryTitle}</h1>}
+                <h1>{categoryTitle}</h1>
                 <p>Find all the new items in this category</p>
             </div>
             <div className="catalog-container">
@@ -21,11 +26,11 @@ const Catalog = () => {
                         <div className="filter-category">
                             <h2 className="filter-title">Product Categories</h2>
                             <ul>
-                                <li><Link to="/furniture/catalog/couches">Couches</Link></li>
-                                <li><Link to="/furniture/catalog/beds">Beds</Link></li>
-                                <li><Link to="/furniture/catalog/chairs">Chairs</Link></li>
-                                <li><Link to="/furniture/catalog/tables">Tables</Link></li>
-                                <li><Link to="/furniture/catalog/lamps">Lamps</Link></li>
+                                <li><Link to="/furniture/catalog?category=couches">Couches</Link></li>
+                                <li><Link to="/furniture/catalog?category=beds">Beds</Link></li>
+                                <li><Link to="/furniture/catalog?category=chairs">Chairs</Link></li>
+                                <li><Link to="/furniture/catalog?category=tables">Tables</Link></li>
+                                <li><Link to="/furniture/catalog?category=lamps">Lamps</Link></li>
                             </ul>
                         </div>
                         <div className="filter-category">

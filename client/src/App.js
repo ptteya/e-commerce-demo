@@ -29,7 +29,7 @@ function App() {
           <Route path='/auth/login' element={<Login />}></Route>
           <Route path='/auth/register' element={<Register />}></Route>
           <Route path='/auth/logout' element={<Logout />}></Route>
-          <Route path='/furniture/catalog/:category' element={<Catalog />}></Route>
+          <Route path='/furniture/catalog' element={<Catalog />}></Route>
           <Route path='/furniture/:furnitureId' element={<Details />}></Route>
           <Route path='/contacts' element={<Contacts />}></Route>
           <Route path='/favorites' element={<Favorites />}></Route>

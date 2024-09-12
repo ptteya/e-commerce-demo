@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
 import './Header.css';
+import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect, useContext } from 'react';
 import { AuthContext } from 'contexts/AuthContext';
+import Search from 'components/Search';
 import * as furnitureService from 'services/furnitureService';
 
 const Header = () => {
@@ -108,22 +109,17 @@ const Header = () => {
                                 <i className="fas fa-chevron-down arrow-icon"></i>
                             </a>
                             <ul className="dropdown-menu">
-                                <Link to="/furniture/catalog/couches"><li>Couches</li></Link>
-                                <Link to="/furniture/catalog/beds"><li>Beds</li></Link>
-                                <Link to="/furniture/catalog/chairs"><li>Chairs</li></Link>
-                                <Link to="/furniture/catalog/tables"><li>Tables</li></Link>
-                                <Link to="/furniture/catalog/lamps"><li>Lamps</li></Link>
+                                <Link to="/furniture/catalog?category=couches"><li>Couches</li></Link>
+                                <Link to="/furniture/catalog?category=beds"><li>Beds</li></Link>
+                                <Link to="/furniture/catalog?category=chairs"><li>Chairs</li></Link>
+                                <Link to="/furniture/catalog?category=tables"><li>Tables</li></Link>
+                                <Link to="/furniture/catalog?category=lamps"><li>Lamps</li></Link>
                             </ul>
                         </li>
                         <li className="nav-item"><Link to="/about">About</Link></li>
                         <li className="nav-item"><Link to="/contacts">Contacts</Link></li>
                     </ul>
-                    <div className="search-bar">
-                        <form id="search-form" method="get" action="/search">
-                            <input type="text" name="searchQuery" placeholder="Search on the website..." id="search-input" />
-                            <button type="submit" id="search-btn"><i className="fas fa-search search-icon"></i></button>
-                        </form>
-                    </div>
+                    <Search />
                 </div>
             </nav>
         </header >

@@ -14,7 +14,7 @@ const Contacts = () => {
         <section className="contact_section">
             <section className="hero">
                 <h1>Contact Us</h1>
-                <p>Discover our story, mission, and values.</p>
+                <p>Need help? We're here for you!</p>
             </section>
             <div className="contact_row">
                 <iframe className="map"

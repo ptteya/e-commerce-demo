@@ -4,7 +4,7 @@ import CatalogItem from 'components/Catalog/CatalogItem';
 import { useFurniture } from 'hooks/useFurniture';
 
 const Home = () => {
-    const { furniture } = useFurniture();
+    const furniture = useFurniture();
 
     return (
         <div className="homepage-wrapper">

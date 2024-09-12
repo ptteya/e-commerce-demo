@@ -1,28 +1,21 @@
 import { useEffect, useState } from "react";
 import * as furnitureService from 'services/furnitureService';
 
-export const useFurniture = (category = null) => {
+export const useFurniture = (queryString) => {
     const [furniture, setFurniture] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
-            let result = [];
             try {
-                if (category) {
-                    result = await furnitureService.getByCategory(category);
-                } else {
-                    result = await furnitureService.getAll();
-                }
+                const result = await furnitureService.getFurniture(queryString);
                 setFurniture(result.furniture);
             } catch (error) {
-                console.log('Error fetching furniture:', error.message);
+                console.error('Error fetching furniture:', error.message);
             }
         }
 
         fetchData();
-    }, [category]);
+    }, [queryString]);
 
-    return {
-        furniture
-    }
+    return furniture;
 };
