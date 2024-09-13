@@ -2,6 +2,7 @@ import './Catalog.css';
 import { Link, useLocation } from 'react-router-dom';
 import CatalogItem from './CatalogItem';
 import PriceFilter from 'components/PriceFilter';
+import ColorFilter from 'components/ColorFilter';
 import { useFetchFurniture } from 'hooks/useFetchFurniture ';
 
 const Catalog = () => {
@@ -34,27 +35,8 @@ const Catalog = () => {
                                 <li><Link to="/furniture/catalog?category=lamps">Lamps</Link></li>
                             </ul>
                         </div>
-                        <div className="filter-category">
-                            <PriceFilter />
-                        </div>
-                        <div className="filter-category">
-                            <h2 className="filter-title">Color <i className="fas fa-regular fa-chevron-up arrow arrow-icon"></i>
-                            </h2>
-                            <div className="filter-content ">
-                                <div className="colors-container">
-                                    <div className="color-box white"></div>
-                                    <div className="color-box gray"></div>
-                                    <div className="color-box black"></div>
-                                    <div className="color-box brown"></div>
-                                    <div className="color-box green"></div>
-                                    <div className="color-box yellow"></div>
-                                    <div className="color-box pink"></div>
-                                    <div className="color-box blue"></div>
-                                    <div className="color-box purple"></div>
-                                    <div className="color-box red"></div>
-                                </div>
-                            </div>
-                        </div>
+                        <PriceFilter />
+                        <ColorFilter />
                     </div>
                     <div className="product-container">
                         {furniture.length > 0 ? (

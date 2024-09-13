@@ -9,7 +9,7 @@ const PriceFilter = () => {
     }, handleFilter);
 
     return (
-        <>
+        <div className="filter-category">
             <h2 className="filter-title" htmlFor="price-range">Price Range <i
                 className="fas fa-regular fa-chevron-up arrow arrow-icon"></i></h2>
             <div className="filter-content">
@@ -34,8 +34,7 @@ const PriceFilter = () => {
                     <button className="price-range-search-btn" type="submit">Filter</button>
                 </form>
             </div>
-        </>
-
+        </div>
     );
 }
 

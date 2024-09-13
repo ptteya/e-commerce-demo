@@ -149,43 +149,59 @@
     cursor: pointer;
 }
 
-.colors-container .white {
+.colors-container .selected {
+    box-shadow: 0 0 10px rgba(107, 103, 103, 0.3);
+}
+
+.colors-container .color-box {
+    transition: transform 0.3s ease;
+}
+
+.colors-container .color-box.selected {
+    transform: scale(1.2);
+}
+
+.colors-container #white {
     background-color: white;
 }
 
-.colors-container .gray {
+.colors-container #gray {
     background-color: gray;
 }
 
-.colors-container .black {
+.colors-container #black {
     background-color: black;
 }
 
-.colors-container .brown {
+.colors-container #brown {
     background-color: #4c3228;
 }
 
-.colors-container .green {
+.colors-container #beige {
+    background-color: rgb(228, 213, 183);
+}
+
+.colors-container #green {
     background-color: rgb(129, 204, 129);
 }
 
-.colors-container .yellow {
+.colors-container #yellow {
     background-color: #feffa7;
 }
 
-.colors-container .pink {
+.colors-container #pink {
     background-color: pink;
 }
 
-.colors-container .blue {
+.colors-container #blue {
     background-color: rgb(119, 179, 247);
 }
 
-.colors-container .purple {
+.colors-container #purple {
     background-color: rgb(197, 128, 214);
 }
 
-.colors-container .red {
+.colors-container #red {
     background-color: rgb(243, 56, 81);
 }
 
