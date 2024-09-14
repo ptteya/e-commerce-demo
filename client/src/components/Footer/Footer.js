@@ -1,19 +1,31 @@
 import './Footer.css';
 import { Link } from 'react-router-dom';
+import { useForm } from 'hooks/useForm';
+import { usePopup } from 'hooks/usePopup';
+import PopupMessage from 'components/PopupMessage/PopupMessage';
 
 const Footer = () => {
+    const { showPopup, message, triggerPopup } = usePopup();
+    const { values, changeHandler, onSubmit } = useForm(
+        { email: '' },
+        () => {
+            triggerPopup('You have successfully subscribed to our newsletter!');
+        }
+    );
+
     return (
         <footer>
-            <div className="subscribe">
+            {showPopup && (<PopupMessage message={message} />)}
+
+            <div className="subscribe-container">
                 <div className="subscribe-info">
                     <h3>Home renovation ideas in your email</h3>
                     <p>Subscribe to our newsletter and be the first to know about new furniture and great deals</p>
                 </div>
-                <div className="subscribe-container">
-                    <input type="text" placeholder="Enter your email address...." className="subscribe-input" />
+                <form className="subscribe-form" onSubmit={onSubmit}>
+                    <input type="email" className="subscribe-input" name="email" placeholder="Enter email address...." value={values.email} onChange={changeHandler} required />
                     <input type="submit" value="Subscribe" className="subscribe-btn" />
-                    <p className="error-message"></p>
-                </div>
+                </form>
             </div>
 
             <div className="footer-section">
@@ -66,6 +78,6 @@ const Footer = () => {
             </div>
         </footer>
     );
-}
+};
 
 export default Footer;

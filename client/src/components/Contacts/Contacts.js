@@ -1,17 +1,21 @@
-import { useState } from 'react';
 import './Contacts.css';
+import { useForm } from 'hooks/useForm';
+import { usePopup } from 'hooks/usePopup';
+import PopupMessage from 'components/PopupMessage/PopupMessage';
 
 const Contacts = () => {
-    const [isSubmitted, setIsSubmitted] = useState(false);
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        event.target.reset();
-        setIsSubmitted(true);
-    }
+    const { showPopup, message, triggerPopup } = usePopup();
+    const { values, changeHandler, onSubmit } = useForm(
+        { fullName: '', email: '', phone: '', message: '' },
+        () => {
+            triggerPopup('Your message has been successfully sent!');
+        }
+    );
 
     return (
         <section className="contact_section">
+            {showPopup && (<PopupMessage message={message} />)}
+
             <section className="hero">
                 <h1>Contact Us</h1>
                 <p>Need help? We're here for you!</p>
@@ -26,7 +30,7 @@ const Contacts = () => {
                         <div className="contact">
                             <i className="fas fa-map"></i>
                             <h3>Address:</h3>
-                            <p> 6-ti Septemvri 17, Sofia</p>
+                            <p>6-ti Septemvri 17, Sofia</p>
                         </div>
 
                         <div className="contact">
@@ -44,18 +48,52 @@ const Contacts = () => {
                         </div>
                     </div>
 
-                    <form id="contact-form" onSubmit={handleSubmit}>
-                        <input type="text" placeholder="Full Name" className="box" name="fullName" required />
-                        <input type="email" placeholder="Email" className="box" name="email" required />
-                        <input type="tel" placeholder="Phone" className="box" name="phone" pattern="[0-9]{10}" title="Please enter a 10-digit phone number" required />
-                        <textarea name="message" placeholder="Your Message" className="box" cols="30" rows="5" required ></textarea>
-                        <input type="submit" value="Send Message" className="button" required />
+                    <form id="contact-form" onSubmit={onSubmit}>
+                        <input
+                            type="text"
+                            placeholder="Full Name"
+                            className="box"
+                            name="fullName"
+                            value={values.fullName}
+                            onChange={changeHandler}
+                            required
+                        />
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            className="box"
+                            name="email"
+                            value={values.email}
+                            onChange={changeHandler}
+                            required
+                        />
+                        <input
+                            type="tel"
+                            placeholder="Phone"
+                            className="box"
+                            name="phone"
+                            value={values.phone}
+                            pattern="[0-9]{10}"
+                            title="Please enter a 10-digit phone number"
+                            onChange={changeHandler}
+                            required
+                        />
+                        <textarea
+                            name="message"
+                            placeholder="Your Message"
+                            className="box"
+                            value={values.message}
+                            onChange={changeHandler}
+                            cols="30"
+                            rows="5"
+                            required
+                        />
+                        <input type="submit" value="Send Message" className="button" />
                     </form>
-                    {isSubmitted && <p className='thank-you-message'>Thank you for reaching out!</p>}
                 </div>
             </div>
         </section>
     );
-}
+};
 
 export default Contacts;
