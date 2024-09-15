@@ -3,6 +3,7 @@ import { useForm } from 'hooks/useForm';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as furnitureService from 'services/furnitureService';
+import InputField from 'components/InputField';
 
 const Edit = () => {
     const navigate = useNavigate();
@@ -30,7 +31,6 @@ const Edit = () => {
     }
 
     const { images, size } = values;
-    const mainImage = images.mainImage || '';
     const extraImages = [
         images.extraImage1 || '',
         images.extraImage2 || '',
@@ -44,56 +44,29 @@ const Edit = () => {
                 <h1>Edit</h1>
                 <form onSubmit={onSubmit}>
                     <div className="left">
-                        <div className="input-container">
-                            <label htmlFor="name"><span className="required">*</span> Name</label>
-                            <input type="text" name="name" placeholder="Enter name...." value={values.name} onChange={changeHandler} />
-                        </div>
-                        <div className="input-container">
-                            <label htmlFor="price"><span className="required">*</span> Price</label>
-                            <input type="number" name="price" placeholder="Enter price...." value={values.price} onChange={changeHandler} />
-                        </div>
-                        <div className="input-container">
-                            <label htmlFor="description"><span className="required">*</span> Description</label>
-                            <input type="text" name="description" placeholder="Enter description...."
-                                value={values.description} onChange={changeHandler} />
-                        </div>
-                        <div className="input-container">
-                            <label htmlFor="category"><span className="required">*</span> Category</label>
-                            <input type="text" name="category" placeholder="Enter category...." value={values.category} onChange={changeHandler} />
-                        </div>
-                        <div className="input-container">
-                            <label htmlFor="material"><span className="required">*</span>Material</label>
-                            <input type="text" name="material" placeholder="Enter material...." value={values.material} onChange={changeHandler} />
-                        </div>
-                        <div className="input-container">
-                            <label htmlFor="color"><span className="required">*</span>Color</label>
-                            <input type="text" name="color" placeholder="Enter color...." value={values.color} onChange={changeHandler} />
-                        </div>
-                        <div className="input-container">
-                            <label htmlFor="size"><span className="required">*</span> Width</label>
-                            <input type="number" name="size" placeholder="Enter width...." value={size.width} onChange={e => changeHandler(e, 'size', 'width')} />
-                        </div>
+                        <InputField name="name" label="Name" value={values.name} onChange={changeHandler} />
+                        <InputField name="price" label="Price" value={values.price} onChange={changeHandler} type='number' />
+                        <InputField name="description" label="Description" value={values.description} onChange={changeHandler} />
+                        <InputField name="category" label="Category" value={values.category} onChange={changeHandler} />
+                        <InputField name="material" label="Material" value={values.material} onChange={changeHandler} />
+                        <InputField name="color" label="Color" value={values.color} onChange={changeHandler} />
+                        <InputField name="width" label="Width" value={size.width} onChange={e => changeHandler(e, 'size', 'width')} type='number' />
                     </div>
 
                     <div className="right">
-                        <div className="input-container">
-                            <label htmlFor="size"><span className="required">*</span>Height</label>
-                            <input type="number" name="size" placeholder="Enter height...." value={size.height} onChange={e => changeHandler(e, 'size', 'height')} />
-                        </div>
-                        <div className="input-container">
-                            <label htmlFor="size"><span className="required">*</span>Length</label>
-                            <input type="number" name="size" placeholder="Enter length...." value={size.length} onChange={e => changeHandler(e, 'size', 'length')} />
-                        </div>
-                        <div className="input-container">
-                            <label htmlFor="mainImage"><span className="required">*</span>Main Image</label>
-                            <input type="text" name="mainImage" placeholder="Enter main image url...."
-                                value={mainImage} onChange={e => changeHandler(e, 'images', 'mainImage')} />
-                        </div>
+                        <InputField name="height" label="Height" value={size.height} onChange={e => changeHandler(e, 'size', 'height')} type='number' />
+                        <InputField name="length" label="Length" value={size.length} onChange={e => changeHandler(e, 'size', 'length')} type='number' />
+                        <InputField name="mainImage" label="Main Image" value={images.mainImage} onChange={e => changeHandler(e, 'images', 'mainImage')} placeholder="Enter main image url...." />
+
                         {extraImages.map((image, index) => (
-                            <div key={index} className="input-container">
-                                <label htmlFor="moreImages">Image</label>
-                                <input type="text" name="moreImages" placeholder="Enter image url...." value={image} onChange={e => changeHandler(e, 'images', `extraImage${index + 1}`)} />
-                            </div>
+                            <InputField
+                                key={index}
+                                label={`Extra Image ${index + 1}`}
+                                name={`extraImage${index}`}
+                                value={image}
+                                onChange={e => changeHandler(e, 'images', `extraImage${index + 1}`)}
+                                placeholder="Enter image url...."
+                                isRequired={false} />
                         ))}
                         <button type="submit" className="submit-btn">Edit</button>
                     </div>
