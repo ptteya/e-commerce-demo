@@ -15,6 +15,7 @@ import Favorites from 'components/Favorites/Favorites';
 import Details from 'components/Details/Details';
 import ScrollToTop from 'components/ScrollToTop';
 import Cart from 'components/Cart/Cart';
+import Edit from 'components/Edit/Edit';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path='/auth/logout' element={<Logout />}></Route>
           <Route path='/furniture/catalog' element={<Catalog />}></Route>
           <Route path='/furniture/:furnitureId' element={<Details />}></Route>
+          <Route path='/furniture/edit/:furnitureId' element={<Edit />}></Route>
           <Route path='/contacts' element={<Contacts />}></Route>
           <Route path='/favorites' element={<Favorites />}></Route>
           <Route path='/cart' element={<Cart />}></Route>

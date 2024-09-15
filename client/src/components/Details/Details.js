@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import './Details.css';
 import * as furnitureService from 'services/furnitureService';
@@ -29,7 +29,7 @@ const Details = () => {
 
     const images = furniture.images || {};
     const mainImage = images.mainImage || '';
-    const moreImages = images.moreImages || [];
+    const imagesArray = Object.values(images);
 
     return (
         <div className="details-container">
@@ -42,7 +42,7 @@ const Details = () => {
                             ref={mainImageRef} />
                     </div>
                     <div className="more-images">
-                        {[mainImage, ...moreImages].map((src, index) => (
+                        {imagesArray.map((src, index) => (
                             <img
                                 key={index}
                                 ref={el => imageRefs.current[index] = el}
@@ -75,6 +75,9 @@ const Details = () => {
                         ) : (
                             <button className="btn add-to-cart" onClick={() => handleToggle()}>Add to Cart</button>
                         )}
+                        <Link to={`/furniture/edit/${furnitureId}`} className="btn edit-del-btn">
+                            <i className="fas fa-pencil-alt edit"></i>
+                        </Link>
                     </div>
                 </div>
             </div>

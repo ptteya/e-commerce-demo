@@ -39,3 +39,14 @@ exports.getDetails = async (req, res) => {
     }
 }
 
+exports.edit = async (req, res) => {
+    const furnitureId = req.params.furnitureId;
+    const newData = req.body;
+
+    try {
+        const furniture = await furnitureService.edit(furnitureId, newData).lean();
+        res.status(200).json({ furniture })
+    } catch (error) {
+        handleErrorResponse(res, 500, null, error);
+    }
+}

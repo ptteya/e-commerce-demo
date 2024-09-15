@@ -1,10 +1,10 @@
 import * as request from 'services/requester';
 
-export const getByCategory = (category) => request.get(`furniture/catalog/${category}`);
-
 export const getFurniture = (queryString) => request.get(`furniture/catalog?${queryString}`);
 
 export const getDetails = (id) => request.get(`furniture/${id}`);
+
+export const edit = (id, newData) => request.put(`furniture/${id}`, newData);
 
 export const getLocalCollection = (collectionName) => {
     return JSON.parse(localStorage.getItem(collectionName)) || [];

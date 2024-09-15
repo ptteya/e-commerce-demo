@@ -4,8 +4,20 @@ export const useForm = (initialValues, submitHandler) => {
     const [values, setValues] = useState(initialValues);
     const [error, setError] = useState('');
 
-    const changeHandler = (e) => {
-        setValues(state => ({ ...state, [e.target.name]: e.target.value }));
+    function changeHandler(e, field, subField) {
+        const { name, value } = e.target;
+
+        if (subField) {
+            setValues({
+                ...values,
+                [field]: {
+                    ...values[field],
+                    [subField]: value
+                }
+            });
+        } else {
+            setValues({ ...values, [name]: value });
+        }
     }
 
     const resetForm = () => {
@@ -23,11 +35,16 @@ export const useForm = (initialValues, submitHandler) => {
         }
     }
 
+    const changeValues = (newValues) => {
+        setValues(newValues);
+    }
+
     return {
         values,
         changeHandler,
         onSubmit,
         resetForm,
-        error
+        error,
+        changeValues,
     }
 };

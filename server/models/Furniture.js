@@ -14,7 +14,9 @@ const furnitureSchema = new mongoose.Schema({
     },
     images: {
         mainImage: { type: String, required: [true, 'Main Image is required!'] },
-        moreImages: [String]
+        extraImage1: { type: String },
+        extraImage2: { type: String },
+        extraImage3: { type: String },
     },
     rating: { type: Number, default: 0 }
 });
