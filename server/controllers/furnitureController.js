@@ -27,7 +27,7 @@ exports.getFurniture = async (req, res) => {
     } catch (error) {
         handleErrorResponse(res, 500);
     }
-}
+};
 
 exports.getDetails = async (req, res) => {
     try {
@@ -37,7 +37,7 @@ exports.getDetails = async (req, res) => {
     } catch (error) {
         handleErrorResponse(res, 500);
     }
-}
+};
 
 exports.edit = async (req, res) => {
     const furnitureId = req.params.furnitureId;
@@ -47,6 +47,16 @@ exports.edit = async (req, res) => {
         const furniture = await furnitureService.edit(furnitureId, newData).lean();
         res.status(200).json({ furniture })
     } catch (error) {
-        handleErrorResponse(res, 500, null, error);
+        handleErrorResponse(res, 500);
     }
-}
+};
+
+exports.deleteFurniture = async (req, res) => {
+    const furnitureId = req.params.furnitureId;
+    try {
+        await furnitureService.deleteFurniture(furnitureId);
+        res.status(200).json({ message: 'Furniture deleted successfully' });
+    } catch (error) {
+        handleErrorResponse(res, 500);
+    }
+};

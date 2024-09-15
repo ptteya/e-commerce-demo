@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import './Details.css';
 import * as furnitureService from 'services/furnitureService';
@@ -10,6 +10,7 @@ const Details = () => {
     const { added, handleToggle } = useCollectionToggle(furnitureId, 'cart');
     const mainImageRef = useRef(null);
     const imageRefs = useRef([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         furnitureService.getDetails(furnitureId)
@@ -25,6 +26,18 @@ const Details = () => {
 
         imageRefs.current.forEach(img => img.classList.remove('activeImg'));
         event.target.classList.add('activeImg');
+    }
+    const handleDeleteClick = async () => {
+        const confirmation = window.confirm('Are you sure you want to delete this item? This action cannot be undone.');
+
+        if (confirmation) {
+            try {
+                await furnitureService.deleteFurniture(furnitureId);
+                navigate(`/furniture/catalog?category=${furniture.category}`);
+            } catch (error) {
+                console.error('Error deleting furniture:', error.message);
+            }
+        }
     }
 
     const images = furniture.images || {};
@@ -78,6 +91,9 @@ const Details = () => {
                         <Link to={`/furniture/edit/${furnitureId}`} className="btn edit-del-btn">
                             <i className="fas fa-pencil-alt edit"></i>
                         </Link>
+                        <button className="btn edit-del-btn" onClick={handleDeleteClick}>
+                            <i className="fas fa-trash delete"></i>
+                        </button>
                     </div>
                 </div>
             </div>
