@@ -1,7 +1,11 @@
 import './index.css';
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+
 import AdminRoute from 'components/AdminRoute';
+import GuestRoute from 'components/GuestRoute';
+import AuthRoute from 'components/AuthRoute';
+
 import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 import Home from 'components/Home/Home';
@@ -27,33 +31,56 @@ function App() {
         <div className="overlay"></div>
         <ScrollToTop />
         <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/about' element={<About />}></Route>
-          <Route path='/auth/login' element={<Login />}></Route>
-          <Route path='/auth/register' element={<Register />}></Route>
-          <Route path='/auth/logout' element={<Logout />}></Route>
-          <Route path='/furniture/catalog' element={<Catalog />}></Route>
-          <Route path='/furniture/:furnitureId' element={<Details />}></Route>
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route
+            path='/auth/login'
+            element={
+              <GuestRoute>
+                <Login />
+              </GuestRoute>
+            }
+          />
+          <Route
+            path='/auth/register'
+            element={
+              <GuestRoute>
+                <Register />
+              </GuestRoute>
+            }
+          />
+          <Route
+            path='/auth/logout'
+            element={
+              <AuthRoute>
+                <Logout />
+              </AuthRoute>
+            }
+          />
+          <Route path='/furniture/catalog' element={<Catalog />} />
+          <Route path='/furniture/:furnitureId' element={<Details />} />
           <Route
             path='/furniture/edit/:furnitureId'
             element={
               <AdminRoute>
                 <Edit />
               </AdminRoute>
-            }></Route>
+            }
+          />
           <Route
             path='/furniture/create'
             element={
               <AdminRoute>
                 <Create />
               </AdminRoute>
-            }></Route>
-          <Route path='/contacts' element={<Contacts />}></Route>
-          <Route path='/favorites' element={<Favorites />}></Route>
-          <Route path='/cart' element={<Cart />}></Route>
-          <Route path='/*' element={<NotFound />}></Route>
+            }
+          />
+          <Route path='/contacts' element={<Contacts />} />
+          <Route path='/favorites' element={<Favorites />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/*' element={<NotFound />} />
         </Routes>
-      </main >
+      </main>
       <Footer />
     </AuthProvider>
   );
