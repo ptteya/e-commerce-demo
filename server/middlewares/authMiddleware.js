@@ -13,12 +13,20 @@ exports.authentication = (req, res, next) => {
     }
 
     next();
-}
+};
 
 exports.requireAuth = (req, res, next) => {
     if (req.user) {
         next();
     } else {
-        handleErrorResponse(res, 401, 'Authentication required')
+        handleErrorResponse(res, 401, 'Authentication required');
+    }
+};
+
+exports.requireAdmin = (req, res, next) => {
+    if (req.user && req.user.role === 'admin') {
+        next();
+    } else {
+        handleErrorResponse(res, 403, 'Permission denied: Admin access required');
     }
 };

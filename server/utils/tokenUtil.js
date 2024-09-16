@@ -8,21 +8,22 @@ exports.generateToken = (user) => {
         _id: user._id,
         email: user.email,
         username: user.username,
-    }
+        role: user.role,
+    };
 
     return jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
-}
+};
 
 exports.verifyToken = (token) => {
     return jwt.verify(token, JWT_SECRET);
-}
+};
 
 exports.addTokenToUser = (user, token) => {
     const userObj = user.toObject();
     const { password, __v, ...userInfo } = userObj;
     userInfo.token = token;
     return userInfo;
-}
+};
 
 exports.getUserFromToken = async (token) => {
     try {
@@ -32,4 +33,4 @@ exports.getUserFromToken = async (token) => {
     } catch (error) {
         throw new Error(error);
     }
-}
+};

@@ -27,6 +27,7 @@ const UserSchema = new mongoose.Schema({
             message: 'Password must be at least 6 characters long, contain at least one number, one lowercase and uppercase letter.'
         }
     },
+    role: { type: String, enum: ['user', 'admin'], default: 'user' },
     favorites: [{
         furnitureId: {
             type: mongoose.Types.ObjectId,
