@@ -118,7 +118,9 @@ const Header = () => {
                         </li>
                         <li className="nav-item"><Link to="/about">About</Link></li>
                         <li className="nav-item"><Link to="/contacts">Contacts</Link></li>
-                        <li className="nav-item"><Link to="/furniture/create">Create</Link></li>
+                        {user.role === 'admin' && (
+                            <li className="nav-item"><Link to="/furniture/create">Create</Link></li>
+                        )}
                     </ul>
                     <Search />
                 </div>

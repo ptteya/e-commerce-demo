@@ -1,6 +1,7 @@
 import './index.css';
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+import AdminRoute from 'components/AdminRoute';
 import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 import Home from 'components/Home/Home';
@@ -33,8 +34,20 @@ function App() {
           <Route path='/auth/logout' element={<Logout />}></Route>
           <Route path='/furniture/catalog' element={<Catalog />}></Route>
           <Route path='/furniture/:furnitureId' element={<Details />}></Route>
-          <Route path='/furniture/edit/:furnitureId' element={<Edit />}></Route>
-          <Route path='/furniture/create' element={<Create />}></Route>
+          <Route
+            path='/furniture/edit/:furnitureId'
+            element={
+              <AdminRoute>
+                <Edit />
+              </AdminRoute>
+            }></Route>
+          <Route
+            path='/furniture/create'
+            element={
+              <AdminRoute>
+                <Create />
+              </AdminRoute>
+            }></Route>
           <Route path='/contacts' element={<Contacts />}></Route>
           <Route path='/favorites' element={<Favorites />}></Route>
           <Route path='/cart' element={<Cart />}></Route>

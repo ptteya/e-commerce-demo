@@ -7,9 +7,10 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
-    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
     const [guestFavorites, setGuestFavorites] = useState([]);
     const [guestCart, setGuestCart] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const verifyToken = async () => {
@@ -21,11 +22,17 @@ export const AuthProvider = ({ children }) => {
                 }
             } catch (error) {
                 console.error("Failed to verify token:", error.message);
+            } finally {
+                setIsLoading(false);
             }
         }
 
         verifyToken();
     }, []);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
     const setUserData = (token, user) => {
         localStorage.setItem('token', token);

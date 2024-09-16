@@ -1,15 +1,17 @@
 import './Details.css';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useContext } from 'react';
 import { useCollectionToggle } from 'hooks/useCollectionToggle';
 import * as furnitureService from 'services/furnitureService';
 import DeleteModal from 'components/DeleteModal/DeleteModal';
+import { AuthContext } from 'contexts/AuthContext';
 
 const Details = () => {
     const { furnitureId } = useParams();
     const [furniture, setFurniture] = useState({});
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const { added, handleToggle } = useCollectionToggle(furnitureId, 'cart');
+    const { user } = useContext(AuthContext);
     const mainImageRef = useRef(null);
     const imageRefs = useRef([]);
     const navigate = useNavigate();
@@ -45,6 +47,7 @@ const Details = () => {
     }
 
     const images = furniture.images ? Object.values(furniture.images) : [];
+    const isAdmin = user?.role === 'admin';
 
     return (
         <div className="details-container">
@@ -94,12 +97,16 @@ const Details = () => {
                         ) : (
                             <button className="btn add-to-cart" onClick={() => handleToggle()}>Add to Cart</button>
                         )}
-                        <Link to={`/furniture/edit/${furnitureId}`} className="btn edit-del-btn">
-                            <i className="fas fa-pencil-alt edit"></i>
-                        </Link>
-                        <button className="btn edit-del-btn" onClick={handleDeleteClick}>
-                            <i className="fas fa-trash delete"></i>
-                        </button>
+                        {isAdmin && (
+                            <>
+                                <Link to={`/furniture/edit/${furnitureId}`} className="btn edit-del-btn">
+                                    <i className="fas fa-pencil-alt edit"></i>
+                                </Link>
+                                <button className="btn edit-del-btn" onClick={handleDeleteClick}>
+                                    <i className="fas fa-trash delete"></i>
+                                </button>
+                            </>
+                        )}
                     </div>
 
                 </div>
