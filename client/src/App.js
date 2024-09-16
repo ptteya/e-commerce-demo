@@ -15,7 +15,7 @@ import Favorites from 'components/Favorites/Favorites';
 import Details from 'components/Details/Details';
 import ScrollToTop from 'components/ScrollToTop';
 import Cart from 'components/Cart/Cart';
-import Edit from 'components/Edit/Edit';
+import Edit from 'components/Edit';
 import Create from 'components/Create';
 
 function App() {

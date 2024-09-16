@@ -1,35 +1,7 @@
 import 'components/SharedStyles/create-edit.css';
-import { useForm } from 'hooks/useForm';
-import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import * as furnitureService from 'services/furnitureService';
 import InputField from 'components/InputField';
 
-const Edit = () => {
-    const navigate = useNavigate();
-    const { furnitureId } = useParams();
-    const { values, changeHandler, onSubmit, error, changeValues } = useForm({
-        name: '',
-        price: '',
-        description: '',
-        category: '',
-        material: '',
-        color: '',
-        size: { width: '', height: '', length: '' },
-        images: { mainImage: '', extraImage1: '', extraImage2: '', extraImage3: '', }
-    }, onEditSubmit);
-
-    useEffect(() => {
-        furnitureService.getDetails(furnitureId)
-            .then(result => changeValues(result.furniture))
-            .catch((error) => console.error('Error fetching furniture details:', error.message));
-    }, [furnitureId]);
-
-    async function onEditSubmit(data) {
-        await furnitureService.edit(furnitureId, data);
-        navigate(`/furniture/${furnitureId}`);
-    }
-
+const FurnitureForm = ({ formTitle, values, onSubmit, changeHandler, error }) => {
     const { images, size } = values;
     const extraImages = [
         images.extraImage1 || '',
@@ -41,7 +13,7 @@ const Edit = () => {
         <div className="create-container">
             <div className="create-card">
                 {error && <div className="error"><i className="far fa-times-circle x-mark"></i>{error}</div>}
-                <h1>Edit</h1>
+                <h1>{formTitle}</h1>
                 <form onSubmit={onSubmit}>
                     <div className="left">
                         <InputField name="name" label="Name" value={values.name} onChange={changeHandler} />
@@ -68,12 +40,12 @@ const Edit = () => {
                                 placeholder="Enter image url...."
                                 isRequired={false} />
                         ))}
-                        <button type="submit" className="submit-btn">Edit</button>
+                        <button type="submit" className="submit-btn">{formTitle}</button>
                     </div>
                 </form>
             </div>
         </div>
     );
-}
+};
 
-export default Edit;
+export default FurnitureForm;
