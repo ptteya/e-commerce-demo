@@ -47,9 +47,19 @@ exports.edit = async (req, res) => {
         const furniture = await furnitureService.edit(furnitureId, newData).lean();
         res.status(200).json({ furniture })
     } catch (error) {
-        handleErrorResponse(res, 500);
+        handleErrorResponse(res, 500, null, error);
     }
 };
+
+exports.create = async (req, res) => {
+    const data = req.body;
+    try {
+        const furniture = await furnitureService.create(data);
+        res.status(200).json({ furniture })
+    } catch (error) {
+        handleErrorResponse(res, 500, null, error);
+    }
+}
 
 exports.deleteFurniture = async (req, res) => {
     const furnitureId = req.params.furnitureId;

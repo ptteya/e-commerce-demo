@@ -7,7 +7,7 @@ const InputField = ({
     placeholder = '',
     isRequired = true,
 }) => {
-    const placeholderText = placeholder ? placeholder : `Enter  ${label.toLowerCase()}...`;
+    const placeholderText = placeholder ? placeholder : `Enter ${label.toLowerCase()}...`;
 
     return (
         <div className="input-container">
