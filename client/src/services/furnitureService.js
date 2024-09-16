@@ -4,11 +4,11 @@ export const getFurniture = (queryString) => request.get(`furniture/catalog?${qu
 
 export const getDetails = (id) => request.get(`furniture/${id}`);
 
-export const edit = (id, newData) => request.put(`furniture/${id}`, newData);
+export const edit = (id, newData, token) => request.put(`furniture/${id}`, newData, token);
 
-export const create = (data) => request.post(`furniture/catalog`, data);
+export const create = (data, token) => request.post(`furniture/catalog`, data, token);
 
-export const deleteFurniture = (id) => request.del(`furniture/${id}`);
+export const deleteFurniture = (id, token) => request.del(`furniture/${id}`, null, token);
 
 export const getLocalCollection = (collectionName) => {
     return JSON.parse(localStorage.getItem(collectionName)) || [];
@@ -72,4 +72,3 @@ function addQuantityToFurniture(furniture, collection) {
         return f;
     });
 }
-

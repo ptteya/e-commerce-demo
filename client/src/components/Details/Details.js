@@ -11,7 +11,7 @@ const Details = () => {
     const [furniture, setFurniture] = useState({});
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const { added, handleToggle } = useCollectionToggle(furnitureId, 'cart');
-    const { user } = useContext(AuthContext);
+    const { user, token } = useContext(AuthContext);
     const mainImageRef = useRef(null);
     const imageRefs = useRef([]);
     const navigate = useNavigate();
@@ -38,7 +38,7 @@ const Details = () => {
 
     const handleDeleteConfirm = async () => {
         try {
-            await furnitureService.deleteFurniture(furnitureId);
+            await furnitureService.deleteFurniture(furnitureId, token);
             setShowDeleteModal(false);
             navigate(`/furniture/catalog?category=${furniture.category}`);
         } catch (error) {
