@@ -4,9 +4,9 @@ export const login = (data) => request.post('auth/login', data);
 
 export const register = (data) => request.post('auth/register', data);
 
-export const logout = (token) => request.get('auth/logout', null, token);
+export const logout = () => request.get('auth/logout');
 
-export const getUserData = (token) => request.get('auth/me', null, token);
+export const getUserData = () => request.get('auth/me');
 
 export const updateCollection = (action, collectionName, userId, furnitureId, quantity = 1) => request.post(`${collectionName}/${action}`, { userId, furnitureId, quantity });
 
@@ -17,4 +17,4 @@ export const handleAuthToggle = async (action, collectionName, userId, furniture
     } catch (error) {
         console.error(`Failed to update ${collectionName}:`, error.message);
     }
-}
+};

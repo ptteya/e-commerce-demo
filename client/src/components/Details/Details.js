@@ -11,7 +11,7 @@ const Details = () => {
     const [furniture, setFurniture] = useState({});
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const { added, handleToggle } = useCollectionToggle(furnitureId, 'cart');
-    const { user, token } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const mainImageRef = useRef(null);
     const imageRefs = useRef([]);
     const navigate = useNavigate();
@@ -30,21 +30,21 @@ const Details = () => {
 
         imageRefs.current.forEach(img => img.classList.remove('activeImg'));
         event.target.classList.add('activeImg');
-    }
+    };
 
     const handleDeleteClick = async () => {
         setShowDeleteModal(true);
-    }
+    };
 
     const handleDeleteConfirm = async () => {
         try {
-            await furnitureService.deleteFurniture(furnitureId, token);
+            await furnitureService.deleteFurniture(furnitureId);
             setShowDeleteModal(false);
             navigate(`/furniture/catalog?category=${furniture.category}`);
         } catch (error) {
             console.error('Error deleting furniture:', error.message);
         }
-    }
+    };
 
     const images = furniture.images ? Object.values(furniture.images) : [];
     const isAdmin = user?.role === 'admin';

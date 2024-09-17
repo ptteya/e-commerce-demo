@@ -4,19 +4,19 @@ export const getFurniture = (queryString) => request.get(`furniture/catalog?${qu
 
 export const getDetails = (id) => request.get(`furniture/${id}`);
 
-export const edit = (id, newData, token) => request.put(`furniture/${id}`, newData, token);
+export const edit = (id, newData) => request.put(`furniture/${id}`, newData);
 
-export const create = (data, token) => request.post(`furniture/catalog`, data, token);
+export const create = (data) => request.post(`furniture/catalog`, data);
 
-export const deleteFurniture = (id, token) => request.del(`furniture/${id}`, null, token);
+export const deleteFurniture = (id) => request.del(`furniture/${id}`);
 
 export const getLocalCollection = (collectionName) => {
     return JSON.parse(localStorage.getItem(collectionName)) || [];
-}
+};
 
 export const updateLocalCollection = (collectionName, updatedCollection) => {
     localStorage.setItem(collectionName, JSON.stringify(updatedCollection));
-}
+};
 
 export const getCollectionItems = async (collectionName, user, isAuthenticated) => {
     const collection = isAuthenticated
@@ -29,13 +29,13 @@ export const getCollectionItems = async (collectionName, user, isAuthenticated) 
             ? addQuantityToFurniture(furniture, collection)
             : furniture;
     } catch (error) {
-        console.error(`Error fetching furniture:`, error.message)
+        console.error(`Error fetching furniture:`, error.message);
     }
-}
+};
 
 export const getItemFromCollection = (collection, id) => {
     return collection.find((el) => el.furnitureId === id);
-}
+};
 
 export const handleLocalToggle = (id, added, collectionName, newQuantity = 1, update = false, updateLocalCollection) => {
     let updatedCollection = getLocalCollection(collectionName);
@@ -57,12 +57,12 @@ export const handleLocalToggle = (id, added, collectionName, newQuantity = 1, up
 
     updateLocalCollection(collectionName, updatedCollection);
     return updatedCollection;
-}
+};
 
 async function fetchAndFilterFurniture(collection) {
     const result = await getFurniture();
     const allFurniture = result.furniture;
-    return allFurniture.filter(f => collection.some((el) => el.furnitureId === f._id))
+    return allFurniture.filter(f => collection.some((el) => el.furnitureId === f._id));
 }
 
 function addQuantityToFurniture(furniture, collection) {

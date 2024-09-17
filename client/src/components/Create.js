@@ -4,16 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { initialFormValues } from 'constants/formInitialValues';
 import FurnitureForm from 'components/FurnitureForm';
 import * as furnitureService from 'services/furnitureService';
-import { useContext } from 'react';
-import { AuthContext } from 'contexts/AuthContext';
 
 const Create = () => {
     const { values, changeHandler, onSubmit, error } = useForm(initialFormValues, formSubmitHandler);
-    const { token } = useContext(AuthContext);
     const navigate = useNavigate();
 
     async function formSubmitHandler(data) {
-        await furnitureService.create(data, token);
+        await furnitureService.create(data);
         navigate(`/furniture/catalog?category=${data.category}`);
     }
 
