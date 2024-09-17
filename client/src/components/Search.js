@@ -3,14 +3,7 @@ import { useQueryHandler } from 'hooks/useQueryHandler';
 
 const Search = () => {
     const { handleSearch } = useQueryHandler();
-    const { values, changeHandler, onSubmit, resetForm } = useForm({ searchQuery: '' }, handleSearch);
-
-    const handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            handleSearch({ searchQuery: e.target.value });
-            resetForm();
-        }
-    }
+    const { values, changeHandler, onSubmit } = useForm({ searchQuery: '' }, handleSearch);
 
     return (
         <div className="search-bar">
@@ -21,13 +14,12 @@ const Search = () => {
                     name="searchQuery"
                     value={values.searchQuery}
                     onChange={changeHandler}
-                    onKeyDown={handleKeyPress}
                     placeholder="Search here..."
                 />
                 <button type="submit" id="search-btn"><i className="fas fa-search search-icon"></i></button>
             </form>
         </div>
     );
-}
+};
 
 export default Search;
