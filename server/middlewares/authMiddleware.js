@@ -23,6 +23,14 @@ exports.requireAuth = (req, res, next) => {
     }
 };
 
+exports.requireGuest = (req, res, next) => {
+    if (!req.user) {
+        next();
+    } else {
+        handleErrorResponse(res, 401, 'Guest access only');
+    }
+};
+
 exports.requireAdmin = (req, res, next) => {
     if (req.user && req.user.role === 'admin') {
         next();
