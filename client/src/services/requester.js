@@ -1,16 +1,19 @@
+import { getAccessToken } from "utils/getAccessToken";
+
 const host = 'http://localhost:5000';
 
-async function requester(method, url, data = null, token = null) {
+async function requester(method, url, data) {
     const headers = { 'Content-Type': 'application/json' };
 
-    if (token) {
-        headers['Authorization'] = token;
+    const accessToken = getAccessToken();
+    if (accessToken) {
+        headers['Authorization'] = accessToken;
     }
 
     const options = {
         method,
         headers
-    }
+    };
 
     if (data) {
         options.body = JSON.stringify(data);
