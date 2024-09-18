@@ -1,55 +1,47 @@
 .subscribe-container {
-    background-color: var(--yellow-color);
+    background-color: #eee;
     padding: 30px 110px 30px 110px;
+    display: grid;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    color: var(--dark-gray-color);
 }
 
 .subscribe-info h3 {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .subscribe-info p {
     margin-top: 10px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .subscribe-input {
-    height: 45px;
+    font-size: 14px;
+    height: 48px;
     padding-left: 10px;
     margin-right: 10px;
     max-width: 350px;
     width: 300px;
-    border: 1px solid #222426;
-    background-color: var(--yellow-color);
+    border: 1px solid var(--dark-gray-color);
+    background-color: #eee;
 }
 
 .subscribe-input::placeholder {
-    color: #222426;
-}
-
-.subscribe-input:focus {
-    outline: none;
-    border-color: #222426;
+    color: var(--dark-gray-color);
 }
 
 .subscribe-btn {
-    height: 45px;
+    font-size: 14px;
+    height: 48px;
     padding: 0px 15px;
     border: none;
-    background-color: #222426;
-    color: var(--yellow-color);
+    background-color: var(--dark-gray-color);
+    color: #eee;
     font-weight: bold;
     cursor: pointer;
-}
-
-.subscribe-container .success-message {
-    color: black;
-    font-weight: 700;
-    margin-top: 5px;
-    font-size: 16px;
 }
 
 .footer-section {
@@ -60,11 +52,11 @@
     padding: 45px 0px;
     margin: 0px 110px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .col-title {
-    font-size: 22px;
+    font-size: 20px;
     color: var(--dark-gray-color);
     margin-bottom: 15px;
 }
@@ -84,7 +76,7 @@
 .links-col ul li a {
     text-decoration: none;
     color: var(--dark-gray-color);
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .contacts-col .contact-info,
@@ -96,7 +88,7 @@
 
 .contacts-col .contact-info p,
 .information-col .info p {
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .contacts-col .contact-info p i {
@@ -125,7 +117,7 @@
 }
 
 .icons-row a:hover {
-    background-color: var(--dark-gray-color);
+    background-color: var(--yellow-color);
 }
 
 .icons-row i {
@@ -134,8 +126,64 @@
 
 .rights {
     color: var(--dark-gray-color);
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
     border-top: 1px solid var(--border-color);
     padding: 15px 0px;
+}
+
+@media (max-width: 1200px) {
+    .subscribe-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .footer-content>div {
+        margin-right: 40px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .subscribe-input {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .subscribe-info p {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .subscribe-btn {
+        width: 100%;
+    }
+
+    .icons-row a {
+        width: 40px;
+        height: 40px;
+    }
+
+    .icons-row a i {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .subscribe-info p {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-content>div {
+        margin-top: 20px;
+    }
 }

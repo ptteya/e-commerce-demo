@@ -17,19 +17,19 @@ const CartItem = ({
                 handleToggle(quantity - 1, true);
             }
         }
-    }
+    };
 
     return (
         <div className="product" >
-            <div className="image-info">
+            <div className="product-info">
                 <img src={images.mainImage} alt="furniture" />
                 <div>
-                    <h2>{name}</h2>
+                    <h2 className='product-name'>{name}</h2>
                     <p className="size">W. {size.width}cm. H. {size.height}cm. L. {size.length}cm</p>
                 </div>
             </div>
             <div className="quantity-container">
-                <p className='price'>Quantity: </p>
+                <p className='title'>Quantity: </p>
                 <div className="quantity">
                     <button
                         className='decrease'
@@ -48,6 +48,6 @@ const CartItem = ({
             <p className="remove-furniture" onClick={() => handleToggle()}>Remove</p>
         </div>
     );
-}
+};
 
 export default CartItem;

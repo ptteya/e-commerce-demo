@@ -1,6 +1,5 @@
 .cart-container {
     margin: 50px 0px;
-    min-height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,16 +8,16 @@
 .cart-container h1 {
     text-align: center;
     margin-bottom: 60px;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .cart-container .product-container {
-    width: 60%;
+    width: 70%;
 }
 
 .cart-container .no-content {
     text-align: center;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .cart-container .product {
@@ -26,31 +25,35 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid rgb(208, 208, 208);
+    padding: 15px;
 }
 
 .cart-container .product img {
-    width: 180px;
-    height: 150px;
+    width: 150px;
+    height: 120px;
 }
 
-.cart-container .product .image-info {
+.cart-container .product .product-info {
     display: flex;
     gap: 20px;
     align-items: center;
 }
 
-.cart-container .product .price {
-    font-weight: bold;
+.product-name {
     font-size: 20px;
 }
 
 .quantity-container {
     width: 23%;
-    font-size: 16px;
     text-align: center;
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.quantity-container .title {
+    font-size: 18px;
+    font-weight: 700;
 }
 
 .quantity-container .quantity {
@@ -58,7 +61,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    font-size: 20px;
+    font-size: 18px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
     padding: 3px;
@@ -77,6 +80,11 @@
     color: gray;
     cursor: pointer;
     font-size: 16px;
+}
+
+.cart-container .product .price {
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .remove-furniture {
@@ -135,4 +143,46 @@
 .cart-container .btn-back:hover {
     background-color: var(--yellow-color);
     color: white;
+}
+
+@media (max-width: 1024px) {
+
+    .product-name,
+    .quantity-container .title {
+        font-size: 15px;
+    }
+
+    .product-info .size {
+        display: none;
+    }
+
+    .quantity-container {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-info img {
+        display: none;
+    }
+
+    .quantity-container .quantity {
+        width: 80px;
+    }
+
+    .decrease i,
+    .increase i {
+        padding: 4px;
+        font-size: 13px;
+    }
+
+    .total-price {
+        font-size: 15px;
+    }
+
+    .cart-container .btn {
+        width: 150px;
+        font-size: 14px;
+    }
 }
