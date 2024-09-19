@@ -10,8 +10,8 @@ const PriceFilter = () => {
 
     return (
         <div className="filter-category">
-            <h2 className="filter-title" htmlFor="price-range">Price Range <i
-                className="fas fa-regular fa-chevron-up arrow arrow-icon"></i></h2>
+            <p className="filter-title" htmlFor="price-range">Price Range <i
+                className="fas fa-regular fa-chevron-up arrow arrow-icon"></i></p>
             <div className="filter-content">
                 <form className="price-inputs" onSubmit={onSubmit}>
                     <input
@@ -31,11 +31,11 @@ const PriceFilter = () => {
                         value={values.maxPrice}
                         onChange={changeHandler}
                     />
-                    <button className="price-range-search-btn" type="submit">Filter</button>
+                    <button className="price-range-search-btn" type="submit"></button>
                 </form>
             </div>
         </div>
     );
-}
+};
 
 export default PriceFilter;

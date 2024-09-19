@@ -1,5 +1,6 @@
 import 'components/SharedStyles/create-edit.css';
 import InputField from 'components/InputField';
+import { categoryOptions } from 'constants/categoryOptions';
 
 const FurnitureForm = ({ formTitle, values, onSubmit, changeHandler, error }) => {
     const { images, size } = values;
@@ -18,9 +19,41 @@ const FurnitureForm = ({ formTitle, values, onSubmit, changeHandler, error }) =>
                     <div className="left">
                         <InputField name="name" label="Name" value={values.name} onChange={changeHandler} />
                         <InputField name="price" label="Price" value={values.price} onChange={changeHandler} type='number' />
-                        <InputField name="description" label="Description" value={values.description} onChange={changeHandler} />
-                        <InputField name="category" label="Category" value={values.category} onChange={changeHandler} />
-                        <InputField name="material" label="Material" value={values.material} onChange={changeHandler} />
+                        <div className="input-container">
+                            <label htmlFor="description">
+                                <span className="required">*</span>
+                                Description
+                            </label>
+                            <textarea
+                                name="description"
+                                placeholder="Highlight key features and specs...."
+                                value={values.description}
+                                onChange={changeHandler}
+                                cols="30"
+                                rows="5"
+                                required
+                            />
+                        </div>
+                        <div className="input-container">
+                            <label htmlFor="category">
+                                <span className="required">*</span>
+                                Category
+                            </label>
+                            <select
+                                name="category"
+                                value={values.category}
+                                onChange={changeHandler}
+                                required
+                            >
+                                <option value="" disabled>Select a category</option>
+                                {categoryOptions.map(option => (
+                                    <option key={option} value={option}>
+                                        {option}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <InputField name="material" label="Material" value={values.material} onChange={changeHandler} placeholder='eg. wood, leather' />
                         <InputField name="color" label="Color" value={values.color} onChange={changeHandler} />
                         <InputField name="width" label="Width" value={size.width} onChange={e => changeHandler(e, 'size', 'width')} type='number' />
                     </div>
@@ -28,7 +61,7 @@ const FurnitureForm = ({ formTitle, values, onSubmit, changeHandler, error }) =>
                     <div className="right">
                         <InputField name="height" label="Height" value={size.height} onChange={e => changeHandler(e, 'size', 'height')} type='number' />
                         <InputField name="length" label="Length" value={size.length} onChange={e => changeHandler(e, 'size', 'length')} type='number' />
-                        <InputField name="mainImage" label="Main Image" value={images.mainImage} onChange={e => changeHandler(e, 'images', 'mainImage')} placeholder="Enter main image url...." />
+                        <InputField name="mainImage" label="Main Image" value={images.mainImage} onChange={e => changeHandler(e, 'images', 'mainImage')} placeholder="Paste the url of the main image....." />
 
                         {extraImages.map((image, index) => (
                             <InputField
@@ -37,7 +70,7 @@ const FurnitureForm = ({ formTitle, values, onSubmit, changeHandler, error }) =>
                                 name={`extraImage${index}`}
                                 value={image}
                                 onChange={e => changeHandler(e, 'images', `extraImage${index + 1}`)}
-                                placeholder="Enter image url...."
+                                placeholder="Url for additional image....."
                                 isRequired={false} />
                         ))}
                         <button type="submit" className="submit-btn">{formTitle}</button>

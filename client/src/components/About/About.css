@@ -59,3 +59,27 @@
     border-radius: 10px;
     font-size: 17px;
 }
+
+@media (max-width: 768px) {
+    .about-content {
+        width: 80%;
+        margin: 50px 0px;
+    }
+
+    .about-section .hero h1 {
+        font-size: 30px;
+    }
+
+    .about-subHeading {
+        font-size: 18px;
+    }
+
+    .about-info {
+        font-size: 15px;
+    }
+
+    .value {
+        padding: 20px;
+        font-size: 15px;
+    }
+}

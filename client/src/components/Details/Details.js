@@ -46,19 +46,13 @@ const Details = () => {
         }
     };
 
-    const images = furniture.images ? Object.values(furniture.images) : [];
+    const images = furniture.images ? Object.values(furniture.images).filter(image => image !== '') : [];
     const isAdmin = user?.role === 'admin';
 
     return (
         <div className="details-container">
             <div className="content">
                 <div className="images-container">
-                    <div className="main-image">
-                        <img
-                            src={images[0]}
-                            alt="main-image"
-                            ref={mainImageRef} />
-                    </div>
                     <div className="more-images">
                         {images.map((src, index) => (
                             <img
@@ -69,6 +63,12 @@ const Details = () => {
                                 alt={`product-image-${index}`}
                                 onClick={handleImageClick} />
                         ))}
+                    </div>
+                    <div className="main-image">
+                        <img
+                            src={images[0]}
+                            alt="main-image"
+                            ref={mainImageRef} />
                     </div>
                 </div>
 
@@ -83,10 +83,14 @@ const Details = () => {
                     </p>
 
                     <div className="service-icons">
-                        <p><i className="fas fa-truck"></i> Free Delivery</p>
-                        <p><i className="fas fa-undo-alt"></i> Free Return</p>
-                        <p><i className="fas fa-hand-holding-usd"></i> Payment on Delivery</p>
-                        <p><i className="fas fa-calendar-check"></i> 365 Day Return Guarantee</p>
+                        <div className="left">
+                            <p><i className="fas fa-truck"></i> Free Delivery</p>
+                            <p><i className="fas fa-hand-holding-usd"></i> Payment on Delivery</p>
+                        </div>
+                        <div className="right">
+                            <p><i className="fas fa-undo-alt"></i> Free Return</p>
+                            <p><i className="fas fa-calendar-check"></i> 365 Day Return Guarantee</p>
+                        </div>
                     </div>
 
                     <p className="product-description">{furniture.description}</p>
@@ -108,7 +112,6 @@ const Details = () => {
                             </>
                         )}
                     </div>
-
                 </div>
             </div>
 

@@ -157,12 +157,15 @@
     }
 
     .quantity-container {
-        display: flex;
         flex-direction: column;
     }
 }
 
 @media (max-width: 768px) {
+    .cart-container .product-container {
+        width: 90%;
+    }
+
     .product-info img {
         display: none;
     }
@@ -184,5 +187,13 @@
     .cart-container .btn {
         width: 150px;
         font-size: 14px;
+    }
+
+    .cart-container .product .price {
+        font-size: 15px;
+    }
+
+    .remove-furniture {
+        font-size: 15px;
     }
 }

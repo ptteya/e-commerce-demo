@@ -1,10 +1,18 @@
 import './Home.css';
 import { Link } from 'react-router-dom';
-import CatalogItem from 'components/Catalog/CatalogItem';
 import { useFetchFurniture } from 'hooks/useFetchFurniture ';
+import CatalogItem from 'components/Catalog/CatalogItem/CatalogItem';
 
 const Home = () => {
-    const furniture = useFetchFurniture();
+    let furniture = useFetchFurniture();
+
+    const couches = furniture
+        .filter(el => el.category === 'couches')
+        .slice(-4);
+
+    const beds = furniture
+        .filter(el => el.category === 'beds')
+        .slice(-4);
 
     return (
         <div className="homepage-wrapper">
@@ -12,7 +20,7 @@ const Home = () => {
                 <div className="welcome-image-container">
                     <img src="/images/welcome-banner.png" alt="banner" />
                     <div className="welcome-text-container">
-                        <p className="welcome-text">The Best Interior Design</p>
+                        <p className="welcome-text">Elegant Interiors</p>
                         <p className="welcome-subtext">Transform your space with timeless furniture pieces that blend style and
                             comfort.
                         </p>
@@ -25,59 +33,74 @@ const Home = () => {
                 <div className="service">
                     <i className="fas fa-truck icon"></i>
                     <div className="info">
-                        <h3>Free Shipping</h3>
-                        <p> Enjoy free shipping on all orders or on orders above a certain amount.</p>
+                        <p className="name">Free Shipping</p>
+                        <p className='desc'> Enjoy free shipping on all orders or on orders above a certain amount.</p>
                     </div>
                 </div>
                 <div className="service">
                     <i className="fas fa-undo-alt icon"></i>
                     <div className="info">
-                        <h3>Easy Returns</h3>
-                        <p>Hassle-free returns or exchanges within a set period for your satisfaction.
+                        <p className='name'>Easy Returns</p>
+                        <p className='desc'>Hassle-free returns or exchanges within a set period for your satisfaction.
                         </p>
                     </div>
                 </div>
                 <div className="service">
                     <i className="fas fa-headset icon"></i>
                     <div className="info">
-                        <h3>24/7 Customer Support</h3>
-                        <p>Round-the-clock support for any questions or issues you might have.</p>
+                        <p className='name'>24/7 Customer Support</p>
+                        <p className='desc'>Round-the-clock support for any questions or issues you might have.</p>
                     </div>
                 </div>
                 <div className="service">
                     <i className="fas fa-box icon"></i>
                     <div className="info">
-                        <h3>Order Tracking</h3>
-                        <p>Seamlessly track your order from shipment to doorstep delivery.</p>
+                        <p className='name'>Order Tracking</p>
+                        <p className='desc'>Seamlessly track your order from shipment to doorstep delivery.</p>
                     </div>
                 </div>
                 <div className="service">
                     <i className="fas fa-lock icon"></i>
                     <div className="info">
-                        <h3>Secure Payments</h3>
-                        <p>Safe and secure payment methods for a worry-free shopping experience.
+                        <p className='name'>Secure Payments</p>
+                        <p className='desc'>Safe and secure payment methods for a worry-free shopping experience.
                         </p>
                     </div>
                 </div>
                 <div className="service">
                     <i className="fas fa-couch icon"></i>
                     <div className="info">
-                        <h3>Custom Furniture</h3>
-                        <p>Design your own furniture with our custom options tailored to your needs.
+                        <p className='name'>Custom Furniture</p>
+                        <p className='desc'>Design your own furniture with our custom options tailored to your needs.
                         </p>
                     </div>
                 </div>
             </div>
 
-            {furniture.length > 0 && (<>
+            {couches.length > 0 && (<>
                 <div className="recent-items">
                     <div className="section-title">
-                        <h1>Recent Items</h1>
+                        <p>Explore our Couches</p>
+                        <Link to="/furniture/catalog?category=couches" className='more-link'>See More</Link>
                     </div>
-
                     <div className="product-container">
                         <div className="product-cards">
-                            {furniture.map((f) => <CatalogItem key={f._id} {...f} />)}
+                            {couches.map((f) => <CatalogItem key={f._id} {...f} />)}
+                        </div>
+                    </div>
+                </div>
+
+            </>)}
+
+            {beds.length > 0 && (<>
+                <div className="recent-items">
+                    <div className="section-title">
+                        <p>Explore our Beds</p>
+                        <Link to="/furniture/catalog?category=beds" className='more-link'>See More</Link>
+                    </div>
+                    <div className="product-container">
+                        <div className="product-cards">
+                            {beds.map((f) => <CatalogItem key={f._id} {...f} />)}
                         </div>
                     </div>
                 </div>
@@ -88,82 +111,102 @@ const Home = () => {
                 <div className="image-container">
                     <img src="/images/ban.png" alt="" />
                     <div className="content">
-                        <p className="title">Elevate Your Home with Bestsellers</p>
+                        <p className="title">Furnish Your Dream Home Today! </p>
                         <div className="discount">
-                            <p className="text">UP TO</p>
                             <p className="percent">25% OFF</p>
-                            <p className="text">Selected Sofas</p>
+                            <p className="text">on selected furniture pieces.Transform your living space with our collection of stylish and comfortable designs, perfect for every room. if you're looking to redesign your entire home our high-quality furniture pieces offer unmatched comfort and style.
+                            </p>
                         </div>
-                        <Link to="/furniture/catalog/couches" className="banner-btn">See Catalog</Link>
+                        <Link to="/furniture/catalog?category=couches" className="banner-btn">See Catalog</Link>
                     </div>
                 </div>
             </div>
 
-            <div className="reviews_section">
-                <div className="section-title">
-                    <h1 className="section-title">Customer Reviews</h1>
-                </div>
-
-                <div className="reviews_box_container">
-                    <div className="review_box">
+            <div className="reviews-section">
+                <p className="reviews-title">Customer Reviews</p>
+                <div className="reviews-box-container">
+                    <div className="review-box">
                         <img src="/images/customers/person1.png" alt="customer" />
-                        <h3>Jaxon Lester</h3>
-                        <div className="star-rating">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star-half-alt"></i>
+                        <div className="review">
+                            <h3>Jaxon Lester</h3>
+                            <div className="rating-container">
+                                <div className="star-rating">
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star-half-alt"></i>
+                                </div>
+                                <p>1 week ago</p>
+                            </div>
+                            <p> Great Furniture and Friendly Service at HOMELY Furniture Shop! The store had a wide range of
+                                furniture
+                                styles to choose from.</p>
                         </div>
-                        <p> Great Furniture and Friendly Service at HOMELY Furniture Shop! The store had a wide range of
-                            furniture
-                            styles to choose from.</p>
                     </div>
-                    <div className="review_box">
+                    <div className="review-box">
+                        <img src="/images/customers/person1.png" alt="customer" />
+                        <div className="review">
+                            <h3>Jaxon Lester</h3>
+                            <div className="rating-container">
+                                <div className="star-rating">
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star-half-alt"></i>
+                                </div>
+                                <p>2 weeks ago</p>
+                            </div>
+                            <p> Great Furniture and Friendly Service at HOMELY Furniture Shop! The store had a wide range of
+                                furniture
+                                styles to choose from.</p>
+                        </div>
+                    </div>
+
+                    <div className="review-box">
                         <img src="/images/customers/person2.png" alt="customer" />
-                        <h3>Juliet Chandler</h3>
-                        <div className="star-rating">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star-half-alt"></i>
+                        <div className="review">
+                            <h3>Juliet Chandler</h3>
+                            <div className="rating-container">
+                                <div className="star-rating">
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                </div>
+                                <p>1 week ago</p>
+                            </div>
+                            <p>I purchased furniture from HOMELY Furniture Shop and was so thrilled with my experience. The
+                                store
+                                had a great furniture that fit my style and budget.
+                            </p>
                         </div>
-                        <p>I purchased furniture from HOMELY Furniture Shop and was so thrilled with my experience. The
-                            store
-                            had a great selection of furniture that fit my style and budget.
-                        </p>
                     </div>
-                    <div className="review_box">
+
+                    <div className="review-box">
                         <img src="/images/customers/person3.png" alt="customer" />
-                        <h3>Andrew Roberts</h3>
-                        <div className="star-rating">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star-half-alt"></i>
+                        <div className="review">
+                            <h3>Andrew Roberts</h3>
+                            <div className="rating-container">
+                                <div className="star-rating">
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star-half-alt"></i>
+                                </div>
+                                <p>1 month ago</p>
+                            </div>
+                            <p>I had a wonderful experience purchasing from this shop. The quality
+                                of the furniture was excellent, and I was able to find exactly what I was looking for.</p>
                         </div>
-                        <p>I had a wonderful experience purchasing from this shop. The quality
-                            of the furniture was excellent, and I was able to find exactly what I was looking for.</p>
-                    </div>
-                    <div className="review_box">
-                        <img src="/images/customers/person4.png" alt="customer" />
-                        <h3>Irene Monroe</h3>
-                        <div className="star-rating">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star-half-alt"></i>
-                        </div>
-                        <p>I discovered this furniture shop a month ago but it quickly became my go-to place for all my
-                            furniture needs. The designs are modern and stylish.</p>
                     </div>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default Home;

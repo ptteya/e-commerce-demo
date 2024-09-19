@@ -1,12 +1,11 @@
 /* Welcome Section */
 .welcome {
-    margin: 0px 110px 0px 110px;
     position: relative;
 }
 
 .welcome-image-container {
-    margin-top: 10px;
-    height: 600px;
+    height: 575px;
+    max-height: 1000px;
     width: 100%;
 }
 
@@ -30,27 +29,27 @@
 
 .welcome-text-container {
     position: absolute;
-    top: 40%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 30px;
+    gap: 25px;
     width: 40%;
 }
 
 .welcome-text {
     text-align: center;
-    font-size: 55px;
+    font-size: 50px;
     color: white;
     font-weight: bold;
-    font-family: 'Cormorant Garamond', sans-serif;
+    text-transform: uppercase;
 }
 
 .welcome-subtext {
     text-align: center;
-    font-size: 19px;
+    font-size: 18px;
     max-width: 70%;
     color: white;
     margin-bottom: 20px;
@@ -60,8 +59,9 @@
     font-family: "Lato", sans-serif;
     color: white;
     border: 3px solid white;
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
+    letter-spacing: 1px;
     font-weight: bold;
     padding: 15px 30px;
     cursor: pointer;
@@ -77,8 +77,8 @@
 /* Services */
 .services {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin: 40px 110px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    margin: 60px 110px 40px 110px;
     gap: 25px;
 }
 
@@ -92,54 +92,53 @@
 }
 
 .service .icon {
-    font-size: 25px;
+    font-size: 20px;
     border: 3px solid var(--yellow-color);
     color: var(--yellow-color);
     padding: 15px;
     border-radius: 50%;
 }
 
-.service .info h3 {
+.service .info .name {
+    font-size: 17px;
+    font-weight: 700;
     margin-bottom: 6px;
 }
 
 /* Recent Items */
 .recent-items {
-    padding: 20px 0px 70px 0px;
-    margin: 0px 110px;
+    margin: 70px 110px;
 }
 
-.section-title h1 {
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    padding: 10px 0px;
+}
+
+.section-title p {
     position: relative;
     z-index: 1;
-    margin-bottom: 80px;
-    text-align: center;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 700;
     color: #333;
 }
 
-.section-title h1::before,
-.section-title h1::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: calc(50% - 180px);
-    height: 1px;
-    background-color: #cacaca;
+.section-title .more-link {
+    font-size: 16px;
+    color: black;
+    text-decoration: none;
 }
 
-.section-title h1::before {
-    left: 0;
-}
-
-.section-title h1::after {
-    right: 0;
+.section-title .more-link:hover {
+    text-decoration: underline;
 }
 
 /* Banner */
 .mid-page-banner {
-    margin: 10px 110px;
+    margin: 10px 0px;
 }
 
 .mid-page-banner .image-container {
@@ -156,94 +155,265 @@
 .mid-page-banner .content {
     position: absolute;
     top: 50%;
-    right: 50px;
+    right: 7%;
     transform: translateY(-50%);
-    width: 25%;
-    text-align: center;
-    color: white;
+    color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    gap: 30px;
+    align-items: flex-start;
+    gap: 20px;
+    width: 40%;
 }
 
 .mid-page-banner .content .title {
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 700;
-    text-transform: uppercase;
 }
 
 .mid-page-banner .content .discount .percent {
-    font-size: 60px;
+    font-size: 55px;
     font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--yellow-color);
 }
 
 .mid-page-banner .content .discount .text {
-    font-size: 30px;
-    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 28px;
 }
 
 .banner-btn {
+    border: 1px solid black;
     color: black;
-    background-color: white;
-    padding: 10px 20px;
+    padding: 15px 20px;
     text-decoration: none;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 13px;
+    font-weight: bold;
     text-transform: uppercase;
 }
 
 /* Reviews */
-.reviews_section {
+.reviews-section {
     margin: 0px 110px;
-    padding: 45px 0px 140px 0px;
+    padding: 60px 0px 100px 0px;
 }
 
-.reviews_box_container {
+.reviews-title {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 80px;
+    font-weight: 700;
+}
+
+.reviews-box-container {
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 20px;
 }
 
-.review_box {
-    background-color: #1510100f;
-    border-radius: 10px;
-    text-align: center;
-    padding: 30px;
-    min-height: 300px;
+.review-box {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-}
-
-.review_box img {
-    color: white;
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-}
-
-.reviews_section .desc {
     text-align: center;
-    font-size: 20px;
-    margin: 10px 0px 120px 0px;
+    padding: 30px 30px 40px 30px;
+    box-shadow: 0 0px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border: 1px solid rgb(218, 218, 218);
 }
 
-.review_box h3 {
-    color: black;
-    font-size: 20px;
-    margin: 15px 0px;
+.review-box img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.rating-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0px 20px 0px;
 }
 
 .star-rating {
+    display: flex;
+    justify-content: center;
     color: var(--yellow-color);
+    font-size: 16px;
 }
 
-.review_box p {
-    font-size: 18px;
-    color: black;
-    margin-top: 15px;
+@media (min-width: 1200px) {
+    .reviews-box-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .homepage-wrapper .services {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .homepage-wrapper.services {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 1200px) {
+    .welcome-text-container {
+        gap: 10px;
+    }
+
+    .welcome-image-container {
+        height: 400px;
+    }
+
+    .welcome-text {
+        font-size: 30px;
+    }
+
+    .welcome-subtext {
+        font-size: 18px;
+    }
+
+    .catalog-btn {
+        font-size: 10px;
+    }
+
+    .mid-page-banner .content {
+        gap: 10px;
+    }
+
+    .mid-page-banner .content .title {
+        font-size: 23px;
+    }
+
+    .mid-page-banner .content .discount .percent {
+        font-size: 33px;
+        margin-bottom: 10px;
+    }
+
+    .mid-page-banner .content .discount .text {
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    .banner-btn {
+        font-size: 11px;
+        padding: 8px 14px;
+    }
+
+    .rating-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 1024px) {
+    .welcome-text {
+        font-size: 28px;
+    }
+
+    .welcome-subtext {
+        font-size: 14px;
+    }
+
+    .catalog-btn {
+        font-size: 10px;
+        padding: 10px;
+    }
+
+    .services .service:nth-last-child(-n+4) {
+        display: none;
+    }
+
+    .section-title p {
+        font-size: 18px;
+    }
+
+    .mid-page-banner .content .title {
+        font-size: 18px;
+    }
+
+    .mid-page-banner .content .discount .percent {
+        font-size: 27px;
+        margin-bottom: 10px;
+    }
+
+    .reviews-title {
+        font-size: 20px;
+        margin-bottom: 60px;
+    }
+
+    .reviews-box-container .review-box:nth-last-child(-n+2) {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .welcome-text-container {
+        width: 80%;
+    }
+
+    .welcome-text {
+        font-size: 22px;
+    }
+
+    .welcome-subtext {
+        font-size: 14px;
+        margin-bottom: 0px;
+        display: none;
+    }
+
+    .catalog-btn {
+        font-size: 10px;
+        padding: 10px;
+        border: 1px solid white;
+    }
+
+    .services {
+        margin: 50px;
+    }
+
+    .service .info .name {
+        font-size: 13px;
+    }
+
+    .review-box img {
+        height: 60px;
+        width: 60px;
+    }
+
+    .review-box .review p {
+        font-size: 14px;
+    }
+
+    .service .desc {
+        display: none;
+    }
+
+    .recent-items {
+        margin: 40px 50px;
+    }
+
+    .mid-page-banner .image-container {
+        display: none;
+    }
+
+    .reviews-section {
+        margin: 0px 50px;
+        padding: 45px 0px 140px 0px;
+    }
+
+    .reviews-box-container .review-box:nth-last-child(-n+3) {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .service {
+        width: 300px;
+    }
 }

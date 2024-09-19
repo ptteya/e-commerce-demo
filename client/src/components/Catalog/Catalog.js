@@ -1,6 +1,6 @@
 import './Catalog.css';
 import { Link, useLocation } from 'react-router-dom';
-import CatalogItem from './CatalogItem';
+import CatalogItem from './CatalogItem/CatalogItem';
 import PriceFilter from 'components/PriceFilter';
 import ColorFilter from 'components/ColorFilter';
 import { useFetchFurniture } from 'hooks/useFetchFurniture ';
@@ -16,9 +16,11 @@ const Catalog = () => {
         : 'Search Result';
 
     return (
-        <div className="catalog-wrapper">
+        <div className="catalog-section">
             <div className="catalog-title">
-                <h3>Category</h3>
+                <div className="path">
+                    <Link to='/' className='homepage'>Home</Link> / <span>{categoryTitle}</span>
+                </div>
                 <h1>{categoryTitle}</h1>
                 <p>Find all the new items in this category</p>
             </div>
@@ -26,7 +28,7 @@ const Catalog = () => {
                 <div className="catalog-content">
                     <div className="filter-sidebar">
                         <div className="filter-category">
-                            <h2 className="filter-title">Product Categories</h2>
+                            <p className="filter-title">Product Categories</p>
                             <ul>
                                 <li><Link to="/furniture/catalog?category=couches">Couches</Link></li>
                                 <li><Link to="/furniture/catalog?category=beds">Beds</Link></li>
@@ -40,17 +42,20 @@ const Catalog = () => {
                     </div>
                     <div className="product-container">
                         {furniture.length > 0 ? (
-                            <div className="product-cards">
-                                {furniture.map((f) => <CatalogItem key={f._id} {...f} />)}
-                            </div>
+                            <>
+                                <p className='results'>{`Total Products (${furniture.length})`} </p>
+                                <div className="product-cards">
+                                    {furniture.map((f) => <CatalogItem key={f._id} {...f} />)}
+                                </div>
+                            </>
                         ) : (
                             <p className="not-available">No furniture available!</p>
                         )}
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
-}
+};
 
 export default Catalog;

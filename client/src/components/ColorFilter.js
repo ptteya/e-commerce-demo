@@ -10,12 +10,12 @@ const ColorFilter = () => {
     const handleColorClick = (color) => {
         setSelectedColor(color);
         handleFilter({ color });
-    }
+    };
 
     return (
         <div className="filter-category">
-            <h2 className="filter-title">Color <i className="fas fa-regular fa-chevron-up arrow arrow-icon"></i>
-            </h2>
+            <p className="filter-title">Color <i className="fas fa-regular fa-chevron-up arrow arrow-icon"></i>
+            </p>
             <div className="filter-content">
                 <div className="colors-container">
                     {colors.map((color) => (
@@ -30,6 +30,6 @@ const ColorFilter = () => {
             </div>
         </div>
     );
-}
+};
 
 export default ColorFilter;

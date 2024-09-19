@@ -34,7 +34,7 @@ const Footer = () => {
                         <h3 className="col-title">Fast Links</h3>
                         <ul>
                             <li><Link to="/">Home</Link></li>
-                            <li><Link to="/furniture/catalog/couches">Catalog</Link></li>
+                            <li><Link to="/furniture/catalog?category=couches">Catalog</Link></li>
                             <li><Link to="/about">About</Link></li>
                             <li><Link to="/contacts">Contacts</Link></li>
                         </ul>

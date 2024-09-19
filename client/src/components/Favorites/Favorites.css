@@ -1,16 +1,21 @@
 .favorites-container {
-    margin: 0px 300px 40px 300px;
-    padding-top: 50px;
-    min-height: calc(100vh - 120px);
+    margin: 50px 250px 40px 250px;
 }
 
 .favorites-container h1 {
     text-align: center;
     margin-bottom: 50px;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .favorites-container .no-content {
     text-align: center;
-    font-size: 25px;
+    font-size: 20px;
+}
+
+@media (max-width: 1200px) {
+    .favorites-container {
+        margin: 60px;
+        padding-top: 0px;
+    }
 }

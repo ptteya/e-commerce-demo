@@ -1,7 +1,7 @@
-import { useContext, useState, useEffect } from "react";
 import './Favorites.css';
-import CatalogItem from "components/Catalog/CatalogItem";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "contexts/AuthContext";
+import CatalogItem from "components/Catalog/CatalogItem/CatalogItem";
 import * as furnitureService from 'services/furnitureService';
 
 const Favorites = () => {
@@ -31,6 +31,6 @@ const Favorites = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Favorites;

@@ -1,77 +1,116 @@
 .create-container {
     width: 100%;
-    min-height: calc(100vh - 120px);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
     background-color: #f8f8f8;
+    padding: 20px;
 }
 
 .create-card {
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    width: 80%;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px 50px;
+    width: 100%;
     max-width: 900px;
-    margin: 20px 0px;
+    margin: 20px 0;
 }
 
 .create-card h1 {
-    font-size: 30px;
+    font-size: 24px;
     font-weight: bold;
-    margin-bottom: 30px;
-    color: #000000;
+    margin-bottom: 20px;
+    color: #333;
     text-align: center;
 }
 
 .create-card form {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 50px;
 }
 
 .create-card form .input-container {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    width: 100%;
+    gap: 8px;
 }
 
 .create-card form .input-container label {
-    font-size: 16px;
-    color: #000000;
-    font-weight: 700;
+    font-size: 15px;
+    color: #333;
+    font-weight: 600;
+    margin-top: 10px;
 }
 
-.create-card form .input-container input {
-    padding: 12px;
-    font-size: 14px;
-    width: 350px;
-    margin-bottom: 12px;
-    border: 2px solid var(--border-color);
-    border-radius: 5px;
+.create-card form .input-container input,
+.create-card form .input-container textarea,
+.create-card form .input-container select {
+    padding: 10px;
+    font-size: 15px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     transition: border-color 0.3s;
+}
+
+.create-card form .input-container textarea {
+    resize: none;
+    font-family: Arial, sans-serif;
 }
 
 .create-card form .input-container input:focus {
     border-color: var(--yellow-color);
+    outline: none;
 }
 
 .create-card .submit-btn {
-    padding: 12px 0;
+    padding: 12px;
     width: 100%;
     background-color: var(--yellow-color);
     border: none;
-    border-radius: 5px;
-    font-size: 18px;
+    border-radius: 8px;
+    font-size: 16px;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 25px;
+    margin-top: 38px;
 }
 
 .create-card .submit-btn:hover {
-    background-color: var(--yellow-color);
+    background-color: #a58b5a;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .create-card form {
+        grid-template-columns: 1fr;
+    }
+
+    .create-card {
+        padding: 20px;
+        width: 90%;
+    }
+
+    .create-card h1 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .create-card form {
+        gap: 10px;
+    }
+
+    .create-card form .input-container label {
+        margin-top: 8px;
+    }
+
+    .create-card form .input-container input {
+        font-size: 14px;
+    }
+
+    .create-card .submit-btn {
+        font-size: 15px;
+    }
 }
