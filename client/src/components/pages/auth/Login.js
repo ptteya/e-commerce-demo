@@ -1,9 +1,9 @@
+import 'components/shared/styles/login-register.css';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import 'components/SharedStyles/login-register.css';
 import { AuthContext } from 'contexts/AuthContext';
 import { useForm } from 'hooks/useForm';
-import InputField from './InputField';
+import InputField from 'components/shared/forms/InputField';
 
 const Login = () => {
     const { login } = useContext(AuthContext);

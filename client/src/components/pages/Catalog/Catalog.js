@@ -1,9 +1,9 @@
 import './Catalog.css';
 import { Link, useLocation } from 'react-router-dom';
-import CatalogItem from './CatalogItem/CatalogItem';
-import PriceFilter from 'components/PriceFilter';
-import ColorFilter from 'components/ColorFilter';
 import { useFetchFurniture } from 'hooks/useFetchFurniture ';
+import CatalogItem from './CatalogItem/CatalogItem';
+import PriceFilter from './PriceFilter';
+import ColorFilter from './ColorFilter';
 
 const Catalog = () => {
     const location = useLocation();

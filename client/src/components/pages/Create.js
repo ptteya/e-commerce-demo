@@ -1,8 +1,8 @@
-import 'components/SharedStyles/create-edit.css';
+import 'components/shared/styles/create-edit.css';
 import { useForm } from 'hooks/useForm';
 import { useNavigate } from 'react-router-dom';
 import { initialFormValues } from 'constants/formInitialValues';
-import FurnitureForm from 'components/FurnitureForm';
+import FurnitureForm from 'components/shared/forms/FurnitureForm';
 import * as furnitureService from 'services/furnitureService';
 
 const Create = () => {

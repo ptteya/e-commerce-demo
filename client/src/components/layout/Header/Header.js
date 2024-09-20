@@ -2,7 +2,7 @@ import './Header.css';
 import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect, useContext } from 'react';
 import { AuthContext } from 'contexts/AuthContext';
-import Search from 'components/Search';
+import Search from './Search';
 import * as furnitureService from 'services/furnitureService';
 
 const Header = () => {
@@ -50,22 +50,22 @@ const Header = () => {
                         <p>+359 89 347 2637</p>
                     </div>
                     <div className="top-header-actions">
-                        <div className="icon-wrapper">
-                            <Link to="/favorites">
+                        <Link to="/favorites">
+                            <div className="icon-wrapper">
                                 <i className="far fa-heart favorite-icon"></i>
-                            </Link>
-                            {favoritesCount > 0 && (
-                                <h4 className="favoriteItems-num">{favoritesCount}</h4>
-                            )}
-                        </div>
-                        <div className="icon-wrapper">
-                            <Link to="/cart">
+                                {favoritesCount > 0 && (
+                                    <h4 className="favoriteItems-num">{favoritesCount}</h4>
+                                )}
+                            </div>
+                        </Link>
+                        <Link to="/cart">
+                            <div className="icon-wrapper">
                                 <i className="fas fa-shopping-cart shopping-cart-icon"></i>
-                            </Link>
-                            {cartCount > 0 && (
-                                <h4 className="cartItems-num">{cartCount}</h4>
-                            )}
-                        </div>
+                                {cartCount > 0 && (
+                                    <h4 className="cartItems-num">{cartCount}</h4>
+                                )}
+                            </div>
+                        </Link>
                         <div className="user-menu" onClick={toggleDropdown}>
                             <p><i className="fas fa-user login-icon" ref={iconRef}></i></p>
                             <div

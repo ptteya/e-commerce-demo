@@ -2,7 +2,7 @@ import './Contacts.css';
 import { useForm } from 'hooks/useForm';
 import { usePopup } from 'hooks/usePopup';
 import { Link } from 'react-router-dom';
-import PopupMessage from 'components/PopupMessage/PopupMessage';
+import PopupMessage from 'components/layout/PopupMessage/PopupMessage';
 
 const Contacts = () => {
     const { showPopup, message, triggerPopup } = usePopup();

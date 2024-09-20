@@ -2,26 +2,26 @@ import './index.css';
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 
-import AdminRoute from 'components/AdminRoute';
-import GuestRoute from 'components/GuestRoute';
-import AuthRoute from 'components/AuthRoute';
+import AdminRoute from 'components/routes/AdminRoute';
+import GuestRoute from 'components/routes/GuestRoute';
+import AuthRoute from 'components/routes/AuthRoute';
 
-import Header from 'components/Header/Header';
-import Footer from 'components/Footer/Footer';
-import Home from 'components/Home/Home';
-import About from 'components/About/About';
-import Login from 'components/Login';
-import Register from 'components/Register';
-import Logout from 'components/Logout';
-import Catalog from 'components/Catalog/Catalog';
-import NotFound from 'components/404/404';
-import Contacts from 'components/Contacts/Contacts';
-import Favorites from 'components/Favorites/Favorites';
-import Details from 'components/Details/Details';
+import Header from 'components/layout/Header/Header';
+import Footer from 'components/layout/Footer/Footer';
+import Home from 'components/pages/Home/Home';
+import About from 'components/pages/About/About';
+import Login from 'components/pages/auth/Login';
+import Register from 'components/pages/auth/Register';
+import Logout from 'components/pages/auth/Logout';
+import Catalog from 'components/pages/Catalog/Catalog';
+import NotFound from 'components/pages/404/404';
+import Contacts from 'components/pages/Contacts/Contacts';
+import Favorites from 'components/pages/Favorites/Favorites';
+import Details from 'components/pages/Details/Details';
 import ScrollToTop from 'components/ScrollToTop';
-import Cart from 'components/Cart/Cart';
-import Edit from 'components/Edit';
-import Create from 'components/Create';
+import Cart from 'components/pages/Cart/Cart';
+import Edit from 'components/pages/Edit';
+import Create from 'components/pages/Create';
 
 function App() {
   return (

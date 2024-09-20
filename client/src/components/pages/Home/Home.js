@@ -1,7 +1,7 @@
 import './Home.css';
 import { Link } from 'react-router-dom';
 import { useFetchFurniture } from 'hooks/useFetchFurniture ';
-import CatalogItem from 'components/Catalog/CatalogItem/CatalogItem';
+import CatalogItem from 'components/pages/Catalog/CatalogItem/CatalogItem';
 
 const Home = () => {
     let furniture = useFetchFurniture();
@@ -24,7 +24,7 @@ const Home = () => {
                         <p className="welcome-subtext">Transform your space with timeless furniture pieces that blend style and
                             comfort.
                         </p>
-                        <Link to="/furniture/catalog/couches" className="catalog-btn">See Catalog</Link>
+                        <Link to="/furniture/catalog?category=couches" className="catalog-btn">See Catalog</Link>
                     </div>
                 </div>
             </div>

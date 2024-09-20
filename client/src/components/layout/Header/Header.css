@@ -193,7 +193,7 @@
 .main-header .logo-container .logo-image {
     height: 48px;
     width: 48px;
-    background-image: url('../../../public/images/logo-image.jpeg');
+    background-image: url('../../../../public/images/logo-image.jpeg');
     background-size: cover;
     background-position: center;
 }

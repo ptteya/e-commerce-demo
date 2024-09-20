@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useRef, useContext } from 'react';
 import { useCollectionToggle } from 'hooks/useCollectionToggle';
 import * as furnitureService from 'services/furnitureService';
-import DeleteModal from 'components/DeleteModal/DeleteModal';
+import DeleteModal from 'components/modals/DeleteModal/DeleteModal';
 import { AuthContext } from 'contexts/AuthContext';
 
 const Details = () => {

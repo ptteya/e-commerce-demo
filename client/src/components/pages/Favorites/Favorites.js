@@ -1,7 +1,7 @@
 import './Favorites.css';
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "contexts/AuthContext";
-import CatalogItem from "components/Catalog/CatalogItem/CatalogItem";
+import CatalogItem from 'components/pages/Catalog/CatalogItem/CatalogItem';
 import * as furnitureService from 'services/furnitureService';
 
 const Favorites = () => {

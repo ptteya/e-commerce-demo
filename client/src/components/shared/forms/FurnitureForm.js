@@ -1,5 +1,5 @@
-import 'components/SharedStyles/create-edit.css';
-import InputField from 'components/InputField';
+import 'components/shared/styles/create-edit.css';
+import InputField from 'components/shared/forms/InputField';
 import { categoryOptions } from 'constants/categoryOptions';
 
 const FurnitureForm = ({ formTitle, values, onSubmit, changeHandler, error }) => {
@@ -31,7 +31,6 @@ const FurnitureForm = ({ formTitle, values, onSubmit, changeHandler, error }) =>
                                 onChange={changeHandler}
                                 cols="30"
                                 rows="5"
-                                required
                             />
                         </div>
                         <div className="input-container">
@@ -43,7 +42,6 @@ const FurnitureForm = ({ formTitle, values, onSubmit, changeHandler, error }) =>
                                 name="category"
                                 value={values.category}
                                 onChange={changeHandler}
-                                required
                             >
                                 <option value="" disabled>Select a category</option>
                                 {categoryOptions.map(option => (

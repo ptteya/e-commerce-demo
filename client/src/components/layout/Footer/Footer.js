@@ -2,7 +2,7 @@ import './Footer.css';
 import { Link } from 'react-router-dom';
 import { useForm } from 'hooks/useForm';
 import { usePopup } from 'hooks/usePopup';
-import PopupMessage from 'components/PopupMessage/PopupMessage';
+import PopupMessage from 'components/layout/PopupMessage/PopupMessage';
 
 const Footer = () => {
     const { showPopup, message, triggerPopup } = usePopup();
