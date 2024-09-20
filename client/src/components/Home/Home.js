@@ -8,11 +8,11 @@ const Home = () => {
 
     const couches = furniture
         .filter(el => el.category === 'couches')
-        .slice(-4);
+        .slice(-5);
 
     const beds = furniture
         .filter(el => el.category === 'beds')
-        .slice(-4);
+        .slice(-5);
 
     return (
         <div className="homepage-wrapper">
@@ -77,10 +77,38 @@ const Home = () => {
                 </div>
             </div>
 
+            <div className="categories">
+                <div className="section-title">
+                    <p>Categories</p>
+                </div>
+                <div className="items">
+                    <div className="item">
+                        <img src="images/couch.png" alt="" />
+                        <Link to='/furniture/catalog?category=couches'><i class="fas fa-arrow-right"></i></Link>
+                        <p>Category / <span>Couches</span></p>
+                    </div>
+                    <div className="item">
+                        <img src="images/bed.png" alt="" />
+                        <Link to='/furniture/catalog?category=beds'><i class="fas fa-arrow-right"></i></Link>
+                        <p>Category / <span>Beds</span></p>
+                    </div>
+                    <div className="item">
+                        <img src="/images/chair.png" alt="" />
+                        <Link to='/furniture/catalog?category=chairs'><i class="fas fa-arrow-right"></i></Link>
+                        <p>Category / <span>Chairs</span></p>
+                    </div>
+                    <div className="item">
+                        <img src="/images/table.png" alt="" />
+                        <Link to='/furniture/catalog?category=tables'><i class="fas fa-arrow-right"></i></Link>
+                        <p>Category / <span>Tables</span></p>
+                    </div>
+                </div>
+            </div>
+
             {couches.length > 0 && (<>
                 <div className="recent-items">
                     <div className="section-title">
-                        <p>Explore our Couches</p>
+                        <p>Popular couches</p>
                         <Link to="/furniture/catalog?category=couches" className='more-link'>See More</Link>
                     </div>
                     <div className="product-container">
@@ -95,7 +123,7 @@ const Home = () => {
             {beds.length > 0 && (<>
                 <div className="recent-items">
                     <div className="section-title">
-                        <p>Explore our Beds</p>
+                        <p>Popular beds</p>
                         <Link to="/furniture/catalog?category=beds" className='more-link'>See More</Link>
                     </div>
                     <div className="product-container">
@@ -111,10 +139,10 @@ const Home = () => {
                 <div className="image-container">
                     <img src="/images/ban.png" alt="" />
                     <div className="content">
-                        <p className="title">Furnish Your Dream Home Today! </p>
+                        <p className="title">Furnish Your </p>
                         <div className="discount">
-                            <p className="percent">25% OFF</p>
-                            <p className="text">on selected furniture pieces.Transform your living space with our collection of stylish and comfortable designs, perfect for every room. if you're looking to redesign your entire home our high-quality furniture pieces offer unmatched comfort and style.
+                            <p className="percent">Dream Home Today!</p>
+                            <p className="text">Transform your living space with our collection of stylish and comfortable designs, perfect for every room.  Our high-quality furniture pieces offer unmatched comfort and style.
                             </p>
                         </div>
                         <Link to="/furniture/catalog?category=couches" className="banner-btn">See Catalog</Link>
@@ -180,7 +208,7 @@ const Home = () => {
                             </div>
                             <p>I purchased furniture from HOMELY Furniture Shop and was so thrilled with my experience. The
                                 store
-                                had a great furniture that fit my style and budget.
+                                had a great furniture that fit my style.
                             </p>
                         </div>
                     </div>

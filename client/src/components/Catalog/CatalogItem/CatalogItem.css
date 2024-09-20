@@ -1,6 +1,7 @@
 .product-card {
     background-color: #fff;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
 .product-card:hover {
@@ -22,6 +23,8 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .heart-icon {
