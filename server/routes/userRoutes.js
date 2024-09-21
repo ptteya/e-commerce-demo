@@ -4,12 +4,12 @@ const { requireAuth, requireGuest, requireAdmin } = require('../middlewares/auth
 const userController = require('../controllers/userController');
 
 // Authentication routes
-router.post('/auth/login', requireGuest, userController.login);
-router.post('/auth/register', requireGuest, userController.register);
-router.get('/auth/logout', requireAuth, userController.logout);
-router.get('/auth/me', requireAuth, userController.getUserData);
-router.post('/favorites/:action', requireAuth, userController.toggleFavorites);
-router.post('/cart/:action', requireAuth, userController.modifyCart);
+router.post('/users/login', requireGuest, userController.login);
+router.post('/users/register', requireGuest, userController.register);
+router.get('/users/logout', requireAuth, userController.logout);
+router.get('/users/me', requireAuth, userController.getUserData);
+router.post('/users/favorites/:action', requireAuth, userController.toggleFavorites);
+router.post('/users/cart/:action', requireAuth, userController.modifyCart);
 
 // Admin routes
 router.post('/admin/promote', requireAdmin, userController.toggleUserRole);

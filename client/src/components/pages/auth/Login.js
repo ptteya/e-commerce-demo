@@ -22,7 +22,7 @@ const Login = () => {
                     <InputField name="password" label="Password" value={values.password} onChange={changeHandler} type='password' />
                     <button type="submit" className="submit-btn">LogIn</button>
                 </form>
-                <p className="login-reg-message">Don't have an account? <Link to="/auth/register">Register</Link></p>
+                <p className="login-reg-message">Don't have an account? <Link to="/users/register">Register</Link></p>
             </div>
         </div>
     );

@@ -27,7 +27,7 @@ const Register = () => {
                     <button type="submit" className="submit-btn">Register</button>
                 </form>
 
-                <p className="login-reg-message">Already have an account? <Link to="/auth/login">Login</Link></p>
+                <p className="login-reg-message">Already have an account? <Link to="/users/login">Login</Link></p>
             </div>
         </div>
     );

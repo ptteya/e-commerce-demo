@@ -35,7 +35,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route
-            path='/auth/login'
+            path='/users/login'
             element={
               <GuestRoute>
                 <Login />
@@ -43,7 +43,7 @@ function App() {
             }
           />
           <Route
-            path='/auth/register'
+            path='/users/register'
             element={
               <GuestRoute>
                 <Register />
@@ -51,7 +51,7 @@ function App() {
             }
           />
           <Route
-            path='/auth/logout'
+            path='/users/logout'
             element={
               <AuthRoute>
                 <Logout />

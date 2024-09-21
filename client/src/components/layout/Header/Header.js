@@ -77,17 +77,17 @@ const Header = () => {
                                         <>
                                             <h3 className="dropdown-welcome">Welcome, {user.username}!</h3>
                                             <div className="logout-section">
-                                                <p>Logout of the profile <Link to="/auth/logout" className="logout-link" onClick={handleLinkClick}>Logout</Link></p>
+                                                <p>Logout of the profile <Link to="/users/logout" className="logout-link" onClick={handleLinkClick}>Logout</Link></p>
                                             </div>
                                         </>
                                     ) : (
                                         <>
                                             <h3 className="dropdown-title">Login/Register</h3>
                                             <div className="login-section">
-                                                <p>Already have a profile? <Link to="/auth/login" className="login-link" onClick={handleLinkClick}>Login</Link></p>
+                                                <p>Already have a profile? <Link to="/users/login" className="login-link" onClick={handleLinkClick}>Login</Link></p>
                                             </div>
                                             <div className="register-section">
-                                                <p>You don't have a profile? <Link to="/auth/register" className="register-link" onClick={handleLinkClick}>Register</Link></p>
+                                                <p>You don't have a profile? <Link to="/users/register" className="register-link" onClick={handleLinkClick}>Register</Link></p>
                                             </div>
                                         </>
                                     )}
