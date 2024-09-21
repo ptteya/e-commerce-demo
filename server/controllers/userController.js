@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const userService = require('../services/userService');
 const { handleErrorResponse } = require('../utils/errorUtil');
 const { generateToken, addTokenToUser, getUserFromToken } = require('../utils/tokenUtil');
+const { sanitizeUserObject } = require('../utils/userUtils');
 
 exports.login = async (req, res) => {
     try {
@@ -64,15 +65,32 @@ exports.getUserData = async (req, res) => {
     } catch (error) {
         handleErrorResponse(res, 401, null, error);
     }
-}
+};
 
-exports.toggleFavorites = async (req, res) => {
-    handleAction(req, res, 'favorites');
-}
+exports.getAllUsers = async (req, res) => {
+    try {
+        const usersInfo = await userService.getAll().lean();
+        const users = usersInfo.map(user => sanitizeUserObject(user));
+        res.status(200).json({ users });
+    } catch (error) {
+        handleErrorResponse(res, 500);
+    }
+};
 
-exports.modifyCart = async (req, res) => {
-    handleAction(req, res, 'cart');
-}
+exports.toggleUserRole = async (req, res) => {
+    const { userId, role } = req.body;
+
+    try {
+        const updatedUser = await userService.toggleRole(userId, role).lean();
+        res.status(200).json({ user: sanitizeUserObject(updatedUser) });
+    } catch (error) {
+        handleErrorResponse(res, 500);
+    }
+};
+
+exports.toggleFavorites = async (req, res) => handleAction(req, res, 'favorites');
+
+exports.modifyCart = async (req, res) => handleAction(req, res, 'cart');
 
 async function handleAction(req, res, collectionName) {
     const { userId, furnitureId, quantity } = req.body;

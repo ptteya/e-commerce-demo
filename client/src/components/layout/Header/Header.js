@@ -119,7 +119,10 @@ const Header = () => {
                         <li className="nav-item"><Link to="/about">About</Link></li>
                         <li className="nav-item"><Link to="/contacts">Contacts</Link></li>
                         {user.role === 'admin' && (
-                            <li className="nav-item"><Link to="/furniture/create">Create</Link></li>
+                            <>
+                                <li className="nav-item"><Link to="/furniture/create">Create</Link></li>
+                                <li className="nav-item"><Link to="/admin/promote-users">Promote</Link></li>
+                            </>
                         )}
                     </ul>
                     <Search />
@@ -127,6 +130,6 @@ const Header = () => {
             </nav>
         </header >
     );
-}
+};
 
 export default Header;

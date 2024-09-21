@@ -1,5 +1,6 @@
 const userService = require('../services/userService');
 const jwt = require('jsonwebtoken');
+const { sanitizeUserObject } = require('./userUtils');
 require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -20,7 +21,7 @@ exports.verifyToken = (token) => {
 
 exports.addTokenToUser = (user, token) => {
     const userObj = user.toObject();
-    const { password, __v, ...userInfo } = userObj;
+    const userInfo = sanitizeUserObject(userObj);
     userInfo.token = token;
     return userInfo;
 };

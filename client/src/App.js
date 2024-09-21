@@ -22,6 +22,7 @@ import ScrollToTop from 'components/ScrollToTop';
 import Cart from 'components/pages/Cart/Cart';
 import Edit from 'components/pages/Edit';
 import Create from 'components/pages/Create';
+import PromoteUser from 'components/pages/PromoteUser/PromoteUser';
 
 function App() {
   return (
@@ -78,6 +79,12 @@ function App() {
           <Route path='/contacts' element={<Contacts />} />
           <Route path='/favorites' element={<Favorites />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/admin/promote-users' element={
+            <AdminRoute>
+              <PromoteUser />
+            </AdminRoute>
+          }
+          />
           <Route path='/*' element={<NotFound />} />
         </Routes>
       </main>

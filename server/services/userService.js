@@ -2,7 +2,14 @@ const User = require('../models/User');
 
 const getUserByEmail = (email) => User.findOne({ email });
 
-const getById = async (id) => User.findById(id);
+const getById = (id) => User.findById(id);
+
+const getAll = () => User.find();
+
+const toggleRole = (id, role) => {
+    const newRole = role === 'user' ? 'admin' : 'user';
+    return User.findByIdAndUpdate(id, { role: newRole }, { new: true });
+};
 
 const checkIfUserExists = async (email, username) => {
     const user = await User.findOne({
@@ -13,7 +20,7 @@ const checkIfUserExists = async (email, username) => {
     });
 
     return user;
-}
+};
 
 const modifyCollection = async (collectionName, action, userId, furnitureId, quantity) => {
     const user = await getById(userId);
@@ -60,5 +67,7 @@ module.exports = {
     getUserByEmail,
     checkIfUserExists,
     getById,
+    getAll,
+    toggleRole,
     modifyCollection,
-}
+};
