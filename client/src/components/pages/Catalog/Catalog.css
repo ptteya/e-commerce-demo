@@ -13,7 +13,7 @@
 }
 
 .catalog-title {
-    background-color: #f8f8f8;
+    background-color: #F7F7F7;
     text-align: center;
     padding: 40px 0px;
 }
@@ -22,7 +22,7 @@
     font-size: 35px;
     font-weight: bold;
     color: black;
-    margin: 15px 0px;
+    margin-bottom: 15px;
 }
 
 .catalog-title p {
@@ -87,10 +87,9 @@
     justify-content: space-between;
     font-size: 14px;
     font-weight: 700;
-    padding: 8px;
+    padding: 8px 0px;
     margin-bottom: 20px;
-    border: 1px solid var(--border-color);
-    border-left: 4px solid var(--yellow-color);
+    border-bottom: 1px solid #d6d6d6;
 }
 
 .filter-category ul {
@@ -104,7 +103,7 @@
 .filter-category ul li a {
     text-decoration: none;
     color: black;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 .filter-category ul li a:hover {
@@ -125,7 +124,7 @@
 /* Price Filter */
 .price-inputs input {
     height: 30px;
-    border: 2px solid gray;
+    border: 1px solid gray;
     border-radius: 4px;
     width: 70px;
     text-align: center;

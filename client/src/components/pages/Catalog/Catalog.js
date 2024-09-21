@@ -18,17 +18,16 @@ const Catalog = () => {
     return (
         <div className="catalog-section">
             <div className="catalog-title">
+                <h1>{categoryTitle}</h1>
                 <div className="path">
                     <Link to='/' className='homepage'>Home</Link> / <span>{categoryTitle}</span>
                 </div>
-                <h1>{categoryTitle}</h1>
-                <p>Find all the new items in this category</p>
             </div>
             <div className="catalog-container">
                 <div className="catalog-content">
                     <div className="filter-sidebar">
                         <div className="filter-category">
-                            <p className="filter-title">Product Categories</p>
+                            <p className="filter-title">CATEGORY</p>
                             <ul>
                                 <li><Link to="/furniture?category=couches">Couches</Link></li>
                                 <li><Link to="/furniture?category=beds">Beds</Link></li>

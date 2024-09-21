@@ -139,16 +139,14 @@ const Home = () => {
                 <div className="image-container">
                     <img src="/images/ban.png" alt="" />
                     <div className="content">
-                        <p className="title">Furnish Your </p>
-                        <div className="discount">
-                            <p className="percent">Dream Home Today!</p>
-                            <p className="text">Transform your living space with our collection of stylish and comfortable designs, perfect for every room.  Our high-quality furniture pieces offer unmatched comfort and style.
-                            </p>
-                        </div>
+                        <p className='sale'>Best Sale</p>
+                        <p className="title">Get Best Discount</p>
+                        <p className="text">Transform your living space with our collection of stylish and comfortable designs, perfect for every room.</p>
                         <Link to="/furniture?category=couches" className="banner-btn">See Catalog</Link>
                     </div>
                 </div>
             </div>
+
 
             <div className="reviews-section">
                 <p className="reviews-title">Customer Reviews</p>

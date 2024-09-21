@@ -30,6 +30,10 @@ const Footer = () => {
 
             <div className="footer-section">
                 <div className="footer-content">
+                    <div className='logo'>
+                        <Link to={'/'}> <img src="images/logo-image.jpeg" alt="" /></Link>
+                        <Link to={'/'}>  <h2>HOMELY</h2></Link>
+                    </div>
                     <div className="links-col">
                         <h3 className="col-title">Fast Links</h3>
                         <ul>

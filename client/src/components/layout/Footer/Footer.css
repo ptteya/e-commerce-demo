@@ -1,6 +1,6 @@
 .subscribe-container {
     background-color: #eee;
-    padding: 30px 110px 30px 110px;
+    padding: 45px 110px;
     display: grid;
     display: flex;
     justify-content: space-between;
@@ -49,11 +49,35 @@
 }
 
 .footer-content {
-    padding: 45px 0px;
+    padding: 60px 0px;
     margin: 0px 110px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
+
+.footer-content .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.footer-content .logo a {
+    text-decoration: none;
+}
+
+
+.footer-content .logo img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+
+}
+
+.footer-content .logo h2 {
+    color: black;
+}
+
 
 .col-title {
     font-size: 20px;
@@ -186,6 +210,8 @@
         text-align: center;
         padding: 0px;
         padding-bottom: 20px;
+        margin-right: 40px;
+        margin-left: 40px;
     }
 
     .footer-content>div {

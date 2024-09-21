@@ -10,8 +10,7 @@ const PriceFilter = () => {
 
     return (
         <div className="filter-category">
-            <p className="filter-title" htmlFor="price-range">Price Range <i
-                className="fas fa-regular fa-chevron-up arrow arrow-icon"></i></p>
+            <p className="filter-title" htmlFor="price-range">PRICE RANGE</p>
             <div className="filter-content">
                 <form className="price-inputs" onSubmit={onSubmit}>
                     <input

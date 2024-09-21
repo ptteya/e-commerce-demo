@@ -14,8 +14,7 @@ const ColorFilter = () => {
 
     return (
         <div className="filter-category">
-            <p className="filter-title">Color <i className="fas fa-regular fa-chevron-up arrow arrow-icon"></i>
-            </p>
+            <p className="filter-title">COLOR</p>
             <div className="filter-content">
                 <div className="colors-container">
                     {colors.map((color) => (
