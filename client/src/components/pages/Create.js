@@ -11,7 +11,7 @@ const Create = () => {
 
     async function formSubmitHandler(data) {
         await furnitureService.create(data);
-        navigate(`/furniture/catalog?category=${data.category}`);
+        navigate(`/furniture?category=${data.category}`);
     }
 
     return (

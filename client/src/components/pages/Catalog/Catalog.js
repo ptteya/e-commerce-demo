@@ -13,7 +13,7 @@ const Catalog = () => {
     const category = queryParams.get('category') || '';
     let categoryTitle = category
         ? category[0].toUpperCase() + category.substring(1)
-        : 'Search Result';
+        : 'All Items';
 
     return (
         <div className="catalog-section">
@@ -30,11 +30,12 @@ const Catalog = () => {
                         <div className="filter-category">
                             <p className="filter-title">Product Categories</p>
                             <ul>
-                                <li><Link to="/furniture/catalog?category=couches">Couches</Link></li>
-                                <li><Link to="/furniture/catalog?category=beds">Beds</Link></li>
-                                <li><Link to="/furniture/catalog?category=chairs">Chairs</Link></li>
-                                <li><Link to="/furniture/catalog?category=tables">Tables</Link></li>
-                                <li><Link to="/furniture/catalog?category=lamps">Lamps</Link></li>
+                                <li><Link to="/furniture?category=couches">Couches</Link></li>
+                                <li><Link to="/furniture?category=beds">Beds</Link></li>
+                                <li><Link to="/furniture?category=chairs">Chairs</Link></li>
+                                <li><Link to="/furniture?category=tables">Tables</Link></li>
+                                <li><Link to="/furniture?category=lamps">Lamps</Link></li>
+                                <li><Link to="/furniture">All Items</Link></li>
                             </ul>
                         </div>
                         <PriceFilter />

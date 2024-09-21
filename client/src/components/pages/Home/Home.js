@@ -24,7 +24,7 @@ const Home = () => {
                         <p className="welcome-subtext">Transform your space with timeless furniture pieces that blend style and
                             comfort.
                         </p>
-                        <Link to="/furniture/catalog?category=couches" className="catalog-btn">See Catalog</Link>
+                        <Link to="/furniture?category=couches" className="catalog-btn">See Catalog</Link>
                     </div>
                 </div>
             </div>
@@ -84,22 +84,22 @@ const Home = () => {
                 <div className="items">
                     <div className="item">
                         <img src="images/couch.png" alt="" />
-                        <Link to='/furniture/catalog?category=couches'><i class="fas fa-arrow-right"></i></Link>
+                        <Link to='/furniture?category=couches'><i class="fas fa-arrow-right"></i></Link>
                         <p>Category / <span>Couches</span></p>
                     </div>
                     <div className="item">
                         <img src="images/bed.png" alt="" />
-                        <Link to='/furniture/catalog?category=beds'><i class="fas fa-arrow-right"></i></Link>
+                        <Link to='/furniture?category=beds'><i class="fas fa-arrow-right"></i></Link>
                         <p>Category / <span>Beds</span></p>
                     </div>
                     <div className="item">
                         <img src="/images/chair.png" alt="" />
-                        <Link to='/furniture/catalog?category=chairs'><i class="fas fa-arrow-right"></i></Link>
+                        <Link to='/furniture?category=chairs'><i class="fas fa-arrow-right"></i></Link>
                         <p>Category / <span>Chairs</span></p>
                     </div>
                     <div className="item">
                         <img src="/images/table.png" alt="" />
-                        <Link to='/furniture/catalog?category=tables'><i class="fas fa-arrow-right"></i></Link>
+                        <Link to='/furniture?category=tables'><i class="fas fa-arrow-right"></i></Link>
                         <p>Category / <span>Tables</span></p>
                     </div>
                 </div>
@@ -109,7 +109,7 @@ const Home = () => {
                 <div className="recent-items">
                     <div className="section-title">
                         <p>Popular couches</p>
-                        <Link to="/furniture/catalog?category=couches" className='more-link'>See More</Link>
+                        <Link to="/furniture?category=couches" className='more-link'>See More</Link>
                     </div>
                     <div className="product-container">
                         <div className="product-cards">
@@ -124,7 +124,7 @@ const Home = () => {
                 <div className="recent-items">
                     <div className="section-title">
                         <p>Popular beds</p>
-                        <Link to="/furniture/catalog?category=beds" className='more-link'>See More</Link>
+                        <Link to="/furniture?category=beds" className='more-link'>See More</Link>
                     </div>
                     <div className="product-container">
                         <div className="product-cards">
@@ -145,7 +145,7 @@ const Home = () => {
                             <p className="text">Transform your living space with our collection of stylish and comfortable designs, perfect for every room.  Our high-quality furniture pieces offer unmatched comfort and style.
                             </p>
                         </div>
-                        <Link to="/furniture/catalog?category=couches" className="banner-btn">See Catalog</Link>
+                        <Link to="/furniture?category=couches" className="banner-btn">See Catalog</Link>
                     </div>
                 </div>
             </div>

@@ -109,11 +109,12 @@ const Header = () => {
                                 <i className="fas fa-chevron-down arrow-icon"></i>
                             </a>
                             <ul className="dropdown-menu">
-                                <Link to="/furniture/catalog?category=couches"><li>Couches</li></Link>
-                                <Link to="/furniture/catalog?category=beds"><li>Beds</li></Link>
-                                <Link to="/furniture/catalog?category=chairs"><li>Chairs</li></Link>
-                                <Link to="/furniture/catalog?category=tables"><li>Tables</li></Link>
-                                <Link to="/furniture/catalog?category=lamps"><li>Lamps</li></Link>
+                                <Link to="/furniture?category=couches"><li>Couches</li></Link>
+                                <Link to="/furniture?category=beds"><li>Beds</li></Link>
+                                <Link to="/furniture?category=chairs"><li>Chairs</li></Link>
+                                <Link to="/furniture?category=tables"><li>Tables</li></Link>
+                                <Link to="/furniture?category=lamps"><li>Lamps</li></Link>
+                                <Link to="/furniture"><li>All Items</li></Link>
                             </ul>
                         </li>
                         <li className="nav-item"><Link to="/about">About</Link></li>

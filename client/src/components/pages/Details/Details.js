@@ -40,7 +40,7 @@ const Details = () => {
         try {
             await furnitureService.deleteFurniture(furnitureId);
             setShowDeleteModal(false);
-            navigate(`/furniture/catalog?category=${furniture.category}`);
+            navigate(`/furniture?category=${furniture.category}`);
         } catch (error) {
             console.error('Error deleting furniture:', error.message);
         }

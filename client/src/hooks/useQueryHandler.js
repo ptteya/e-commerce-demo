@@ -7,8 +7,8 @@ export const useQueryHandler = () => {
 
     const handleSearch = (values) => {
         const { searchQuery } = values;
-        navigate(`/furniture/catalog?searchQuery=${encodeURIComponent(searchQuery)}`);
-    }
+        navigate(`/furniture?searchQuery=${encodeURIComponent(searchQuery)}`);
+    };
 
     function handleFilter(values) {
         const updatedParams = new URLSearchParams(searchParams);
@@ -22,5 +22,5 @@ export const useQueryHandler = () => {
     }
 
     return { handleSearch, handleFilter };
-}
+};
 

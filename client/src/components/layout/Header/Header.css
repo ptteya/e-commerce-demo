@@ -238,7 +238,7 @@
     transform: translateX(-50%);
     list-style: none;
     width: 170px;
-    height: 270px;
+    height: auto;
     background-color: white;
     z-index: 2000;
     text-align: center;

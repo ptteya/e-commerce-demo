@@ -58,7 +58,7 @@ function App() {
               </AuthRoute>
             }
           />
-          <Route path='/furniture/catalog' element={<Catalog />} />
+          <Route path='/furniture' element={<Catalog />} />
           <Route path='/furniture/:furnitureId' element={<Details />} />
           <Route
             path='/furniture/edit/:furnitureId'

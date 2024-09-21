@@ -34,7 +34,7 @@ const Cart = () => {
                             Total Price: $<span className="price">{totalPrice}</span>
                         </div>
                         <div className="buttons">
-                            <Link to="/furniture/catalog/couches" className="btn btn-back">
+                            <Link to="/furniture?category=couches" className="btn btn-back">
                                 Back to Catalog
                             </Link>
                             <a href="/cart/bought" className="btn btn-buy">
@@ -46,9 +46,8 @@ const Cart = () => {
                     <p className="no-content">You haven't added any products to the cart!</p>
                 )}
             </div>
-
         </div >
     );
-}
+};
 
 export default Cart;
