@@ -84,22 +84,22 @@ const Home = () => {
                 <div className="items">
                     <div className="item">
                         <img src="images/couch.png" alt="" />
-                        <Link to='/furniture?category=couches'><i class="fas fa-arrow-right"></i></Link>
+                        <Link to='/furniture?category=couches'><i className="fas fa-arrow-right"></i></Link>
                         <p>Category / <span>Couches</span></p>
                     </div>
                     <div className="item">
                         <img src="images/bed.png" alt="" />
-                        <Link to='/furniture?category=beds'><i class="fas fa-arrow-right"></i></Link>
+                        <Link to='/furniture?category=beds'><i className="fas fa-arrow-right"></i></Link>
                         <p>Category / <span>Beds</span></p>
                     </div>
                     <div className="item">
                         <img src="/images/chair.png" alt="" />
-                        <Link to='/furniture?category=chairs'><i class="fas fa-arrow-right"></i></Link>
+                        <Link to='/furniture?category=chairs'><i className="fas fa-arrow-right"></i></Link>
                         <p>Category / <span>Chairs</span></p>
                     </div>
                     <div className="item">
                         <img src="/images/table.png" alt="" />
-                        <Link to='/furniture?category=tables'><i class="fas fa-arrow-right"></i></Link>
+                        <Link to='/furniture?category=tables'><i className="fas fa-arrow-right"></i></Link>
                         <p>Category / <span>Tables</span></p>
                     </div>
                 </div>
