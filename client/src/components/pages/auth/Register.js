@@ -4,6 +4,7 @@ import { useForm } from 'hooks/useForm';
 import { useContext } from 'react';
 import { AuthContext } from 'contexts/AuthContext';
 import InputField from 'components/shared/forms/InputField';
+import ErrorMessage from 'components/shared/ErrorMessage/ErrorMessage';
 
 const Register = () => {
     const { register } = useContext(AuthContext);
@@ -17,13 +18,37 @@ const Register = () => {
     return (
         <div className="login-register-container">
             <div className="login-register-card">
-                {error && <div className="error"><i className="far fa-times-circle x-mark"></i>{error}</div>}
+                <ErrorMessage message={error} />
+
                 <h1>Register</h1>
+
                 <form onSubmit={onSubmit}>
-                    <InputField name="email" label="Email" value={values.email} onChange={changeHandler} />
-                    <InputField name="username" label="Username" value={values.username} onChange={changeHandler} />
-                    <InputField name="password" label="Password" value={values.password} onChange={changeHandler} type="password" />
-                    <InputField name="repeatPass" label="Repeat Password" value={values.repeatPass} onChange={changeHandler} type="password" />
+                    <InputField
+                        name="email"
+                        label="Email"
+                        value={values.email}
+                        onChange={changeHandler}
+                    />
+                    <InputField
+                        name="username"
+                        label="Username"
+                        value={values.username}
+                        onChange={changeHandler}
+                    />
+                    <InputField
+                        name="password"
+                        label="Password"
+                        value={values.password}
+                        onChange={changeHandler}
+                        type="password"
+                    />
+                    <InputField
+                        name="repeatPass"
+                        label="Repeat Password"
+                        value={values.repeatPass}
+                        onChange={changeHandler}
+                        type="password"
+                    />
                     <button type="submit" className="submit-btn">Register</button>
                 </form>
 
@@ -31,6 +56,6 @@ const Register = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Register;
