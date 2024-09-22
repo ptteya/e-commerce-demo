@@ -67,11 +67,12 @@
 }
 
 
-.footer-content .logo img {
+.footer-content .logo .logo-image {
+    background-image: url('/public/images/logo-image.jpeg');
+    background-size: cover;
     width: 80px;
     height: 80px;
     margin-bottom: 10px;
-
 }
 
 .footer-content .logo h2 {
