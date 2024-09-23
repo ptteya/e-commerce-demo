@@ -1,4 +1,5 @@
 import { useCollectionToggle } from 'hooks/useCollectionToggle';
+import './CartItem.css';
 
 const CartItem = ({
     _id,
@@ -24,12 +25,11 @@ const CartItem = ({
             <div className="product-info">
                 <img src={images.mainImage} alt="furniture" />
                 <div>
-                    <h2 className='product-name'>{name}</h2>
-                    <p className="size">W. {size.width}cm. H. {size.height}cm. L. {size.length}cm</p>
+                    <h3 className='product-name'>{name}</h3>
+                    <p className="size">{size.width} x {size.height} x {size.length}cm</p>
                 </div>
             </div>
             <div className="quantity-container">
-                <p className='title'>Quantity: </p>
                 <div className="quantity">
                     <button
                         className='decrease'

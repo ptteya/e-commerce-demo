@@ -10,6 +10,7 @@ router.get('/users/logout', requireAuth, userController.logout);
 router.get('/users/me', requireAuth, userController.getUserData);
 router.post('/users/favorites/:action', requireAuth, userController.toggleFavorites);
 router.post('/users/cart/:action', requireAuth, userController.modifyCart);
+router.delete('/users/:collectionName', requireAuth, userController.emptyCollection);
 
 // Admin routes
 router.post('/admin/promote', requireAdmin, userController.toggleUserRole);

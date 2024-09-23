@@ -91,6 +91,22 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const emptyCollection = async (collectionName) => {
+        if (user.token) {
+            try {
+                await userService.clearCollection(user._id, collectionName);
+                setUser(state => ({
+                    ...state,
+                    [collectionName]: []
+                }));
+            } catch (error) {
+                console.error(error);
+            }
+        } else {
+            updateLocalCollection(collectionName, []);
+        }
+    };
+
     const context = {
         user,
         token: user.token,
@@ -102,6 +118,7 @@ export const AuthProvider = ({ children }) => {
         guestFavorites,
         guestCart,
         updateLocalCollection,
+        emptyCollection,
     };
 
     return (

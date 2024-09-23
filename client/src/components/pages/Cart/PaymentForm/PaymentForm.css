@@ -1,0 +1,104 @@
+.payment-form {
+    flex: 1;
+    width: 100%;
+    height: auto;
+    background-color: #eee;
+    border-radius: 20px;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.payment-form .title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.payment-method {
+    margin-top: 10px;
+}
+
+.payment-method p {
+    color: rgb(94, 93, 93);
+}
+
+.payment-method .options {
+    display: flex;
+    gap: 30px;
+    margin-top: 15px;
+}
+
+.payment-method .option label {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.payment-method input[type="radio"] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    accent-color: rgb(112, 111, 111);
+}
+
+.payment-method input[type="radio"]:checked {
+    accent-color: rgb(58, 58, 58);
+}
+
+.payment-form .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-form .input-container .required {
+    font-size: 18px;
+}
+
+.payment-form .input-container label {
+    font-size: 15px;
+}
+
+.payment-form .input-container input {
+    background-color: #dfdfdf;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+}
+
+.payment-form .input-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.payment-form .input-group .input-container {
+    flex: 1;
+}
+
+.payment-form .final-price {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+    color: gray;
+}
+
+.pay-btn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    font-size: 17px;
+    background-color: var(--yellow-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .payment-form .input-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

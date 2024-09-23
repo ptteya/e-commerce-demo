@@ -92,6 +92,15 @@ exports.toggleFavorites = async (req, res) => handleAction(req, res, 'favorites'
 
 exports.modifyCart = async (req, res) => handleAction(req, res, 'cart');
 
+exports.emptyCollection = async (req, res) => {
+    try {
+        await userService.emptyCollection(req.body.userId, req.params.collectionName);
+        res.status(200).json({ message: 'Successfully emptied collection' });
+    } catch (error) {
+        handleErrorResponse(res, 500);
+    }
+};
+
 async function handleAction(req, res, collectionName) {
     const { userId, furnitureId, quantity } = req.body;
     const action = req.params.action;

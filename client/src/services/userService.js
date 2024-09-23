@@ -14,6 +14,8 @@ export const toggleUserRole = (userId, role) => request.post('admin/promote', { 
 
 export const updateCollection = (action, collectionName, userId, furnitureId, quantity = 1) => request.post(`users/${collectionName}/${action}`, { userId, furnitureId, quantity });
 
+export const clearCollection = (userId, collectionName) => request.del(`users/${collectionName}`, { userId });
+
 export const handleAuthToggle = async (action, collectionName, userId, furnitureId, newQuantity, updateContextCollection) => {
     try {
         const result = await updateCollection(action, collectionName, userId, furnitureId, newQuantity);

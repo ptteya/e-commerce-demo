@@ -1,9 +1,12 @@
 import './Cart.css';
 import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from 'contexts/AuthContext';
 import * as furnitureService from 'services/furnitureService';
-import CartItem from './CartItem';
-import { Link } from 'react-router-dom';
+import CartItem from './CartItem/CartItem';
+import PaymentForm from './PaymentForm/PaymentForm';
+
+const TAX_AMOUNT = 8;
 
 const Cart = () => {
     const { user, isAuthenticated, guestCart } = useContext(AuthContext);
@@ -22,30 +25,31 @@ const Cart = () => {
 
     return (
         <div className="cart-container">
-            <h1>Shopping Cart</h1>
             <div className="product-container">
-                {cartItems.length > 0 ? (
-                    <>
+                <p className='title'>Shopping Cart</p>
+                <p className='items-num'>You have {cartItems.length} items in your cart</p>
+                {cartItems.length > 0 && (
+                    <div className='cart-items'>
                         {cartItems.map(item => (
                             <CartItem key={item._id} {...item} totalPrice={totalPrice} />
                         ))}
 
-                        <div className="total-price">
-                            Total Price: $<span className="price">{totalPrice}</span>
-                        </div>
-                        <div className="buttons">
+                        <div className="cart-actions">
                             <Link to="/furniture?category=couches" className="btn btn-back">
-                                Back to Catalog
+                                <i className="fas fa-arrow-left"></i>
+                                Continue Shopping
                             </Link>
-                            <a href="/cart/bought" className="btn btn-buy">
-                                Buy
-                            </a>
+
+                            <div className="cart-summary">
+                                <p className='price'>Subtotal: <span>${totalPrice}</span></p>
+                                <p className='price'>Shipping: <span>${TAX_AMOUNT.toFixed(2)}</span></p>
+                                <p className='total-price'>Total Price: <span>${totalPrice + TAX_AMOUNT}</span></p>
+                            </div>
                         </div>
-                    </>
-                ) : (
-                    <p className="no-content">You haven't added any products to the cart!</p>
+                    </div>
                 )}
-            </div>
+            </div >
+            {cartItems.length > 0 && <PaymentForm totalPrice={totalPrice + TAX_AMOUNT} />}
         </div >
     );
 };

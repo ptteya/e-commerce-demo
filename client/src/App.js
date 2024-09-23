@@ -23,6 +23,7 @@ import Cart from 'components/pages/Cart/Cart';
 import Edit from 'components/pages/Edit';
 import Create from 'components/pages/Create';
 import PromoteUser from 'components/pages/PromoteUser/PromoteUser';
+import OrderSuccess from 'components/pages/OrderSuccess/OrderSuccess';
 
 function App() {
   return (
@@ -79,6 +80,7 @@ function App() {
           <Route path='/contacts' element={<Contacts />} />
           <Route path='/favorites' element={<Favorites />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/cart/confirmation' element={<OrderSuccess />}></Route>
           <Route path='/admin/promote-users' element={
             <AdminRoute>
               <PromoteUser />

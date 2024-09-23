@@ -22,6 +22,15 @@ const checkIfUserExists = async (email, username) => {
     return user;
 };
 
+const emptyCollection = async (userId, collectionName) => {
+    const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        { [collectionName]: [] },
+        { new: true }
+    );
+    return updatedUser;
+};
+
 const modifyCollection = async (collectionName, action, userId, furnitureId, quantity) => {
     const user = await getById(userId);
     let collection = user[collectionName].toObject();
@@ -70,4 +79,5 @@ module.exports = {
     getAll,
     toggleRole,
     modifyCollection,
+    emptyCollection
 };

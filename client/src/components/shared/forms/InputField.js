@@ -5,14 +5,17 @@ const InputField = ({
     onChange,
     type = 'text',
     placeholder = '',
-    isRequired = true,
+    isRequired = false,
+    showRequired = true,
+    pattern = null,
+    title = null,
 }) => {
     const placeholderText = placeholder ? placeholder : `Enter ${label.toLowerCase()}...`;
 
     return (
         <div className="input-container">
             <label htmlFor={name}>
-                {isRequired && <span className="required">*</span>}
+                {showRequired && <span className="required">*</span>}
                 {label}
             </label>
             <input
@@ -21,9 +24,12 @@ const InputField = ({
                 placeholder={placeholderText}
                 value={value}
                 onChange={onChange}
+                pattern={pattern}
+                title={title}
+                required={isRequired}
             />
         </div>
     );
-}
+};
 
 export default InputField;
