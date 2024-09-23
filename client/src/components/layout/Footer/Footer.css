@@ -66,7 +66,6 @@
     text-decoration: none;
 }
 
-
 .footer-content .logo .logo-image {
     background-image: url('/public/images/logo-image.jpeg');
     background-size: cover;
@@ -78,7 +77,6 @@
 .footer-content .logo h2 {
     color: black;
 }
-
 
 .col-title {
     font-size: 20px;
@@ -122,10 +120,9 @@
 }
 
 .icons-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
 }
 
 .icons-row a {
@@ -164,6 +161,10 @@
         gap: 10px;
     }
 
+    .footer-content {
+        margin: 0px 60px;
+    }
+
     .footer-content>div {
         margin-right: 40px;
     }
@@ -187,6 +188,19 @@
 
     .subscribe-btn {
         width: 100%;
+    }
+
+    .footer-content .logo h2 {
+        font-size: 18px;
+    }
+
+    .footer-content .logo .logo-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .icons-row {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .icons-row a {
@@ -217,5 +231,9 @@
 
     .footer-content>div {
         margin-top: 30px;
+    }
+
+    .icons-row {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
