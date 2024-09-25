@@ -32,7 +32,7 @@
 
 /* Catalog content */
 .catalog-container {
-    padding: 20px 110px 0px 110px;
+    padding: 20px 150px 0px 150px;
     width: 100%;
     height: 100%;
     padding-top: 20px;
@@ -73,7 +73,7 @@
 
 /* Filter Sidebar */
 .filter-sidebar {
-    width: 20%;
+    width: 19%;
     margin-top: 24px;
 }
 
@@ -85,11 +85,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
-    padding: 8px 0px;
+    padding-bottom: 12px;
     margin-bottom: 20px;
-    border-bottom: 1px solid #d6d6d6;
+    border-bottom: 1px solid #d1d1d1;
 }
 
 .filter-category ul {
@@ -233,7 +233,13 @@
     }
 
     .filter-sidebar {
-        width: 80%;
+        width: 90%;
         margin-top: 24px;
+    }
+
+    .filter-category ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        text-align: center;
     }
 }
