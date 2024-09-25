@@ -18,7 +18,7 @@ const SubscribeForm = () => {
 
             <div className="subscribe-info">
                 <div className="title">
-                    <i class="far fa-envelope"></i>
+                    <i className="far fa-envelope"></i>
                     <p className="subscribe-heading">Join Our <br></br>Newsletter</p>
                 </div>
                 <p className="description">Subscribe Today and save 10% on your first purchase.</p>

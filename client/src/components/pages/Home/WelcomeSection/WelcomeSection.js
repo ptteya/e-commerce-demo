@@ -12,7 +12,7 @@ const WelcomeSection = () => {
                     <p className="welcome-subtext">Transform your space with timeless furniture pieces that blend style and
                         comfort.
                     </p>
-                    <Link to="/furniture" className="catalog-btn">See Catalog <i class="fas fa-arrow-right"></i></Link>
+                    <Link to="/furniture" className="catalog-btn">See Catalog <i className="fas fa-arrow-right"></i></Link>
                 </div>
             </div>
         </div>
