@@ -1,0 +1,135 @@
+.subscribe-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 60px 150px;
+    background-color: #eee;
+}
+
+.subscribe-info {
+    display: flex;
+    align-items: center;
+    gap: 25x;
+}
+
+.subscribe-info .title {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    margin-right: 20px;
+}
+
+.subscribe-info .fa-envelope {
+    font-size: 60px;
+    color: rgb(227, 225, 225);
+}
+
+.subscribe-heading {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.subscribe-info .description {
+    border-left: 1px solid rgb(175, 175, 175);
+    padding: 20px 0px 25px 20px;
+    margin-top: 10px;
+    font-size: 17px;
+}
+
+.subscribe-form {
+    border: 1px solid black;
+}
+
+.subscribe-input {
+    height: 60px;
+    max-width: 350px;
+    width: 300px;
+    font-size: 14px;
+    padding-left: 10px;
+    border: 1px solid var(--dark-gray-color);
+    background-color: #eee;
+    border: none;
+}
+
+.subscribe-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+    color: black;
+    cursor: pointer;
+    border: none;
+    border-left: 1px solid black;
+    margin: 5px 0px;
+}
+
+
+@media (max-width: 1500px) {
+    .subscribe-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .subscribe-info {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1024px) {
+    .subscribe-container {
+        padding: 30px 20px;
+    }
+
+    .subscribe-info .subscribe-heading {
+        font-size: 20px;
+    }
+
+    .subscribe-input {
+        height: 50px;
+    }
+
+    .subscribe-btn {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .subscribe-container {
+        gap: 15px;
+    }
+
+    .subscribe-info {
+        flex-direction: column;
+    }
+
+    .subscribe-info .title {
+        gap: 15px;
+    }
+
+    .subscribe-info .description {
+        font-size: 14px;
+        border: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .subscribe-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 85%;
+    }
+
+    .subscribe-input {
+        width: 100%;
+    }
+
+    .subscribe-btn {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid black;
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+}
