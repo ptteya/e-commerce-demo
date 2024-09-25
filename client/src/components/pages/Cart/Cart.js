@@ -2,6 +2,7 @@ import './Cart.css';
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from 'contexts/AuthContext';
+import { CollectionContext } from 'contexts/CollectionContext';
 import * as furnitureService from 'services/furnitureService';
 import CartItem from './CartItem/CartItem';
 import PaymentForm from './PaymentForm/PaymentForm';
@@ -9,7 +10,8 @@ import PaymentForm from './PaymentForm/PaymentForm';
 const TAX_AMOUNT = 8;
 
 const Cart = () => {
-    const { user, isAuthenticated, guestCart } = useContext(AuthContext);
+    const { user, isAuthenticated } = useContext(AuthContext);
+    const { guestCart } = useContext(CollectionContext);
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(null);
 

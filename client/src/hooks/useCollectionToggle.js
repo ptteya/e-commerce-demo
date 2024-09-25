@@ -1,10 +1,12 @@
 import { AuthContext } from "contexts/AuthContext";
+import { CollectionContext } from "contexts/CollectionContext";
 import { useContext, useEffect, useState } from "react";
 import * as furnitureService from 'services/furnitureService';
 import * as userService from 'services/userService';
 
 export const useCollectionToggle = (id, collectionName) => {
-    const { user, isAuthenticated, updateCollection, updateLocalCollection } = useContext(AuthContext);
+    const { user, isAuthenticated } = useContext(AuthContext);
+    const { updateGuestCollection, updateUserCollection } = useContext(CollectionContext);
     const [added, setAdded] = useState(false);
     const [quantity, setQuantity] = useState(1);
 
@@ -32,13 +34,13 @@ export const useCollectionToggle = (id, collectionName) => {
             let action = added
                 ? (update ? 'update' : 'remove')
                 : 'add';
-            await userService.handleAuthToggle(action, collectionName, user._id, id, newQuantity, updateCollection);
+            await userService.handleAuthToggle(action, collectionName, user._id, id, newQuantity, updateUserCollection);
         } else {
-            furnitureService.handleLocalToggle(id, added, collectionName, newQuantity, update, updateLocalCollection);
+            furnitureService.handleLocalToggle(id, added, collectionName, newQuantity, update, updateGuestCollection);
         }
 
         handleState(collectionName, newQuantity, update);
-    }
+    };
 
     function handleState(collectionName, quantity, update) {
         if (update && collectionName === 'cart') {
@@ -52,8 +54,5 @@ export const useCollectionToggle = (id, collectionName) => {
         added,
         handleToggle,
         quantity,
-    }
-}
-
-
-
+    };
+};

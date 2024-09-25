@@ -16,6 +16,19 @@ export const updateCollection = (action, collectionName, userId, furnitureId, qu
 
 export const clearCollection = (userId, collectionName) => request.del(`users/${collectionName}`, { userId });
 
+export const verifyUserToken = async () => {
+    try {
+        const token = localStorage.getItem('token');
+        if (!token) return null;
+
+        const result = await getUserData();
+        return result.user;
+    } catch (error) {
+        console.error("Failed to verify token:", error.message);
+        return null;
+    }
+};
+
 export const handleAuthToggle = async (action, collectionName, userId, furnitureId, newQuantity, updateContextCollection) => {
     try {
         const result = await updateCollection(action, collectionName, userId, furnitureId, newQuantity);

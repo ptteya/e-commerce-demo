@@ -14,10 +14,6 @@ export const getLocalCollection = (collectionName) => {
     return JSON.parse(localStorage.getItem(collectionName)) || [];
 };
 
-export const updateLocalCollection = (collectionName, updatedCollection) => {
-    localStorage.setItem(collectionName, JSON.stringify(updatedCollection));
-};
-
 export const getCollectionItems = async (collectionName, user, isAuthenticated) => {
     const collection = isAuthenticated
         ? user[collectionName]

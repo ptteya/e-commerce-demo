@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect, useContext } from 'react';
 import { AuthContext } from 'contexts/AuthContext';
 import Search from './Search';
-import * as furnitureService from 'services/furnitureService';
+import { CollectionContext } from 'contexts/CollectionContext';
 
 const Header = () => {
-    const { user, isAuthenticated, guestFavorites, guestCart, } = useContext(AuthContext);
+    const { user, isAuthenticated } = useContext(AuthContext);
+    const { guestFavorites, guestCart } = useContext(CollectionContext);
     const [isDropdownVisible, setDropdownVisible] = useState(false);
     const [favoritesCount, setFavoritesCount] = useState(0);
     const [cartCount, setCartCount] = useState(0);
@@ -14,11 +15,8 @@ const Header = () => {
     const iconRef = useRef(null);
 
     useEffect(() => {
-        const getFavoritesCount = () => isAuthenticated ? user.favorites?.length : furnitureService.getLocalCollection('favorites').length;
-        const getCartCount = () => isAuthenticated ? user.cart?.length : furnitureService.getLocalCollection('cart').length;
-
-        setFavoritesCount(getFavoritesCount() || 0);
-        setCartCount(getCartCount() || 0)
+        setFavoritesCount(isAuthenticated ? user.favorites?.length : guestFavorites.length);
+        setCartCount(isAuthenticated ? user.cart?.length : guestCart.length);
     }, [user, isAuthenticated, guestFavorites, guestCart]);
 
     useEffect(() => {

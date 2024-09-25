@@ -1,21 +1,22 @@
 import { useForm } from "hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "contexts/AuthContext";
+import { CollectionContext } from "contexts/CollectionContext";
 import { paymentFormInitialValues, paymentMethods } from "constants/paymentConstants";
 import InputField from "components/shared/forms/InputField";
 import './PaymentForm.css';
 
+const CART_COLLECTION_NAME = 'cart';
+
 const PaymentForm = ({ totalPrice }) => {
     const navigate = useNavigate();
-    const { emptyCollection } = useContext(AuthContext);
-    const { values, changeHandler, onSubmit } = useForm(
-        paymentFormInitialValues,
-        () => {
-            emptyCollection('cart');
-            navigate('/cart/confirmation');
-        }
-    );
+    const { emptyCollection } = useContext(CollectionContext);
+    const { values, changeHandler, onSubmit } = useForm(paymentFormInitialValues, handleSubmit);
+
+    function handleSubmit() {
+        emptyCollection(CART_COLLECTION_NAME);
+        navigate('/cart/confirmation');
+    }
 
     return (
         <form className="payment-form" onSubmit={onSubmit}>
@@ -150,6 +151,6 @@ function ShippingDetails({ values, changeHandler }) {
             </div>
         </>
     );
-};
+}
 
 export default PaymentForm;

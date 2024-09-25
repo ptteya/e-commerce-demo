@@ -24,73 +24,76 @@ import Edit from 'components/pages/Edit';
 import Create from 'components/pages/Create';
 import PromoteUser from 'components/pages/PromoteUser/PromoteUser';
 import OrderSuccess from 'components/pages/OrderSuccess/OrderSuccess';
+import { CollectionProvider } from 'contexts/CollectionContext';
 
 function App() {
   return (
     <AuthProvider>
-      <Header />
-      <main>
-        <div className="overlay"></div>
-        <ScrollToTop />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route
-            path='/users/login'
-            element={
-              <GuestRoute>
-                <Login />
-              </GuestRoute>
-            }
-          />
-          <Route
-            path='/users/register'
-            element={
-              <GuestRoute>
-                <Register />
-              </GuestRoute>
-            }
-          />
-          <Route
-            path='/users/logout'
-            element={
-              <AuthRoute>
-                <Logout />
-              </AuthRoute>
-            }
-          />
-          <Route path='/furniture' element={<Catalog />} />
-          <Route path='/furniture/:furnitureId' element={<Details />} />
-          <Route
-            path='/furniture/edit/:furnitureId'
-            element={
+      <CollectionProvider>
+        <Header />
+        <main>
+          <div className="overlay"></div>
+          <ScrollToTop />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/about' element={<About />} />
+            <Route
+              path='/users/login'
+              element={
+                <GuestRoute>
+                  <Login />
+                </GuestRoute>
+              }
+            />
+            <Route
+              path='/users/register'
+              element={
+                <GuestRoute>
+                  <Register />
+                </GuestRoute>
+              }
+            />
+            <Route
+              path='/users/logout'
+              element={
+                <AuthRoute>
+                  <Logout />
+                </AuthRoute>
+              }
+            />
+            <Route path='/furniture' element={<Catalog />} />
+            <Route path='/furniture/:furnitureId' element={<Details />} />
+            <Route
+              path='/furniture/edit/:furnitureId'
+              element={
+                <AdminRoute>
+                  <Edit />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path='/furniture/create'
+              element={
+                <AdminRoute>
+                  <Create />
+                </AdminRoute>
+              }
+            />
+            <Route path='/contacts' element={<Contacts />} />
+            <Route path='/favorites' element={<Favorites />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/cart/confirmation' element={<OrderSuccess />}></Route>
+            <Route path='/admin/promote-users' element={
               <AdminRoute>
-                <Edit />
+                <PromoteUser />
               </AdminRoute>
             }
-          />
-          <Route
-            path='/furniture/create'
-            element={
-              <AdminRoute>
-                <Create />
-              </AdminRoute>
-            }
-          />
-          <Route path='/contacts' element={<Contacts />} />
-          <Route path='/favorites' element={<Favorites />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/cart/confirmation' element={<OrderSuccess />}></Route>
-          <Route path='/admin/promote-users' element={
-            <AdminRoute>
-              <PromoteUser />
-            </AdminRoute>
-          }
-          />
-          <Route path='/*' element={<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
+            />
+            <Route path='/*' element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </CollectionProvider>
     </AuthProvider>
   );
 }
