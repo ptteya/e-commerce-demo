@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from "contexts/AuthContext";
 import { CollectionContext } from 'contexts/CollectionContext';
 import CatalogItem from 'components/pages/Catalog/CatalogItem/CatalogItem';
-import * as furnitureService from 'services/furnitureService';
+import * as collectionService from 'services/collectionService';
 
 const Favorites = () => {
     const { user, isAuthenticated } = useContext(AuthContext);
@@ -13,7 +13,7 @@ const Favorites = () => {
 
     useEffect(() => {
         const fetchLikedFurniture = async () => {
-            const likedFurniture = await furnitureService.getCollectionItems('favorites', user, isAuthenticated);
+            const likedFurniture = await collectionService.getCollectionItems('favorites', user, isAuthenticated);
             setFurniture(likedFurniture);
         };
 

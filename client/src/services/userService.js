@@ -12,7 +12,7 @@ export const getAll = () => request.get('admin/users');
 
 export const toggleUserRole = (userId, role) => request.post('admin/promote', { userId, role });
 
-export const updateCollection = (action, collectionName, userId, furnitureId, quantity = 1) => request.post(`users/${collectionName}/${action}`, { userId, furnitureId, quantity });
+export const updateCollection = (action, collectionName, userId, furnitureId, quantity) => request.post(`users/${collectionName}/${action}`, { userId, furnitureId, quantity });
 
 export const clearCollection = (userId, collectionName) => request.del(`users/${collectionName}`, { userId });
 
@@ -26,14 +26,5 @@ export const verifyUserToken = async () => {
     } catch (error) {
         console.error("Failed to verify token:", error.message);
         return null;
-    }
-};
-
-export const handleAuthToggle = async (action, collectionName, userId, furnitureId, newQuantity, updateContextCollection) => {
-    try {
-        const result = await updateCollection(action, collectionName, userId, furnitureId, newQuantity);
-        updateContextCollection(collectionName, result[collectionName]);
-    } catch (error) {
-        console.error(`Failed to update ${collectionName}:`, error.message);
     }
 };

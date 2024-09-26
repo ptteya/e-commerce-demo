@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
 import * as userService from 'services/userService';
-import * as furnitureService from 'services/furnitureService';
+import * as collectionService from 'services/collectionService';
 
 export const CollectionContext = createContext();
 
@@ -17,8 +17,8 @@ export const CollectionProvider = ({ children }) => {
     }, [user]);
 
     const loadGuestCollections = () => {
-        setGuestFavorites(furnitureService.getLocalCollection('favorites'));
-        setGuestCart(furnitureService.getLocalCollection('cart'));
+        setGuestFavorites(collectionService.getLocalCollection('favorites'));
+        setGuestCart(collectionService.getLocalCollection('cart'));
     };
 
     const updateUserCollection = (collectionName, newItems) => {

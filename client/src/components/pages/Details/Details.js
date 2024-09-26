@@ -1,7 +1,7 @@
 import './Details.css';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useRef, useContext } from 'react';
-import { useCollectionToggle } from 'hooks/useCollectionToggle';
+import { useCollectionManager } from 'hooks/useCollectionManager';
 import * as furnitureService from 'services/furnitureService';
 import DeleteModal from 'components/modals/DeleteModal/DeleteModal';
 import { AuthContext } from 'contexts/AuthContext';
@@ -10,7 +10,7 @@ const Details = () => {
     const { furnitureId } = useParams();
     const [furniture, setFurniture] = useState({});
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const { added, handleToggle } = useCollectionToggle(furnitureId, 'cart');
+    const { added, toggleCollectionItem } = useCollectionManager(furnitureId, 'cart');
     const { user } = useContext(AuthContext);
     const mainImageRef = useRef(null);
     const imageRefs = useRef([]);
@@ -99,7 +99,7 @@ const Details = () => {
                         {added ? (
                             <button className="btn add-to-cart" disabled>Added to Cart</button>
                         ) : (
-                            <button className="btn add-to-cart" onClick={() => handleToggle()}>Add to Cart</button>
+                            <button className="btn add-to-cart" onClick={() => toggleCollectionItem()}>Add to Cart</button>
                         )}
                         {isAdmin && (
                             <>

@@ -1,6 +1,6 @@
 import './CatalogItem.css';
 import { useNavigate } from 'react-router-dom';
-import { useCollectionToggle } from 'hooks/useCollectionToggle';
+import { useCollectionManager } from 'hooks/useCollectionManager';
 
 const CatalogItem = ({
     _id,
@@ -9,7 +9,7 @@ const CatalogItem = ({
     size,
     images,
 }) => {
-    const { added, handleToggle } = useCollectionToggle(_id, 'favorites');
+    const { added, toggleCollectionItem } = useCollectionManager(_id, 'favorites');
     const navigate = useNavigate();
 
     const handleCardClick = (e) => {
@@ -22,7 +22,7 @@ const CatalogItem = ({
         <div className="product-card" onClick={handleCardClick}>
             <div className="image-container">
                 <img src={images.mainImage} alt="couch" />
-                <i className={`heart-icon ${added ? 'fas fa-heart favorites' : 'far fa-heart'}`} onClick={() => handleToggle()}></i>
+                <i className={`heart-icon ${added ? 'fas fa-heart favorites' : 'far fa-heart'}`} onClick={() => toggleCollectionItem()}></i>
             </div>
             <div className="product-info">
                 <div className="container">

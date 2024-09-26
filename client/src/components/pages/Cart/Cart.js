@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from 'contexts/AuthContext';
 import { CollectionContext } from 'contexts/CollectionContext';
-import * as furnitureService from 'services/furnitureService';
+import * as collectionService from 'services/collectionService';
 import CartItem from './CartItem/CartItem';
 import PaymentForm from './PaymentForm/PaymentForm';
 
@@ -17,7 +17,7 @@ const Cart = () => {
 
     useEffect(() => {
         async function fetchCartItems() {
-            const items = await furnitureService.getCollectionItems('cart', user, isAuthenticated);
+            const items = await collectionService.getCollectionItems('cart', user, isAuthenticated);
             setCartItems(items);
             setTotalPrice(items.reduce((sum, el) => sum + (el.price * el.quantity), 0));
         }

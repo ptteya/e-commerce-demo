@@ -1,4 +1,4 @@
-import { useCollectionToggle } from 'hooks/useCollectionToggle';
+import { useCollectionManager } from 'hooks/useCollectionManager';
 import './CartItem.css';
 
 const CartItem = ({
@@ -8,17 +8,7 @@ const CartItem = ({
     images,
     size,
 }) => {
-    let { handleToggle, quantity } = useCollectionToggle(_id, 'cart');
-
-    const updateQuantity = (action) => {
-        if (action === 'increase') {
-            handleToggle(quantity + 1, true);
-        } else if (action === 'decrease') {
-            if (quantity - 1 > 0) {
-                handleToggle(quantity - 1, true);
-            }
-        }
-    };
+    let { toggleCollectionItem, updateItemQuantity, quantity } = useCollectionManager(_id, 'cart');
 
     return (
         <div className="product" >
@@ -33,19 +23,19 @@ const CartItem = ({
                 <div className="quantity">
                     <button
                         className='decrease'
-                        onClick={() => updateQuantity('decrease')}>
+                        onClick={() => quantity > 1 && updateItemQuantity(quantity - 1)}>
                         <i className="fas fa-minus"></i>
                     </button>
                     <p className='count'>{quantity}</p>
                     <button
                         className='increase'
-                        onClick={() => updateQuantity('increase')}>
+                        onClick={() => updateItemQuantity(quantity + 1)}>
                         <i className="fas fa-plus"></i>
                     </button>
                 </div>
             </div>
             <p className="price">${price}</p>
-            <p className="remove-furniture" onClick={() => handleToggle()}>Remove</p>
+            <p className="remove-furniture" onClick={() => toggleCollectionItem()}>Remove</p>
         </div>
     );
 };
