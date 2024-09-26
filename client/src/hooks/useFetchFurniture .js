@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import * as furnitureService from 'services/furnitureService';
 
-export const useFetchFurniture = (queryString) => {
+export const useFetchFurniture = (queryString = null) => {
     const [furniture, setFurniture] = useState([]);
 
     useEffect(() => {

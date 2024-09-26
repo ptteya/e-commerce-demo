@@ -1,6 +1,9 @@
 import * as request from 'services/requester';
 
-export const getFurniture = (queryString) => request.get(`furniture?${queryString}`);
+export const getFurniture = (queryString) => {
+    const path = queryString ? `furniture?${queryString}` : 'furniture'
+    return request.get(path);
+};
 
 export const getDetails = (id) => request.get(`furniture/${id}`);
 
