@@ -4,175 +4,6 @@
     border-bottom: 1px solid rgb(203, 203, 203);
 }
 
-/* Top Header */
-.top-header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: 40px;
-    padding: 0px 110px;
-    background-color: #e7e4e4;
-    position: relative;
-}
-
-.top-header-services {
-    display: flex;
-    gap: 30px;
-    position: absolute;
-    left: 50%;
-    color: rgb(126, 125, 125);
-    transform: translateX(-50%);
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.top-header-services p:nth-child(-n+3) {
-    border-right: 1px solid var(--border-color);
-    padding-right: 30px;
-}
-
-/* Top Header Actions */
-.top-header-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.icon-wrapper {
-    position: relative;
-    cursor: pointer;
-}
-
-.favorite-icon,
-.login-icon,
-.shopping-cart-icon {
-    font-size: 19px;
-    color: var(--dark-gray-color);
-}
-
-.favorite-icon,
-.shopping-cart-icon {
-    padding: 0 10px 0px 0px;
-    cursor: pointer;
-}
-
-.icon-wrapper:hover .favorite-icon,
-.shopping-cart-icon:hover,
-.user-menu:hover .login-icon {
-    color: var(--yellow-color);
-}
-
-.favoriteItems-num {
-    background-color: var(--yellow-color);
-    position: absolute;
-    padding: 2px 7px;
-    border-radius: 50%;
-    top: -5px;
-    left: -12px;
-    font-size: 13px;
-    color: white;
-}
-
-.cartItems-num {
-    background-color: var(--yellow-color);
-    position: absolute;
-    padding: 2px 7px;
-    border-radius: 50%;
-    top: -5px;
-    left: -12px;
-    font-size: 13px;
-    color: white;
-}
-
-.login-icon {
-    cursor: pointer;
-}
-
-/* Dropdown Menu */
-.user-menu {
-    position: relative;
-}
-
-.user-menu .dropdown-container {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: -10px;
-    z-index: 1000;
-}
-
-.dropdown-container.show {
-    display: block;
-}
-
-.dropdown-container.hide {
-    display: none;
-}
-
-.dropdown-content {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    background-color: #e7e4e4;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 370px;
-    height: 250px;
-    gap: 20px;
-}
-
-.dropdown-title,
-.dropdown-welcome {
-    color: black;
-    font-size: 20px;
-}
-
-.dropdown-content p {
-    color: black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.dropdown-content a {
-    width: 100px;
-    padding: 10px 0px;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.logout-section,
-.login-section {
-    padding: 15px 0px;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.login-section .login-link,
-.logout-section .logout-link {
-    border: 3px solid var(--yellow-color);
-    color: var(--yellow-color);
-}
-
-.login-section .login-link:hover,
-.logout-section .logout-link:hover {
-    background-color: var(--yellow-color);
-    color: white;
-}
-
-.register-section .register-link,
-.see-profile-section .profile-link {
-    border: 3px solid var(--yellow-color);
-    background-color: var(--yellow-color);
-    color: white;
-}
-
-.logout-container .logout-btn,
-.see-profile-container .profile-btn {
-    background-color: var(--yellow-color);
-    color: white;
-}
-
 /* Main Header */
 .main-header {
     display: flex;
@@ -313,38 +144,7 @@
     height: 40px;
 }
 
-@media (max-width: 1200px) {
-    .top-header-services {
-        font-size: 12px;
-    }
-
-    #search-input {
-        width: 100px;
-        padding-right: 4px;
-        font-size: 12px;
-    }
-
-    #search-btn {
-        font-size: 14px;
-        padding-left: 0px;
-        padding-right: 10px;
-    }
-}
-
 @media (max-width: 1024px) {
-    .top-header {
-        padding: 0px 20px;
-    }
-
-    .main-header {
-        margin: 0px 20px;
-    }
-
-    .top-header-services p:last-child {
-        display: none;
-    }
-
-    #search-input,
     .main-header .logo-container {
         width: 100px;
     }
@@ -359,24 +159,9 @@
 }
 
 @media (max-width: 768px) {
-    .top-header-services {
-        display: none;
-    }
-
-    .login-icon,
-    .favorite-icon,
-    .shopping-cart-icon {
-        font-size: 16px;
-    }
-
     .main-header {
         flex-direction: column;
         height: 180px;
         padding: 15px 0px;
     }
-
-    .dropdown-content {
-        font-size: 14px;
-    }
-
 }
