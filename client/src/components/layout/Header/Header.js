@@ -2,8 +2,10 @@ import './Header.css';
 import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect, useContext } from 'react';
 import { AuthContext } from 'contexts/AuthContext';
-import Search from './Search';
 import { CollectionContext } from 'contexts/CollectionContext';
+import { categoryOptions } from 'constants/categoryOptions';
+import { formatCategoryTitle } from 'utils/formatCategoryTitle';
+import Search from './Search';
 
 const Header = () => {
     const { user, isAuthenticated } = useContext(AuthContext);
@@ -102,17 +104,19 @@ const Header = () => {
                     <ul className="nav-group">
                         <li className="nav-item"><Link to="/">Home</Link></li>
                         <li className="nav-item header-catalog-link">
-                            <a className='catalog'>
+                            <Link className='' onClick={(e) => e.preventDefault()}>
                                 Catalog
                                 <i className="fas fa-chevron-down arrow-icon"></i>
-                            </a>
-                            <ul className="dropdown-menu">
-                                <Link to="/furniture?category=couches"><li>Couches</li></Link>
-                                <Link to="/furniture?category=beds"><li>Beds</li></Link>
-                                <Link to="/furniture?category=chairs"><li>Chairs</li></Link>
-                                <Link to="/furniture?category=tables"><li>Tables</li></Link>
-                                <Link to="/furniture?category=lamps"><li>Lamps</li></Link>
-                                <Link to="/furniture"><li>All Items</li></Link>
+                            </Link>
+                            <ul className='dropdown-menu'>
+                                {categoryOptions.map(option => (
+                                    <li key={option}>
+                                        <Link to={`/furniture?category=${option}`}>
+                                            {formatCategoryTitle(option)}
+                                        </Link>
+                                    </li>
+                                ))}
+                                <li><Link to="/furniture"> All Items</Link></li>
                             </ul>
                         </li>
                         <li className="nav-item"><Link to="/about">About</Link></li>
