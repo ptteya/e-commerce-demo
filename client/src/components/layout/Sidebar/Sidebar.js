@@ -3,9 +3,9 @@ import { useContext, useState } from "react";
 import { AuthContext } from "contexts/AuthContext";
 import { categoryOptions } from "constants/categoryOptions";
 import { formatCategoryTitle } from "utils/formatCategoryTitle";
-import './SidebarModal.css';
+import './Sidebar.css';
 
-const SidebarModal = ({ showModal, toggleSidebar }) => {
+const Sidebar = ({ showSidebar, toggleSidebar }) => {
     const { user } = useContext(AuthContext);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
 
@@ -14,10 +14,10 @@ const SidebarModal = ({ showModal, toggleSidebar }) => {
         setDropdownOpen(!isDropdownOpen);
     };
 
-    if (!showModal) return null;
+    if (!showSidebar) return null;
 
     return (
-        <div className={`sidebar ${showModal ? 'sidebarModalOpen' : ''}`}>
+        <div className={`sidebar ${showSidebar ? 'sidebar-open' : ''}`}>
             <div className="sidebar-header">
                 <button className="close-btn">
                     <i className="bi bi-x-lg" onClick={toggleSidebar} ></i>
@@ -39,7 +39,7 @@ const SidebarModal = ({ showModal, toggleSidebar }) => {
                                 </Link>
                             </li>
                         ))}
-                        <li><Link to="/furniture"> All Items</Link></li>
+                        <li><Link to="/furniture" onClick={toggleSidebar}> All Items</Link></li>
                     </ul >
                 </li >
                 <li className="sidebar-item" onClick={toggleSidebar}><Link to="/about">About</Link></li>
@@ -55,4 +55,4 @@ const SidebarModal = ({ showModal, toggleSidebar }) => {
     );
 };
 
-export default SidebarModal;
+export default Sidebar;

@@ -3,7 +3,7 @@ import { categoryOptions } from "constants/categoryOptions";
 import { formatCategoryTitle } from "utils/formatCategoryTitle";
 import { useContext, useState } from "react";
 import { AuthContext } from "contexts/AuthContext";
-import SidebarModal from "components/modals/SidebarModal/SidebarModal";
+import Sidebar from "components/layout/Sidebar/Sidebar";
 import Search from "../Search/Search";
 import './NavBar.css';
 
@@ -52,7 +52,7 @@ const NavBar = () => {
             <div className="nav-actions">
                 <Search />
                 <i className="fas fa-bars sidebar-icon" onClick={toggleSidebar}></i>
-                <SidebarModal showModal={isSidebarVisible} toggleSidebar={toggleSidebar} />
+                <Sidebar showSidebar={isSidebarVisible} toggleSidebar={toggleSidebar} />
             </div>
         </div>
     );
