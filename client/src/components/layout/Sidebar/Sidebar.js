@@ -1,11 +1,8 @@
-import { Link } from "react-router-dom";
-import { useCallback, useContext, useState } from "react";
-import { AuthContext } from "contexts/AuthContext";
-import DropdownMenu from "../DropdownMenu";
+import { useCallback, useState } from "react";
 import './Sidebar.css';
+import NavigationList from "../NavigationList";
 
 const Sidebar = ({ showSidebar, toggleSidebar }) => {
-    const { user } = useContext(AuthContext);
     const [isCatalogOpen, setCatalogOpen] = useState(false);
 
     const toggleCatalogDropdown = useCallback(() => setCatalogOpen(prev => !prev), []);
@@ -19,18 +16,13 @@ const Sidebar = ({ showSidebar, toggleSidebar }) => {
                     <i className="bi bi-x-lg" onClick={toggleSidebar} ></i>
                 </button>
             </div>
-            <ul className="sidebar-list">
-                <li className="sidebar-item" onClick={toggleSidebar}><Link to="/">Home</Link></li>
-                <DropdownMenu toggleMenu={toggleCatalogDropdown} isMenuOpen={isCatalogOpen} toggleSidebar={toggleSidebar} />
-                <li className="sidebar-item" onClick={toggleSidebar}><Link to="/about">About</Link></li>
-                <li className="sidebar-item" onClick={toggleSidebar}><Link to="/contacts">Contacts</Link></li>
-                {user.role === 'admin' && (
-                    <>
-                        <li className="sidebar-item" onClick={toggleSidebar}><Link to="/furniture/create">Create</Link></li>
-                        <li className="sidebar-item" onClick={toggleSidebar}><Link to="/admin/promote-users">Promote</Link></li>
-                    </>
-                )}
-            </ul>
+
+            <NavigationList
+                listClassName="sidebar-list"
+                toggleDropdown={toggleCatalogDropdown}
+                isDropdownOpen={isCatalogOpen}
+                toggleSidebar={toggleSidebar}
+            />
         </div>
     );
 };

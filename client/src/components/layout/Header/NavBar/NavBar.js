@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
-import { useCallback, useContext, useState } from "react";
-import { AuthContext } from "contexts/AuthContext";
+import { useCallback, useState } from "react";
 import Sidebar from "components/layout/Sidebar/Sidebar";
 import Search from "../Search/Search";
-import DropdownMenu from "components/layout/DropdownMenu";
 import './NavBar.css';
+import NavigationList from "components/layout/NavigationList";
 
 const NavBar = () => {
-    const { user } = useContext(AuthContext);
     const [isDropdownVisible, setDropdownVisible] = useState(false);
     const [isSidebarVisible, setSidebarVisible] = useState(false);
 
@@ -24,18 +22,13 @@ const NavBar = () => {
                 <div className="logo-image"></div>
                 <Link to="/" className="logo">HOMELY</Link>
             </div>
-            <ul className="nav-list">
-                <li className="nav-item"><Link to="/">Home</Link></li>
-                <DropdownMenu toggleMenu={toggleDropdownMenu} isMenuOpen={isDropdownVisible} />
-                <li className="nav-item"><Link to="/about">About</Link></li>
-                <li className="nav-item"><Link to="/contacts">Contacts</Link></li>
-                {user.role === 'admin' && (
-                    <>
-                        <li className="nav-item"><Link to="/furniture/create">Create</Link></li>
-                        <li className="nav-item"><Link to="/admin/promote-users">Promote</Link></li>
-                    </>
-                )}
-            </ul>
+
+            <NavigationList
+                listClassName="nav-list"
+                toggleDropdown={toggleDropdownMenu}
+                isDropdownOpen={isDropdownVisible}
+            />
+
             <div className="nav-actions">
                 <Search />
                 <i className="fas fa-bars sidebar-icon" onClick={toggleSidebar}></i>
