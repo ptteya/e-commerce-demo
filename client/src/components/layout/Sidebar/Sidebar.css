@@ -43,26 +43,25 @@
 }
 
 .sidebar-list li {
-    background-color: #eeeded;
-    padding: 10px;
     list-style: none;
 }
 
-.sidebar-list li a {
+.sidebar-list li a,
+.sidebar-list .catalog-toggle {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-decoration: none;
     color: black;
+    background-color: #eeeded;
     width: 100%;
+    padding: 10px;
+    display: block;
 }
 
-.sidebar-list .catalog-item {
-    cursor: pointer;
-}
-
-.catalog-toggle {
+.sidebar-list .catalog-toggle {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
 
 .catalog-toggle .fa-chevron-down {

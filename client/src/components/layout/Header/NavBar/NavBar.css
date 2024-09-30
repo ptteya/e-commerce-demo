@@ -46,11 +46,13 @@
     list-style-type: none;
 }
 
-.nav-list .nav-item a {
+.nav-list .nav-item a,
+.nav-list .catalog-toggle {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
     text-decoration: none;
     color: black;
+    cursor: pointer;
 }
 
 .nav-list .nav-item a:hover {
