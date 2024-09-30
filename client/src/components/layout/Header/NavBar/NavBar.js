@@ -3,14 +3,17 @@ import { categoryOptions } from "constants/categoryOptions";
 import { formatCategoryTitle } from "utils/formatCategoryTitle";
 import { useContext, useState } from "react";
 import { AuthContext } from "contexts/AuthContext";
+import SidebarModal from "components/modals/SidebarModal/SidebarModal";
 import Search from "../Search/Search";
 import './NavBar.css';
 
 const NavBar = () => {
     const { user } = useContext(AuthContext);
-    const [isMenuOpen, setIsMenuOpen] = useState();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isSidebarVisible, setSidebarVisible] = useState(false);
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+    const toggleSidebar = () => setSidebarVisible(!isSidebarVisible);
 
     return (
         <div className="navbar">
@@ -46,7 +49,11 @@ const NavBar = () => {
                     </>
                 )}
             </ul>
-            <Search />
+            <div className="nav-actions">
+                <Search />
+                <i className="fas fa-bars sidebar-icon" onClick={toggleSidebar}></i>
+                <SidebarModal showModal={isSidebarVisible} toggleSidebar={toggleSidebar} />
+            </div>
         </div>
     );
 };

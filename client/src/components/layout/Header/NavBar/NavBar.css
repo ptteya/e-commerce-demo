@@ -41,27 +41,27 @@
     gap: 45px;
 }
 
-.nav-item {
+.nav-list .nav-item {
     position: relative;
     list-style-type: none;
 }
 
-.nav-item a {
+.nav-list .nav-item a {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
     text-decoration: none;
     color: black;
 }
 
-.nav-item a:hover {
+.nav-list .nav-item a:hover {
     color: var(--yellow-color);
 }
 
-.catalog-item {
+.nav-list .catalog-item {
     position: relative;
 }
 
-.catalog-item .dropdown-menu {
+.nav-list .catalog-item .dropdown-menu {
     position: absolute;
     top: 100%;
     left: 50%;
@@ -76,11 +76,11 @@
     padding-top: 30px;
 }
 
-.catalog-item .active-menu {
+.nav-list .catalog-item .active-menu {
     display: block;
 }
 
-.catalog-item .dropdown-menu li a {
+.nav-list .catalog-item .dropdown-menu li a {
     display: block;
     font-size: 15px;
     padding: 15px;
@@ -88,27 +88,39 @@
     cursor: pointer;
 }
 
-.catalog-item .dropdown-menu li:not(:last-child) {
-    border-bottom: 1px solid rgb(223, 222, 222);
+.nav-list .catalog-item .dropdown-menu li:not(:last-child) {
+    border-bottom: 1px solid rgb(230, 230, 230);
 }
 
-.catalog-item .dropdown-menu li:hover {
+.nav-list .catalog-item .dropdown-menu li:hover {
     background-color: var(--yellow-color);
     color: white;
 }
 
-.catalog-item .dropdown-menu li a:hover {
+.nav-list .catalog-item .dropdown-menu li a:hover {
     color: white;
 }
 
-.catalog-item .arrow-icon {
+.nav-list .catalog-item .arrow-icon {
     color: gray;
     margin-left: 10px;
 }
 
-.catalog-item .arrow-rotated {
+.nav-list .catalog-item .arrow-rotated {
     transform: rotate(180deg);
     color: var(--yellow-color);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-icon {
+    cursor: pointer;
+    font-size: 20px;
+    display: none;
 }
 
 @media (max-width: 1200px) {
@@ -119,23 +131,26 @@
 }
 
 @media (max-width: 1024px) {
-    .navbar .logo-container {
-        width: 100px;
-    }
-
     .navbar .logo-container .logo {
         font-size: 18px;
     }
 
     .navbar .logo-container .logo-image {
+        height: 38px;
+        width: 38px;
+    }
+
+    .nav-list {
         display: none;
+    }
+
+    .sidebar-icon {
+        display: block;
     }
 }
 
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        height: 180px;
-        padding: 15px 0px;
+        margin: 0px 20px;
     }
 }
