@@ -17,24 +17,27 @@ const NavBar = () => {
     }, [isDropdownVisible]);
 
     return (
-        <div className="navbar">
-            <div className="logo-container">
-                <div className="logo-image"></div>
-                <Link to="/" className="logo">HOMELY</Link>
-            </div>
+        <>
+            <div className={`dropdown-overlay ${isDropdownVisible ? 'active-overlay' : ''}`} onClick={toggleDropdownMenu}></div>
+            <div className="navbar">
+                <div className="logo-container">
+                    <div className="logo-image"></div>
+                    <Link to="/" className="logo">HOMELY</Link>
+                </div>
 
-            <NavigationList
-                listClassName="nav-list"
-                toggleDropdown={toggleDropdownMenu}
-                isDropdownOpen={isDropdownVisible}
-            />
+                <NavigationList
+                    listClassName="nav-list"
+                    toggleDropdown={toggleDropdownMenu}
+                    isDropdownOpen={isDropdownVisible}
+                />
 
-            <div className="nav-actions">
-                <Search />
-                <i className="fas fa-bars sidebar-icon" onClick={toggleSidebar}></i>
-                <Sidebar showSidebar={isSidebarVisible} toggleSidebar={toggleSidebar} />
+                <div className="nav-actions">
+                    <Search />
+                    <i className="fas fa-bars sidebar-icon" onClick={toggleSidebar}></i>
+                    <Sidebar showSidebar={isSidebarVisible} toggleSidebar={toggleSidebar} />
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

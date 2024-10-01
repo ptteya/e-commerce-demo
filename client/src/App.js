@@ -32,7 +32,6 @@ function App() {
       <CollectionProvider>
         <Header />
         <main>
-          <div className="overlay"></div>
           <ScrollToTop />
           <Routes>
             <Route path='/' element={<Home />} />

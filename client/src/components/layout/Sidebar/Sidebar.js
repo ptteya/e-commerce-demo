@@ -7,23 +7,24 @@ const Sidebar = ({ showSidebar, toggleSidebar }) => {
 
     const toggleCatalogDropdown = useCallback(() => setCatalogOpen(prev => !prev), []);
 
-    if (!showSidebar) return null;
-
     return (
-        <div className={`sidebar ${showSidebar ? 'sidebar-open' : ''}`}>
-            <div className="sidebar-header">
-                <button className="close-btn">
-                    <i className="bi bi-x-lg" onClick={toggleSidebar} ></i>
-                </button>
-            </div>
+        <>
+            <div className={`sidebar-overlay ${showSidebar ? 'active-overlay' : ''}`} onClick={toggleSidebar}></div>
+            <div className={`sidebar ${showSidebar ? 'sidebar-open' : ''}`}>
+                <div className="sidebar-header">
+                    <button className="close-btn" onClick={toggleSidebar}>
+                        <i className="bi bi-x-lg"></i>
+                    </button>
+                </div>
 
-            <NavigationList
-                listClassName="sidebar-list"
-                toggleDropdown={toggleCatalogDropdown}
-                isDropdownOpen={isCatalogOpen}
-                toggleSidebar={toggleSidebar}
-            />
-        </div>
+                <NavigationList
+                    listClassName="sidebar-list"
+                    toggleDropdown={toggleCatalogDropdown}
+                    isDropdownOpen={isCatalogOpen}
+                    toggleSidebar={toggleSidebar}
+                />
+            </div>
+        </>
     );
 };
 

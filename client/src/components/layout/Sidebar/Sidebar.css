@@ -8,7 +8,7 @@
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     padding: 20px;
     transition: right 0.4s ease;
-    z-index: 1000;
+    z-index: 400;
     display: flex;
     flex-direction: column;
 }
@@ -96,6 +96,35 @@
 .catalog-toggle .arrow-rotate {
     transform: rotate(180deg);
     color: var(--yellow-color);
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 300;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.sidebar-overlay.active-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (min-width: 1024px) {
+    .sidebar {
+        right: -100%;
+    }
+
+    .sidebar-overlay.active-overlay {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
 @media (max-width: 768px) {
