@@ -10,7 +10,7 @@ export const useQueryHandler = () => {
         navigate(`/furniture?searchQuery=${encodeURIComponent(searchQuery)}`);
     };
 
-    function handleFilter(values) {
+    const handleFilter = (values) => {
         const updatedParams = new URLSearchParams(searchParams);
         Object.entries(values).forEach(([key, value]) => updatedParams.set(key, value));
         setSearchParams(updatedParams);
@@ -19,8 +19,13 @@ export const useQueryHandler = () => {
             pathname: location.pathname,
             search: `?${updatedParams}`
         });
-    }
+    };
 
-    return { handleSearch, handleFilter };
+    const resetSearchParams = (paramsList) => {
+        paramsList.forEach(p => searchParams.delete(p));
+        setSearchParams(searchParams);
+    };
+
+    return { handleSearch, handleFilter, resetSearchParams };
 };
 

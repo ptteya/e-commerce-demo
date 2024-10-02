@@ -158,10 +158,7 @@
     border: 1px solid rgb(129, 129, 129);
     border-radius: 50%;
     cursor: pointer;
-}
-
-.colors-container .selected {
-    box-shadow: 0 0 10px rgba(107, 103, 103, 0.3);
+    position: relative;
 }
 
 .colors-container .color-box {
@@ -169,7 +166,31 @@
 }
 
 .colors-container .color-box.selected {
-    transform: scale(1.2);
+    transform: scale(1.25);
+}
+
+.colors-container .fa-check {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 10px;
+    display: none;
+}
+
+.colors-container .selected {
+    box-shadow: 0 0 8px rgba(107, 103, 103, 0.3);
+}
+
+.colors-container .selected .fa-check {
+    display: block;
+}
+
+.colors-container #white .fa-check,
+.colors-container #beige .fa-check,
+.colors-container #yellow .fa-check {
+    color: black;
 }
 
 .colors-container #white {

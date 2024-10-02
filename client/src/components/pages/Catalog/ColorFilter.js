@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useQueryHandler } from "hooks/useQueryHandler";
 
@@ -6,17 +6,16 @@ const colors = ["white", "gray", "black", "brown", "beige", "green", "yellow", "
 
 const ColorFilter = () => {
     const [searchParams] = useSearchParams();
-    const { handleFilter } = useQueryHandler();
-    const [selectedColor, setSelectedColor] = useState(null);
+    const { handleFilter, resetSearchParams } = useQueryHandler();
 
-    useEffect(() => {
-        const color = searchParams.get('color');
-        setSelectedColor(color || null);
-    }, [searchParams]);
+    const selectedColor = useMemo(() => searchParams.get('color'), [searchParams]);
 
     const handleColorClick = (color) => {
-        setSelectedColor(color);
-        handleFilter({ color });
+        if (selectedColor === color) {
+            resetSearchParams(['color']);
+        } else {
+            handleFilter({ color });
+        }
     };
 
     return (
@@ -30,7 +29,9 @@ const ColorFilter = () => {
                             className={`color-box ${selectedColor === color ? 'selected' : ''}`}
                             id={color}
                             onClick={() => handleColorClick(color)}
-                        ></div>
+                        >
+                            <i className="fas fa-check"></i>
+                        </div>
                     ))}
                 </div>
             </div>
