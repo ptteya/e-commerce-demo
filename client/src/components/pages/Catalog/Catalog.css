@@ -73,7 +73,7 @@
 
 /* Filter Sidebar */
 .filter-sidebar {
-    width: 19%;
+    width: 17%;
     margin-top: 24px;
 }
 
@@ -98,6 +98,7 @@
 
 .filter-category ul li {
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .filter-category ul li a {
@@ -128,6 +129,7 @@
     border-radius: 4px;
     width: 70px;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .range-symbol {

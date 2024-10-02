@@ -1,11 +1,18 @@
+import { memo, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useQueryHandler } from "hooks/useQueryHandler";
-import { useState } from "react";
 
 const colors = ["white", "gray", "black", "brown", "beige", "green", "yellow", "pink", "blue", "purple", "red"];
 
 const ColorFilter = () => {
+    const [searchParams] = useSearchParams();
     const { handleFilter } = useQueryHandler();
     const [selectedColor, setSelectedColor] = useState(null);
+
+    useEffect(() => {
+        const color = searchParams.get('color');
+        setSelectedColor(color || null);
+    }, [searchParams]);
 
     const handleColorClick = (color) => {
         setSelectedColor(color);
@@ -31,4 +38,4 @@ const ColorFilter = () => {
     );
 };
 
-export default ColorFilter;
+export default memo(ColorFilter);

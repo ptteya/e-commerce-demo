@@ -1,19 +1,20 @@
 import './Catalog.css';
+import { useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useFetchFurniture } from 'hooks/useFetchFurniture ';
+import { formatCategoryTitle } from 'utils/formatCategoryTitle';
 import CatalogItem from './CatalogItem/CatalogItem';
 import PriceFilter from './PriceFilter';
 import ColorFilter from './ColorFilter';
+import CategoryFilter from './CategoryFilter';
 
 const Catalog = () => {
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
+    const { search } = useLocation();
+    const queryParams = new URLSearchParams(search);
     const furniture = useFetchFurniture(queryParams.toString());
 
     const category = queryParams.get('category') || '';
-    let categoryTitle = category
-        ? category[0].toUpperCase() + category.substring(1)
-        : 'All Items';
+    const categoryTitle = useMemo(() => formatCategoryTitle(category), [category]);
 
     return (
         <div className="catalog-section">
@@ -26,17 +27,7 @@ const Catalog = () => {
             <div className="catalog-container">
                 <div className="catalog-content">
                     <div className="filter-sidebar">
-                        <div className="filter-category">
-                            <p className="filter-title">CATEGORY</p>
-                            <ul>
-                                <li><Link to="/furniture?category=couches">Couches</Link></li>
-                                <li><Link to="/furniture?category=beds">Beds</Link></li>
-                                <li><Link to="/furniture?category=chairs">Chairs</Link></li>
-                                <li><Link to="/furniture?category=tables">Tables</Link></li>
-                                <li><Link to="/furniture?category=lamps">Lamps</Link></li>
-                                <li><Link to="/furniture">All Items</Link></li>
-                            </ul>
-                        </div>
+                        <CategoryFilter />
                         <PriceFilter />
                         <ColorFilter />
                     </div>

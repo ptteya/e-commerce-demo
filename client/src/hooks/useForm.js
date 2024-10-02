@@ -1,10 +1,10 @@
-import { useState } from "react"
+import { useState } from "react";
 
 export const useForm = (initialValues, submitHandler) => {
     const [values, setValues] = useState(initialValues);
     const [error, setError] = useState('');
 
-    function changeHandler(e, field, subField) {
+    const changeHandler = (e, field, subField) => {
         const { name, value } = e.target;
 
         if (subField) {
@@ -18,26 +18,29 @@ export const useForm = (initialValues, submitHandler) => {
         } else {
             setValues({ ...values, [name]: value });
         }
-    }
+    };
 
     const resetForm = () => {
         setValues(initialValues);
-    }
+    };
 
-    const onSubmit = async (e) => {
+    const onSubmit = async (e, resetAfterSubmit = true) => {
         e.preventDefault();
 
         try {
             await submitHandler(values);
-            resetForm();
+
+            if (resetAfterSubmit) {
+                resetForm();
+            }
         } catch (error) {
             setError(error.message);
         }
-    }
+    };
 
     const changeValues = (newValues) => {
         setValues(newValues);
-    }
+    };
 
     return {
         values,
@@ -46,5 +49,6 @@ export const useForm = (initialValues, submitHandler) => {
         resetForm,
         error,
         changeValues,
-    }
+        setValues,
+    };
 };

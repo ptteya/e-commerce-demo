@@ -1,18 +1,35 @@
+import { memo, useEffect, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useForm } from 'hooks/useForm';
 import { useQueryHandler } from 'hooks/useQueryHandler';
 
 const PriceFilter = () => {
+    const [searchParams] = useSearchParams();
     const { handleFilter } = useQueryHandler();
-    const { values, changeHandler, onSubmit } = useForm({
-        minPrice: 100,
-        maxPrice: 900,
-    }, handleFilter);
+
+    const initialValues = useMemo(() => {
+        const getPriceParams = (paramName, defaultValue) => {
+            const paramValue = searchParams.get(paramName, defaultValue);
+            return paramValue !== null ? paramValue : defaultValue;
+        };
+
+        return {
+            minPrice: getPriceParams('minPrice', 0),
+            maxPrice: getPriceParams('maxPrice', 3000)
+        };
+    }, [searchParams]);
+
+    const { values, changeHandler, setValues, onSubmit } = useForm(initialValues, handleFilter);
+
+    useEffect(() => {
+        setValues(initialValues);
+    }, [searchParams, setValues, initialValues]);
 
     return (
         <div className="filter-category">
             <p className="filter-title" htmlFor="price-range">PRICE RANGE</p>
             <div className="filter-content">
-                <form className="price-inputs" onSubmit={onSubmit}>
+                <form className="price-inputs" onSubmit={(e) => onSubmit(e, false)}>
                     <input
                         type="number"
                         name="minPrice"
@@ -25,16 +42,16 @@ const PriceFilter = () => {
                     <input
                         type="number"
                         name="maxPrice"
-                        min="0"
+                        min="1"
                         max="3000"
                         value={values.maxPrice}
                         onChange={changeHandler}
                     />
-                    <button className="price-range-search-btn" type="submit"></button>
+                    <button className="price-filter-btn" type="submit"></button>
                 </form>
             </div>
         </div>
     );
 };
 
-export default PriceFilter;
+export default memo(PriceFilter);
