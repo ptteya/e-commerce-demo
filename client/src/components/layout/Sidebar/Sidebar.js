@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
-import './Sidebar.css';
+import { MdClose } from "react-icons/md";
 import NavigationList from "../NavigationList";
+import './Sidebar.css';
 
 const Sidebar = ({ showSidebar, toggleSidebar }) => {
     const [isCatalogOpen, setCatalogOpen] = useState(false);
@@ -11,11 +12,7 @@ const Sidebar = ({ showSidebar, toggleSidebar }) => {
         <>
             <div className={`sidebar-overlay ${showSidebar ? 'active-overlay' : ''}`} onClick={toggleSidebar}></div>
             <div className={`sidebar ${showSidebar ? 'sidebar-open' : ''}`}>
-                <div className="sidebar-header">
-                    <button className="close-btn" onClick={toggleSidebar}>
-                        <i className="bi bi-x-lg"></i>
-                    </button>
-                </div>
+                <MdClose className="close-icon" onClick={toggleSidebar} />
 
                 <NavigationList
                     listClassName="sidebar-list"

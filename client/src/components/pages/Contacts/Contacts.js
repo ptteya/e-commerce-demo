@@ -1,8 +1,11 @@
-import './Contacts.css';
+import { Link } from 'react-router-dom';
 import { useForm } from 'hooks/useForm';
 import { usePopup } from 'hooks/usePopup';
-import { Link } from 'react-router-dom';
+import { SlLocationPin } from "react-icons/sl";
+import { BsTelephone } from "react-icons/bs";
+import { AiOutlineMail } from "react-icons/ai";
 import PopupMessage from 'components/layout/PopupMessage/PopupMessage';
+import './Contacts.css';
 
 const Contacts = () => {
     const { showPopup, message, triggerPopup } = usePopup();
@@ -28,14 +31,14 @@ const Contacts = () => {
             <div className="map-section">
                 <div className="contact-details">
                     <div className="contact">
-                        <i className="bi bi-geo-alt"></i>
+                        <SlLocationPin className='icon' />
                         <div className="info">
                             <p className='title'>Office address</p>
                             <p>6-ti Septemvri 17, Sofia Bulgaria</p>
                         </div>
                     </div>
                     <div className="contact">
-                        <i className="bi bi-envelope-at"></i>
+                        <AiOutlineMail className='icon' />
                         <div className="info">
                             <p className='title'>Email address</p>
                             <p>homely@gmail.com</p>
@@ -43,7 +46,7 @@ const Contacts = () => {
                         </div>
                     </div>
                     <div className="contact">
-                        <i className="bi bi-telephone"></i>
+                        <BsTelephone className='icon' />
                         <div className="info">
                             <p className='title'>Phone number</p>
                             <p>+359 894 234 928</p>

@@ -17,21 +17,16 @@
     right: 0;
 }
 
-.sidebar-header {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.sidebar-header .close-btn {
+.sidebar .close-icon {
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 28px;
     color: #333;
     cursor: pointer;
     transition: color 0.3s;
 }
 
-.sidebar-header .close-btn:hover {
+.sidebar .close-icon:hover {
     color: var(--yellow-color);
 }
 
