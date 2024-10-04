@@ -59,7 +59,12 @@
 
 @media (max-width: 768px) {
     .services {
-        margin: 50px;
+        margin: 40px 50px;
+    }
+
+    .service {
+        gap: 10px;
+        padding: 10px;
     }
 
     .service .icon {
@@ -68,7 +73,7 @@
     }
 
     .service .info .name {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .service .desc {
@@ -78,7 +83,6 @@
 
 @media (max-width: 480px) {
     .services {
-        margin-right: 10px;
-        margin-left: 10px;
+        margin: 30px 20px;
     }
 }

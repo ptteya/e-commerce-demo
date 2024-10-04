@@ -1,33 +1,33 @@
 export const SERVICES = [
     {
         icon: 'fa-truck',
-        name: 'Free Shipping',
-        desc: 'Enjoy free shipping on all orders or on orders above a certain amount.'
+        name: 'Free Delivery',
+        desc: 'Free shipping on all order',
     },
     {
         icon: 'fa-undo-alt',
         name: 'Easy Returns',
-        desc: 'Hassle-free returns or exchanges within a set period for your satisfaction.'
+        desc: 'Hassle-free returns or exchanges'
     },
     {
         icon: 'fa-headset',
         name: '24/7 Customer Support',
-        desc: 'Round-the-clock support for any questions or issues you might have.'
+        desc: 'Support online 24 hours a day'
     },
     {
         icon: 'fa-box',
         name: 'Order Tracking',
-        desc: 'Seamlessly track your order from shipment to doorstep delivery.'
+        desc: 'Follow your order status to deliver'
     },
     {
         icon: 'fa-lock',
         name: 'Secure Payments',
-        desc: 'Safe and secure payment methods for a worry-free shopping experience.'
+        desc: 'Safe and secure payment options'
     },
     {
         icon: 'fa-couch',
         name: 'Custom Furniture',
-        desc: 'Design your own furniture with our custom options tailored to your needs.'
+        desc: 'Design pieces that fit your style'
     },
 ];
 
