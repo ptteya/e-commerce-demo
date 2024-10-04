@@ -21,14 +21,18 @@
     background: none;
     padding: 8px 15px;
     cursor: pointer;
+    background-color: var(--yellow-color);
+    border-radius: 50px;
+    height: 100%;
 }
 
 .search-icon {
     font-size: 16px;
     color: var(--dark-gray-color);
+    color: white;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
     .search-form {
         width: 150px;
     }
@@ -39,8 +43,10 @@
     }
 
     #search-btn {
-        font-size: 14px;
-        padding-left: 0px;
-        padding-right: 10px;
+        padding: 8px 15px;
+    }
+
+    .search-icon {
+        font-size: 13px;
     }
 }
