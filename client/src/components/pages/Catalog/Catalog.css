@@ -13,7 +13,7 @@
 }
 
 .catalog-title {
-    background-color: #F7F7F7;
+    background-color: #FAFAFA;
     text-align: center;
     padding: 40px 0px;
 }
@@ -142,6 +142,28 @@
 .price-inputs input:focus {
     border-color: var(--yellow-color);
     outline: none;
+}
+
+.reset-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.reset-price .x-mark {
+    font-size: 20px;
+    color: rgb(230, 151, 151);
+    cursor: pointer;
+}
+
+.applied-price {
+    font-weight: 700;
+}
+
+.applied-price .range {
+    color: rgb(93, 158, 93);
+    font-weight: 700;
 }
 
 /* Colors Filter */

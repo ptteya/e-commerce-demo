@@ -1,6 +1,6 @@
 import './Catalog.css';
-import { useMemo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useQueryHandler } from 'hooks/useQueryHandler';
 import { useFetchFurniture } from 'hooks/useFetchFurniture ';
 import { formatCategoryTitle } from 'utils/formatCategoryTitle';
 import CatalogItem from './CatalogItem/CatalogItem';
@@ -9,12 +9,12 @@ import ColorFilter from './ColorFilter';
 import CategoryFilter from './CategoryFilter';
 
 const Catalog = () => {
-    const { search } = useLocation();
-    const queryParams = new URLSearchParams(search);
-    const furniture = useFetchFurniture(queryParams.toString());
+    const { searchParams } = useQueryHandler();
+    const furniture = useFetchFurniture(searchParams.toString());
+    const maxPrice = furniture.length > 0 ? Math.max(...furniture.map(item => item.price)) : 0;
 
-    const category = queryParams.get('category') || '';
-    const categoryTitle = useMemo(() => formatCategoryTitle(category), [category]);
+    const category = searchParams.get('category') || '';
+    const categoryTitle = formatCategoryTitle(category);
 
     return (
         <div className="catalog-section">
@@ -28,13 +28,13 @@ const Catalog = () => {
                 <div className="catalog-content">
                     <div className="filter-sidebar">
                         <CategoryFilter />
-                        <PriceFilter />
+                        <PriceFilter maxPrice={maxPrice} />
                         <ColorFilter />
                     </div>
                     <div className="product-container">
                         {furniture.length > 0 ? (
                             <>
-                                <p className='results'>{`Total Products (${furniture.length})`} </p>
+                                <p className='results'>{`Total Products (${furniture.length})`}</p>
                                 <div className="product-cards">
                                     {furniture.map((f) => <CatalogItem key={f._id} {...f} />)}
                                 </div>
@@ -45,7 +45,7 @@ const Catalog = () => {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 

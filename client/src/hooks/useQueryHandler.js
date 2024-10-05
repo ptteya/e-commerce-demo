@@ -26,6 +26,6 @@ export const useQueryHandler = () => {
         setSearchParams(searchParams);
     };
 
-    return { handleSearch, handleFilter, resetSearchParams };
+    return { searchParams, handleSearch, handleFilter, resetSearchParams };
 };
 
