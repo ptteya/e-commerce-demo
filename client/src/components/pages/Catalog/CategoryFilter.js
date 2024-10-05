@@ -1,21 +1,25 @@
+import { Link } from "react-router-dom";
 import { memo } from "react";
 import { categoryOptions } from "constants/categoryOptions";
-import { useQueryHandler } from "hooks/useQueryHandler";
 import { formatCategoryTitle } from "utils/formatCategoryTitle";
 
 const CategoryFilter = () => {
-    const { handleFilter } = useQueryHandler();
-
     return (
         <div className="filter-category">
             <p className="filter-title">CATEGORY</p>
             <ul >
                 {categoryOptions.map(option => (
-                    <li key={option} onClick={() => handleFilter({ category: option })}>
-                        {formatCategoryTitle(option)}
+                    <li key={option}>
+                        <Link to={`/furniture?category=${option}`}>
+                            {formatCategoryTitle(option)}
+                        </Link>
                     </li>
                 ))}
-                <li onClick={() => handleFilter({ category: '' })}>All Items</li>
+                <li>
+                    <Link to={`/furniture`}>
+                        All items
+                    </Link>
+                </li>
             </ul>
         </div >
     );
