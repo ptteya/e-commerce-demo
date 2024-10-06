@@ -5,15 +5,24 @@
 .footer-content {
     display: flex;
     justify-content: space-between;
-    padding: 60px 0px;
-    margin: 0px 150px;
+    margin: 60px 150px;
+}
+
+.footer-content .logo-col {
+    width: 18%;
 }
 
 .footer-content .logo {
     display: flex;
-    flex-direction: column;
     align-items: center;
     cursor: pointer;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.footer-content .logo p {
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .footer-content .logo a {
@@ -24,15 +33,15 @@
 .footer-content .logo .logo-image {
     background-image: url('/public/images/logo-image.jpeg');
     background-size: cover;
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     margin-bottom: 10px;
 }
 
 .col-title {
     font-size: 20px;
     color: var(--dark-gray-color);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .footer-column .info {
@@ -74,8 +83,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     background-color: var(--yellow-color);
     color: white;
     border-radius: 50%;
@@ -84,11 +93,11 @@
 }
 
 .icons-row a:hover {
-    background-color: var(--yellow-color);
+    background-color: var(--dark-gray-color);
 }
 
 .icons-row i {
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .rights {
@@ -99,17 +108,17 @@
     padding: 15px 0px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
     .footer-content {
-        margin: 0px 60px;
+        margin: 60px;
     }
 
     .footer-content>div {
         margin-right: 40px;
     }
 
-    .footer-content .logo h2 {
-        font-size: 18px;
+    .footer-content>div:last-child {
+        margin-right: 0;
     }
 
     .footer-content .logo .logo-image {
@@ -131,18 +140,44 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .footer-content {
+        margin: 60px 25px;
+    }
+
+    .footer-content .logo p {
+        font-size: 18px;
+    }
+
+    .footer-content .logo .logo-image {
+        width: 40px;
+        height: 40px;
+    }
+}
+
 @media (max-width: 768px) {
     .footer-content {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 0px 0px 20px 0px;
-        margin-right: 40px;
-        margin-left: 40px;
+        margin: 40px 20px;
     }
 
     .footer-content>div {
+        margin-right: 0px;
         margin-top: 30px;
+    }
+
+    .footer-content .logo-col {
+        margin-top: 0px;
+    }
+
+    .footer-content .logo {
+        justify-content: center;
+    }
+
+    .footer-content .logo-col .description {
+        display: none;
     }
 
     .icons-row {

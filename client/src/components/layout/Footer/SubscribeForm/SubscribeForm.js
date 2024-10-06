@@ -17,15 +17,12 @@ const SubscribeForm = () => {
             {showPopup && (<PopupMessage message={message} />)}
 
             <div className="subscribe-info">
-                <div className="title">
-                    <i className="far fa-envelope"></i>
-                    <p className="subscribe-heading">Join Our <br></br>Newsletter</p>
-                </div>
+                <p className="subscribe-heading">Join Our <br></br>Newsletter</p>
                 <p className="description">Subscribe Today and save 10% on your first purchase.</p>
             </div>
             <form className="subscribe-form" onSubmit={onSubmit}>
                 <input type="email" className="subscribe-input" name="email" placeholder="Enter email address...." value={values.email} onChange={changeHandler} required />
-                <input type="submit" value="SUBSCRIBE" className="subscribe-btn" />
+                <input type="submit" value="Subscribe" className="subscribe-btn" />
             </form>
         </div>
     );

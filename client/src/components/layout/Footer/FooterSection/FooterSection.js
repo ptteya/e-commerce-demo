@@ -3,7 +3,7 @@ import './FooterSection.css';
 
 const FooterColumn = ({ className, title, children }) => {
     return (
-        <div className={`footer-column ${className}`}>
+        <div className={`footer-column ${className ? className : ''}`}>
             {title && <h3 className="col-title">{title}</h3>}
             {children}
         </div>
@@ -14,10 +14,15 @@ const FooterSection = () => {
     return (
         <div className="footer-section">
             <div className="footer-content">
-                <div className='logo'>
-                    <Link to={'/'}><div className="logo-image"></div></Link>
-                    <Link to={'/'}><h2>HOMELY</h2></Link>
-                </div>
+                <FooterColumn className='logo-col'>
+                    <>
+                        <div className='logo'>
+                            <Link to={'/'}><div className="logo-image"></div></Link>
+                            <Link to={'/'}><p>HOMELY</p></Link>
+                        </div>
+                        <p className="description">Discover stylish and affordable furniture to beautifully transform your space into a cozy haven!</p>
+                    </>
+                </FooterColumn>
 
                 <FooterColumn className='links-col' title='Fast Links'>
                     <ul className="info">
@@ -32,7 +37,7 @@ const FooterSection = () => {
                     <div className="info">
                         <p>Free delivery in Sofia</p>
                         <p>Reliable supplier</p>
-                        <p>Personal data protection policy</p>
+                        <p>Personal data protection</p>
                         <p>All prices include VAT</p>
                     </div>
                 </FooterColumn>
