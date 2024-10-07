@@ -6,7 +6,9 @@ const ServiceSection = () => {
         <div className="services">
             {SERVICES.map(service => (
                 <div className="service" key={service.name}>
-                    <i className={`fas ${service.icon} icon`}></i>
+                    <div className="icon-wrapper">
+                        <i className={`fas ${service.icon} icon`}></i>
+                    </div>
                     <div className="info">
                         <p className="name">{service.name}</p>
                         <p className='desc'>{service.desc}</p>

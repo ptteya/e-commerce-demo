@@ -1,23 +1,13 @@
 export const SERVICES = [
     {
         icon: 'fa-truck',
-        name: 'Free Delivery',
-        desc: 'Free shipping on all order',
+        name: 'No-Cost Delivery',
+        desc: 'Free delivery on all orders.',
     },
     {
         icon: 'fa-undo-alt',
-        name: 'Easy Returns',
-        desc: 'Hassle-free returns or exchanges'
-    },
-    {
-        icon: 'fa-headset',
-        name: '24/7 Customer Support',
-        desc: 'Support online 24 hours a day'
-    },
-    {
-        icon: 'fa-box',
-        name: 'Order Tracking',
-        desc: 'Follow your order status to deliver'
+        name: 'Effortless Returns',
+        desc: 'Refund order within 30 days!'
     },
     {
         icon: 'fa-lock',
@@ -27,7 +17,7 @@ export const SERVICES = [
     {
         icon: 'fa-couch',
         name: 'Custom Furniture',
-        desc: 'Design pieces that fit your style'
+        desc: 'Design pieces for your style'
     },
 ];
 

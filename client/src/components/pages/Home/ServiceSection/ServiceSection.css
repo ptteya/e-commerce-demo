@@ -1,57 +1,54 @@
 .services {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin: 40px 150px 80px 150px;
-    gap: 25px;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 60px 150px 60px 150px;
+    gap: 20px;
 }
 
 .service {
     display: flex;
     align-items: center;
-    gap: 20px;
-    border: 1px solid rgb(223, 226, 223);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    gap: 15px;
+}
+
+.service .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border: 2px solid #bea380;
+    border-radius: 50%;
 }
 
 .service .icon {
     font-size: 20px;
-    border: 3px solid var(--yellow-color);
-    color: var(--yellow-color);
+    color: #bea380;
     padding: 15px;
-    border-radius: 50%;
 }
 
 .service .info .name {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 /* Screen Adjustments */
 @media (max-width: 1200px) {
     .services {
-        margin: 40px 80px 70px 80px;
         gap: 25px;
+        padding: 60px;
     }
 }
 
 @media (max-width: 1024px) {
-    .services {
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-
     .services .service {
         flex-direction: column;
         justify-content: center;
         text-align: center;
     }
 
-    .services .service:nth-last-child(-n+3) {
-        display: none;
-    }
-
+    .service .icon,
     .section-title p {
         font-size: 18px;
     }
@@ -59,16 +56,28 @@
 
 @media (max-width: 768px) {
     .services {
-        margin: 40px 50px;
+        padding: 30px 20px;
+        grid-template-columns: repeat(3, minmax(100px, 1fr));
+        justify-content: space-between;
+        gap: 5px;
     }
 
-    .service {
-        gap: 10px;
-        padding: 10px;
+    .services .service:nth-child(-n+1) {
+        display: none;
+    }
+
+    .services .service {
+        gap: 5px;
+    }
+
+    .service .icon-wrapper {
+        height: 40px;
+        width: 40px;
+        border: 0.5px solid var(--yellow-color);
     }
 
     .service .icon {
-        font-size: 15px;
+        font-size: 16px;
         padding: 10px;
     }
 
@@ -81,8 +90,8 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .services {
-        margin: 30px 20px;
+        padding: 30px 10px;
     }
 }
