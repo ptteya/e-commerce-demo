@@ -32,11 +32,11 @@ export const SERVICES = [
 ];
 
 export const CATEGORIES = [
-    { name: 'Couches', img: 'categories/cat-01.png' },
-    { name: 'Beds', img: 'categories/cat-02.png' },
-    { name: 'Chairs', img: 'categories/cat-03.png' },
-    { name: 'Tables', img: 'categories/cat-04.png' },
-    { name: 'Lamps', img: 'categories/cat-05.png' },
+    { name: 'Couches', img: 'cat1.png' },
+    { name: 'Beds', img: 'cat2.png' },
+    { name: 'Chairs', img: 'cat3.png' },
+    { name: 'Tables', img: 'cat4.png' },
+    { name: 'Lamps', img: 'cat5.png' },
 ];
 
 export const REVIEWS = [
