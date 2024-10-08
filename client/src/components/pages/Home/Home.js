@@ -4,7 +4,7 @@ import WelcomeSection from './WelcomeSection/WelcomeSection';
 import ServiceSection from './ServiceSection/ServiceSection';
 import CategoriesSection from './CategoriesSection/CategoriesSection';
 import FurnitureCollection from './FurnitureCollection/FurnitureCollection ';
-import MidPageBanner from './MidPageBanner/MidPageBanner';
+import SaleBanner from './SaleBanner/SaleBanner';
 import Reviews from './Reviews/Reviews';
 
 const Home = () => {
@@ -19,7 +19,7 @@ const Home = () => {
             <ServiceSection />
             <CategoriesSection />
             <FurnitureCollection furniture={recentFurniture} subtitle='Fresh Picks' title='Recent Collection' />
-            <MidPageBanner />
+            <SaleBanner />
             <FurnitureCollection furniture={trendyFurniture} subtitle='This Week' title='Trendy Collection' />
             <Reviews />
         </div>
@@ -27,4 +27,3 @@ const Home = () => {
 };
 
 export default Home;
-
