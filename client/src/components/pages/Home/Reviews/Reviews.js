@@ -5,7 +5,10 @@ import './Reviews.css';
 const Reviews = () => {
     return (
         <div className="reviews-section">
-            <p className="reviews-title">Customer Reviews</p>
+            <div className="title-group">
+                <p className="subtitle">Testimonials</p>
+                <p className="title">Customer Feedback</p>
+            </div>
             <div className="reviews-box-container">
                 {REVIEWS.map(review => (
                     <div className="review-box" key={review.customerName}>
