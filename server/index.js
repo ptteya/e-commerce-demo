@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const routes = require('./routes');
 const { authentication } = require('./middlewares/authMiddleware');
+const seedFurnitureData = require('./seeders/furnitureSeeder.js');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 5000;
@@ -18,7 +19,10 @@ app.use(authentication);
 app.use(routes);
 
 mongoose.connect(DB_CONNECTION_STRING)
-    .then(() => console.log('MongoDB connected'))
+    .then(async () => {
+        console.log('MongoDB connected');
+        await seedFurnitureData();
+    })
     .catch((error) => console.error('MongoDb connection error', error));
 
-app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server is listening on port ${PORT}...`));
