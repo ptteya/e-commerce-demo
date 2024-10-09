@@ -207,7 +207,7 @@ async function seedFurnitureData() {
         const existingProducts = await Furniture.find({});
         if (existingProducts.length === 0) {
             await Furniture.insertMany(furnitureData);
-            console.log('Database seeded successfully!');
+            console.log('Furniture data seeded successfully!');
         }
     } catch (error) {
         console.error('Error seeding database: ', error);
