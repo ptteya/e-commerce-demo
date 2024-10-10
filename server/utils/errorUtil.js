@@ -18,13 +18,13 @@ function getErrorMessage(error) {
     }
 }
 
-exports.handleErrorResponse = (res, statusCode, customMessage = null, error = null) => {
+exports.handleErrorResponse = ({ res, statusCode, message = null, error = null }) => {
     let errorMessage;
 
-    if (!customMessage && !error) {
+    if (!message && !error) {
         errorMessage = genericMessages[statusCode];
     } else {
-        errorMessage = customMessage ? customMessage : getErrorMessage(error);
+        errorMessage = message ? message : getErrorMessage(error);
     }
 
     res.status(statusCode).json({ error: errorMessage });

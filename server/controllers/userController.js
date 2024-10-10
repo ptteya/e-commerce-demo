@@ -7,7 +7,7 @@ exports.login = async (req, res) => {
         const user = await userService.login(req.body);
         res.status(200).json(user);
     } catch (error) {
-        handleErrorResponse(res, 401, null, error);
+        handleErrorResponse({ res, statusCode: 401, error });
     }
 };
 
@@ -16,7 +16,8 @@ exports.register = async (req, res) => {
         const user = await userService.register(req.body);
         res.status(200).json(user);
     } catch (error) {
-        handleErrorResponse(res, 400, null, error);
+        handleErrorResponse({ res, statusCode: 400, error });
+
     }
 };
 
@@ -27,14 +28,15 @@ exports.logout = (req, res) => {
 exports.getUserData = async (req, res) => {
     const token = req.headers['authorization'];
     if (!token) {
-        return handleErrorResponse(res, 401, 'Authorization token is missing');
+        return handleErrorResponse({ res, statusCode: 401, message: 'Authorization token is missing' });
+
     }
 
     try {
         const user = await userService.getUserFromToken(token);
         res.status(200).json({ user });
     } catch (error) {
-        handleErrorResponse(res, 401, null, error);
+        handleErrorResponse({ res, statusCode: 401, error });
     }
 };
 
@@ -44,7 +46,7 @@ exports.getAllUsers = async (req, res) => {
         const users = usersInfo.map(user => sanitizeUserObject(user));
         res.status(200).json({ users });
     } catch (error) {
-        handleErrorResponse(res, 500);
+        handleErrorResponse({ res, statusCode: 500 });
     }
 };
 
@@ -55,7 +57,7 @@ exports.toggleUserRole = async (req, res) => {
         const updatedUser = await userService.toggleRole(userId, role).lean();
         res.status(200).json({ user: sanitizeUserObject(updatedUser) });
     } catch (error) {
-        handleErrorResponse(res, 500);
+        handleErrorResponse({ res, statusCode: 500 });
     }
 };
 
@@ -68,7 +70,7 @@ exports.emptyCollection = async (req, res) => {
         await userService.emptyCollection(req.body.userId, req.params.collectionName);
         res.status(200).json({ message: 'Successfully emptied collection' });
     } catch (error) {
-        handleErrorResponse(res, 500);
+        handleErrorResponse({ res, statusCode: 500 });
     }
 };
 
@@ -77,13 +79,13 @@ async function modifyUserCollection(req, res, collectionName) {
     const action = req.params.action;
 
     if (action !== 'add' && action !== 'remove' && action !== 'update') {
-        return handleErrorResponse(res, 400, 'Invalid action');
+        return handleErrorResponse({ res, statusCode: 400, message: 'Invalid action' });
     }
 
     try {
         const result = await userService.modifyCollection(collectionName, action, userId, furnitureId, quantity);
         res.status(200).json({ [collectionName]: result });
     } catch (error) {
-        handleErrorResponse(res, 500, null, error);
+        handleErrorResponse({ res, statusCode: 500, error });
     }
 }

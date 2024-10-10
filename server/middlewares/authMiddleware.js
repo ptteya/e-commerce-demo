@@ -8,7 +8,7 @@ exports.authentication = (req, res, next) => {
         try {
             req.user = verifyToken(header);
         } catch (error) {
-            return handleErrorResponse(res, 403, 'Invalid token');
+            return handleErrorResponse({ res, statusCode: 403, message: 'Invalid token' });
         }
     }
 
@@ -19,7 +19,8 @@ exports.requireAuth = (req, res, next) => {
     if (req.user) {
         next();
     } else {
-        handleErrorResponse(res, 401, 'Authentication required');
+        handleErrorResponse({ res, statusCode: 401, message: 'Authentication required' });
+
     }
 };
 
@@ -27,7 +28,8 @@ exports.requireGuest = (req, res, next) => {
     if (!req.user) {
         next();
     } else {
-        handleErrorResponse(res, 401, 'Guest access only');
+        handleErrorResponse({ res, statusCode: 401, message: 'Guest access only' });
+
     }
 };
 
@@ -35,6 +37,6 @@ exports.requireAdmin = (req, res, next) => {
     if (req.user && req.user.role === 'admin') {
         next();
     } else {
-        handleErrorResponse(res, 403, 'Permission denied: Admin access required');
+        handleErrorResponse({ res, statusCode: 403, message: 'Permission denied: Admin access required' });
     }
 };
