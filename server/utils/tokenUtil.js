@@ -1,4 +1,3 @@
-const userService = require('../services/userService');
 const jwt = require('jsonwebtoken');
 const { sanitizeUserObject } = require('./userUtils');
 require('dotenv').config();
@@ -24,14 +23,4 @@ exports.addTokenToUser = (user, token) => {
     const userInfo = sanitizeUserObject(userObj);
     userInfo.token = token;
     return userInfo;
-};
-
-exports.getUserFromToken = async (token) => {
-    try {
-        const payload = exports.verifyToken(token);
-        const user = await userService.getById(payload._id);
-        return exports.addTokenToUser(user, token);
-    } catch (error) {
-        throw new Error(error);
-    }
 };
