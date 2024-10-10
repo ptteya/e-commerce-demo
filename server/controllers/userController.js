@@ -59,9 +59,9 @@ exports.toggleUserRole = async (req, res) => {
     }
 };
 
-exports.toggleFavorites = async (req, res) => handleAction(req, res, 'favorites');
+exports.modifyFavorites = async (req, res) => modifyUserCollection(req, res, 'favorites');
 
-exports.modifyCart = async (req, res) => handleAction(req, res, 'cart');
+exports.modifyCart = async (req, res) => modifyUserCollection(req, res, 'cart');
 
 exports.emptyCollection = async (req, res) => {
     try {
@@ -72,7 +72,7 @@ exports.emptyCollection = async (req, res) => {
     }
 };
 
-async function handleAction(req, res, collectionName) {
+async function modifyUserCollection(req, res, collectionName) {
     const { userId, furnitureId, quantity } = req.body;
     const action = req.params.action;
 

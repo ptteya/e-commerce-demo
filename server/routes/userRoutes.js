@@ -8,7 +8,7 @@ router.post('/users/login', requireGuest, userController.login);
 router.post('/users/register', requireGuest, userController.register);
 router.get('/users/logout', requireAuth, userController.logout);
 router.get('/users/me', requireAuth, userController.getUserData);
-router.post('/users/favorites/:action', requireAuth, userController.toggleFavorites);
+router.post('/users/favorites/:action', requireAuth, userController.modifyFavorites);
 router.post('/users/cart/:action', requireAuth, userController.modifyCart);
 router.delete('/users/:collectionName', requireAuth, userController.emptyCollection);
 
