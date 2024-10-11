@@ -176,6 +176,14 @@
     .top-header {
         z-index: 400;
     }
+
+    .user-menu {
+        display: none;
+    }
+
+    .shopping-cart-icon {
+        padding: 0px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -183,7 +191,7 @@
         padding: 0px 20px;
     }
 
-    .top-header-services {
+    .top-header-services p:nth-child(-n+3) {
         display: none;
     }
 
