@@ -43,9 +43,9 @@ const Cart = () => {
                             </Link>
 
                             <div className="cart-summary">
-                                <p className='price'>Subtotal: <span>${totalPrice}</span></p>
+                                <p className='price'>Subtotal: <span>${totalPrice.toFixed(2)}</span></p>
                                 <p className='price'>Shipping: <span>${TAX_AMOUNT.toFixed(2)}</span></p>
-                                <p className='total-price'>Total Price: <span>${totalPrice + TAX_AMOUNT}</span></p>
+                                <p className='total-price'>Total Price: <span>${(totalPrice + TAX_AMOUNT).toFixed(2)}</span></p>
                             </div>
                         </div>
                     </div>

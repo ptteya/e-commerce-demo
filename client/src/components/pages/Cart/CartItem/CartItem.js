@@ -1,4 +1,5 @@
 import { useCollectionManager } from 'hooks/useCollectionManager';
+import { RiDeleteBin6Line } from "react-icons/ri";
 import './CartItem.css';
 
 const CartItem = ({
@@ -35,7 +36,7 @@ const CartItem = ({
                 </div>
             </div>
             <p className="price">${price}</p>
-            <p className="remove-furniture" onClick={() => toggleCollectionItem()}>Remove</p>
+            <p className="remove-furniture" onClick={() => toggleCollectionItem()}><RiDeleteBin6Line /></p>
         </div>
     );
 };

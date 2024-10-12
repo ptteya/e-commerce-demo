@@ -7,7 +7,7 @@ const CategoryFilter = () => {
     return (
         <div className="filter-category">
             <p className="filter-title">CATEGORY</p>
-            <ul >
+            <ul className="filter-content">
                 {categoryOptions.map(option => (
                     <li key={option}>
                         <Link to={`/furniture?category=${option}`}>

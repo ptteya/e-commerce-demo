@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 60px;
+    gap: 100px;
 }
 
 .product-container {
@@ -65,19 +65,32 @@
     margin-right: 8px;
 }
 
+@media (max-width: 1300px) {
+    .cart-container {
+        gap: 40px;
+    }
+}
+
 @media (max-width: 1200px) {
     .cart-container {
         display: flex;
         flex-direction: column;
+        margin-right: 60px;
+        margin-left: 60px;
     }
 }
 
 @media (max-width: 768px) {
     .cart-container {
-        margin: 40px 50px;
+        margin: 40px 20px;
+        gap: 20px;
     }
 
     .cart-summary .total-price {
         font-size: 18px;
+    }
+
+    .cart-actions .btn-back {
+        font-size: 15px;
     }
 }

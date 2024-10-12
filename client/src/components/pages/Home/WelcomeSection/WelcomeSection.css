@@ -29,16 +29,14 @@
     gap: 16px;
     position: absolute;
     top: 50%;
-    left: 10%;
+    left: 150px;
     transform: translateY(-50%);
 }
 
 .welcome-text {
-    font-size: 30px;
-    letter-spacing: 2px;
-    color: black;
+    font-size: 35px;
+    color: #333;
     font-weight: 700;
-    text-transform: uppercase;
 }
 
 .welcome-subtext {
@@ -48,22 +46,31 @@
     margin-bottom: 15px;
 }
 
+.welcome-text .subtitle {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 22px;
+    color: rgb(110, 91, 50);
+    display: block;
+    letter-spacing: 4px;
+}
+
 .catalog-btn {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-size: 13px;
-    color: black;
-    border: 1px solid black;
+    color: #333;
+    border: 1px solid #333;
     border-radius: 50px;
-    text-transform: uppercase;
-    padding: 15px 35px;
+    padding: 12px 25px;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s;
+    letter-spacing: 1px;
 }
 
 .catalog-btn .fa-arrow-right {
-    margin-left: 5px;
+    margin-left: 8px;
 }
 
 .catalog-btn:hover {
@@ -74,15 +81,15 @@
 /* Screen Adjustments */
 @media (max-width: 1200px) {
     .welcome-text-container {
-        gap: 10px;
-    }
-
-    .welcome-image-container {
-        height: 300px;
+        left: 60px;
     }
 
     .welcome-text {
-        font-size: 22px;
+        font-size: 28px;
+    }
+
+    .welcome-text .subtitle {
+        font-size: 20px;
     }
 
     .welcome-subtext {
@@ -92,30 +99,46 @@
 
     .catalog-btn {
         font-size: 12px;
-        padding: 12px 15px;
+        padding: 12px 20px;
     }
 }
 
 @media (max-width: 768px) {
-    .welcome-image-container img {
-        object-position: 10% bottom;
+    .welcome-text-container {
+        left: 20px;
     }
 
-    .welcome-text-container {
-        gap: 8px;
+    .welcome-image-container {
+        height: 480px;
+    }
+
+    .welcome-image-container img {
+        object-position: 30% bottom;
     }
 
     .welcome-text {
-        font-size: 18px;
+        font-size: 24px;
+    }
+
+    .welcome-text .subtitle {
+        margin-bottom: 2px;
+        font-size: 20px;
+        letter-spacing: 0px;
     }
 
     .welcome-subtext {
-        font-size: 11px;
+        font-size: 13px;
         margin-bottom: 0px;
     }
 
     .catalog-btn {
         font-size: 10px;
-        padding: 8px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-image-container {
+        height: 350px;
     }
 }

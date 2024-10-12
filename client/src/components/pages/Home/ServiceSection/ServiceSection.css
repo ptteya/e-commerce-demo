@@ -56,10 +56,10 @@
 
 @media (max-width: 768px) {
     .services {
-        padding: 30px 20px;
+        padding: 30px 10px;
         grid-template-columns: repeat(3, minmax(100px, 1fr));
         justify-content: space-between;
-        gap: 5px;
+        gap: 10px;
     }
 
     .services .service:nth-child(-n+1) {
@@ -87,11 +87,5 @@
 
     .service .desc {
         display: none;
-    }
-}
-
-@media (max-width: 768px) {
-    .services {
-        padding: 30px 10px;
     }
 }

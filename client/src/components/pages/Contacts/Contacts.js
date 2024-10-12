@@ -25,7 +25,6 @@ const Contacts = () => {
                     <Link to='/' className='homepage'>Home</Link> / Contacts
                 </div>
                 <h1>Contact Us</h1>
-                <p>Need help? We're here for you!</p>
             </section>
 
             <div className="map-section">

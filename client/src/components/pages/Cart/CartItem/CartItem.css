@@ -75,8 +75,8 @@
 
 @media (max-width: 768px) {
     .cart-container .product-info img {
-        width: 60px;
-        height: 60px;
+        width: 100px;
+        height: 100px;
     }
 
     .cart-container .product-info .product-name {
@@ -104,5 +104,24 @@
 
     .remove-furniture {
         font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-container .product-info {
+        gap: 10px;
+    }
+
+    .cart-container .product-info img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .cart-container .product-info .product-name {
+        font-size: 13px;
+    }
+
+    .quantity-container .quantity {
+        border: none;
     }
 }

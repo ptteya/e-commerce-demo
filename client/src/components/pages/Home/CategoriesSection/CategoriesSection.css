@@ -113,15 +113,23 @@
     .grid-item img {
         object-position: center;
     }
+
+    .grid-item:hover img {
+        transform: none;
+    }
+
+    .grid-item:hover {
+        background-size: cover;
+    }
 }
 
 @media (max-width: 480px) {
     .categories {
-        height: 850px;
-        grid-template-columns: repeat(1, 1fr);
+        height: 450px;
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .grid-item.couches {
-        grid-row: span 1;
+    .grid-item p {
+        margin: 0px;
     }
 }

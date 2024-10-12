@@ -21,7 +21,6 @@
     background: none;
     padding: 8px 15px;
     cursor: pointer;
-    background-color: var(--yellow-color);
     border-radius: 50px;
     height: 100%;
 }
@@ -29,7 +28,6 @@
 .search-icon {
     font-size: 16px;
     color: var(--dark-gray-color);
-    color: white;
 }
 
 @media (max-width: 1400px) {

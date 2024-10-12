@@ -7,10 +7,8 @@ const WelcomeSection = () => {
             <div className="welcome-image-container">
                 <img src="/images/welcome-banner.png" alt="banner" />
                 <div className="welcome-text-container">
-                    <p className="welcome-text">Furniture</p>
-                    <p className="welcome-text"> Made Just for You</p>
-                    <p className="welcome-subtext">Transform your space with timeless furniture pieces that blend style and
-                        comfort.
+                    <p className="welcome-text"><span className="subtitle">Discover Quality</span> Furniture for Every Style</p>
+                    <p className="welcome-subtext">Create your perfect home with stylish furniture that offers both beauty and comfort
                     </p>
                     <Link to="/furniture" className="catalog-btn">See Catalog <i className="fas fa-arrow-right"></i></Link>
                 </div>

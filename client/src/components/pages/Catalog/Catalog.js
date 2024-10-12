@@ -19,10 +19,10 @@ const Catalog = () => {
     return (
         <div className="catalog-section">
             <div className="catalog-title">
-                <h1>{categoryTitle}</h1>
                 <div className="path">
-                    <Link to='/' className='homepage'>Home</Link> / <span>{categoryTitle}</span>
+                    <Link to='/' className='homepage'>Home</Link> / Catalog / <span>{categoryTitle}</span>
                 </div>
+                <h1>{categoryTitle}</h1>
             </div>
             <div className="catalog-container">
                 <div className="catalog-content">

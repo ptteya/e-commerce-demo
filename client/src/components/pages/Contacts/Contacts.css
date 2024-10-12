@@ -5,16 +5,18 @@
 
 .hero {
     color: black;
-    padding: 40px 0px;
+    padding: 50px 0px;
     text-align: center;
     position: relative;
-    background-color: #f8f8f8;
     width: 100%;
+    background: url('/public/images/hero-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .hero h1 {
     font-size: 35px;
-    margin: 15px 0px;
+    margin-top: 15px;
 }
 
 .map-section {
@@ -123,13 +125,14 @@
 }
 
 @media (max-width: 1024px) {
-    .map-section {
-        flex-direction: column;
-        width: 80%;
-    }
-
     .contact-details {
         justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .map-section {
+        flex-direction: column;
+        width: 90%;
     }
 
     .contact-details .contact {
@@ -145,7 +148,8 @@
     }
 
     .contact-form-section {
-        width: 80%;
+        width: 90%;
+        padding: 20px;
     }
 
     .contact-form .input-fields {
