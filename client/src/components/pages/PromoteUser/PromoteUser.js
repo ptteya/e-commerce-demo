@@ -14,7 +14,7 @@ const PromoteUser = () => {
 
     useEffect(() => {
         userService.getAll()
-            .then(result => setUsers(filterUsers(result.users)))
+            .then(result => setUsers(filterUsers(result.data)))
             .catch((error) => console.error('Error fetching users:', error.message));
     }, []);
 
@@ -22,7 +22,7 @@ const PromoteUser = () => {
         try {
             const result = await userService.toggleUserRole(userId, userRole);
             setUsers(oldUsers =>
-                oldUsers.map(user => user._id === userId ? result.user : user)
+                oldUsers.map(user => user._id === userId ? result.data : user)
             );
         } catch (error) {
             console.error('Error updating user role:', error.message);

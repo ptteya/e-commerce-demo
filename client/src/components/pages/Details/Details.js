@@ -18,7 +18,7 @@ const Details = () => {
 
     useEffect(() => {
         furnitureService.getDetails(furnitureId)
-            .then(result => setFurniture(result.furniture))
+            .then(result => setFurniture(result.data))
             .catch((error) => console.error('Error fetching furniture details:', error.message));
     }, [furnitureId]);
 

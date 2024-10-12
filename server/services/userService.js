@@ -23,7 +23,7 @@ const checkIfUserExists = async (email, username) => {
 const generateAuthResponse = (user) => {
     const token = generateToken(user);
     const userInfo = addTokenToUser(user, token);
-    return { token, user: userInfo };
+    return userInfo;
 };
 
 const login = async ({ email, password }) => {

@@ -5,7 +5,7 @@ const { sanitizeUserObject } = require('../utils/userUtils');
 exports.login = async (req, res) => {
     try {
         const user = await userService.login(req.body);
-        res.status(200).json(user);
+        res.status(200).json({ data: user });
     } catch (error) {
         handleErrorResponse({ res, statusCode: 401, error });
     }
@@ -14,7 +14,7 @@ exports.login = async (req, res) => {
 exports.register = async (req, res) => {
     try {
         const user = await userService.register(req.body);
-        res.status(200).json(user);
+        res.status(200).json({ data: user });
     } catch (error) {
         handleErrorResponse({ res, statusCode: 400, error });
 
@@ -29,12 +29,11 @@ exports.getUserData = async (req, res) => {
     const token = req.headers['authorization'];
     if (!token) {
         return handleErrorResponse({ res, statusCode: 401, message: 'Authorization token is missing' });
-
     }
 
     try {
         const user = await userService.getUserFromToken(token);
-        res.status(200).json({ user });
+        res.status(200).json({ data: user });
     } catch (error) {
         handleErrorResponse({ res, statusCode: 401, error });
     }
@@ -44,7 +43,7 @@ exports.getAllUsers = async (req, res) => {
     try {
         const usersInfo = await userService.getAll().lean();
         const users = usersInfo.map(user => sanitizeUserObject(user));
-        res.status(200).json({ users });
+        res.status(200).json({ data: users });
     } catch (error) {
         handleErrorResponse({ res, statusCode: 500 });
     }
@@ -55,7 +54,8 @@ exports.toggleUserRole = async (req, res) => {
 
     try {
         const updatedUser = await userService.toggleRole(userId, role).lean();
-        res.status(200).json({ user: sanitizeUserObject(updatedUser) });
+        const sanitizedUser = sanitizeUserObject(updatedUser);
+        res.status(200).json({ data: sanitizedUser });
     } catch (error) {
         handleErrorResponse({ res, statusCode: 500 });
     }
@@ -68,7 +68,7 @@ exports.modifyCart = async (req, res) => modifyUserCollection(req, res, 'cart');
 exports.emptyCollection = async (req, res) => {
     try {
         await userService.emptyCollection(req.body.userId, req.params.collectionName);
-        res.status(200).json({ message: 'Successfully emptied collection' });
+        res.status(204).send();
     } catch (error) {
         handleErrorResponse({ res, statusCode: 500 });
     }
@@ -84,7 +84,7 @@ async function modifyUserCollection(req, res, collectionName) {
 
     try {
         const result = await userService.modifyCollection(collectionName, action, userId, furnitureId, quantity);
-        res.status(200).json({ [collectionName]: result });
+        res.status(200).json({ data: result });
     } catch (error) {
         handleErrorResponse({ res, statusCode: 500, error });
     }

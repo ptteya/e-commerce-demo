@@ -22,9 +22,9 @@ export const AuthProvider = ({ children }) => {
 
     const handleUserAction = async (actionFunction, userData) => {
         try {
-            const { token, user: updatedUser } = await actionFunction(userData);
-            setUser(updatedUser);
-            localStorage.setItem('token', token);
+            const { data: user } = await actionFunction(userData);
+            setUser(user);
+            localStorage.setItem('token', user.token);
             localStorage.removeItem('favorites');
             localStorage.removeItem('cart');
             navigate('/');

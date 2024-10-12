@@ -12,7 +12,7 @@ const Edit = () => {
 
     useEffect(() => {
         furnitureService.getDetails(furnitureId)
-            .then(result => changeValues(result.furniture))
+            .then(result => changeValues(result.data))
             .catch((error) => console.error('Error fetching furniture details:', error.message));
     }, [furnitureId]);
 

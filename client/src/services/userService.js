@@ -21,8 +21,8 @@ export const verifyUserToken = async () => {
         const token = localStorage.getItem('token');
         if (!token) return null;
 
-        const result = await getUserData();
-        return result.user;
+        const { data } = await getUserData();
+        return data;
     } catch (error) {
         console.error("Failed to verify token:", error.message);
         return null;

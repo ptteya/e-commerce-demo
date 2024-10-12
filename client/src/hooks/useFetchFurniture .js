@@ -8,7 +8,7 @@ export const useFetchFurniture = (queryString = null) => {
         async function fetchData() {
             try {
                 const result = await furnitureService.getFurniture(queryString);
-                setFurniture(result.furniture);
+                setFurniture(result.data);
             } catch (error) {
                 console.error('Error fetching furniture:', error.message);
             }

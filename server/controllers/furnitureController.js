@@ -23,7 +23,7 @@ exports.getFurniture = async (req, res) => {
 
     try {
         const furniture = await furnitureService.getFurniture(filter);
-        res.status(200).json({ furniture });
+        res.status(200).json({ data: furniture });
     } catch (error) {
         handleErrorResponse({ res, statusCode: 500 });
     }
@@ -33,7 +33,7 @@ exports.getDetails = async (req, res) => {
     try {
         const furnitureId = req.params.furnitureId;
         const furniture = await furnitureService.getById(furnitureId).lean();
-        res.status(200).json({ furniture });
+        res.status(200).json({ data: furniture });
     } catch (error) {
         handleErrorResponse({ res, statusCode: 500 });
     }
@@ -45,7 +45,7 @@ exports.edit = async (req, res) => {
 
     try {
         const furniture = await furnitureService.edit(furnitureId, newData).lean();
-        res.status(200).json({ furniture })
+        res.status(200).json({ data: furniture });
     } catch (error) {
         handleErrorResponse({ res, statusCode: 500, error });
 
@@ -56,7 +56,7 @@ exports.create = async (req, res) => {
     const data = req.body;
     try {
         const furniture = await furnitureService.create(data);
-        res.status(200).json({ furniture })
+        res.status(200).json({ data: furniture });
     } catch (error) {
         handleErrorResponse({ res, statusCode: 500, error });
     }
@@ -66,7 +66,7 @@ exports.deleteFurniture = async (req, res) => {
     const furnitureId = req.params.furnitureId;
     try {
         await furnitureService.deleteFurniture(furnitureId);
-        res.status(200).json({ message: 'Furniture deleted successfully' });
+        res.status(204).send();
     } catch (error) {
         handleErrorResponse({ res, statusCode: 500 });
     }

@@ -28,8 +28,8 @@ export const useCollectionManager = (furnitureId, collectionName) => {
 
     const modifyUserCollection = async (action, newQuantity = 1) => {
         try {
-            const result = await userService.updateCollection(action, collectionName, user._id, furnitureId, newQuantity);
-            updateUserCollection(collectionName, result[collectionName]);
+            const { data } = await userService.updateCollection(action, collectionName, user._id, furnitureId, newQuantity);
+            updateUserCollection(collectionName, data);
         } catch (error) {
             console.error(`Failed to update ${collectionName}:`, error.message);
         }

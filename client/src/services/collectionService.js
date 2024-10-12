@@ -25,7 +25,7 @@ export const updateGuestQuantity = (id, collectionName, newQuantity) => {
 };
 
 const fetchAndFilterFurniture = async (collection) => {
-    const { furniture } = await furnitureService.getFurniture();
+    const { data: furniture } = await furnitureService.getFurniture();
     const furnitureIds = new Set(collection.map(item => item.furnitureId));
     return furniture.filter(f => furnitureIds.has(f._id));
 };
