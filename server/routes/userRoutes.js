@@ -8,9 +8,12 @@ router.post('/users/login', requireGuest, userController.login);
 router.post('/users/register', requireGuest, userController.register);
 router.get('/users/logout', requireAuth, userController.logout);
 router.get('/users/me', requireAuth, userController.getUserData);
-router.post('/users/favorites/:action', requireAuth, userController.modifyFavorites);
-router.post('/users/cart/:action', requireAuth, userController.modifyCart);
-router.delete('/users/:collectionName', requireAuth, userController.emptyCollection);
+
+// User Collection Routes
+router.post('/users/:collection', requireAuth, userController.addToCollection)
+router.delete('/users/:collection', requireAuth, userController.emptyCollection);
+router.put('/users/:collection/:furnitureId', requireAuth, userController.updateCollectionItem);
+router.delete('/users/:collection/:furnitureId', requireAuth, userController.removeCollectionItem);
 
 // Admin routes
 router.post('/admin/promote', requireAdmin, userController.toggleUserRole);

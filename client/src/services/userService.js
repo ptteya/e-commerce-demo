@@ -12,7 +12,18 @@ export const getAll = () => request.get('admin/users');
 
 export const toggleUserRole = (userId, role) => request.post('admin/promote', { userId, role });
 
-export const updateCollection = (action, collectionName, userId, furnitureId, quantity) => request.post(`users/${collectionName}/${action}`, { userId, furnitureId, quantity });
+export const modifyCollection = (action, collectionName, userId, furnitureId, quantity) => {
+    switch (action) {
+        case 'add':
+            return request.post(`users/${collectionName}`, { userId, furnitureId, quantity });
+        case 'remove':
+            return request.del(`users/${collectionName}/${furnitureId}`, { userId });
+        case 'update':
+            return request.put(`users/${collectionName}/${furnitureId}`, { userId, quantity });
+        default:
+            return Promise.reject(new Error(`Invalid action: ${action}`));
+    }
+};
 
 export const clearCollection = (userId, collectionName) => request.del(`users/${collectionName}`, { userId });
 

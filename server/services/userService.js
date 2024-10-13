@@ -79,45 +79,54 @@ const emptyCollection = async (userId, collectionName) => {
     return updatedUser;
 };
 
-const modifyCollection = async (collectionName, action, userId, furnitureId, quantity) => {
+const modifyCollection = async (collection, action, userId, furnitureId, quantity) => {
     const user = await getById(userId);
-    let collection = user[collectionName].toObject();
 
     if (action === 'add') {
-        collection = addToCollection(collectionName, collection, furnitureId, quantity);
+        addToCollection(collection, user, furnitureId, quantity);
     } else if (action === 'remove') {
-        collection = collection.filter((el) => el.furnitureId.toString() !== furnitureId);
-    } else if (action === 'update' && collectionName === 'cart') {
-        collection = updateItemQuantity(collection, furnitureId, quantity);
+        removeCollectionItem(collection, user, furnitureId);
+    } else if (action === 'update' && collection === 'cart') {
+        updateItemQuantity(collection, user, furnitureId, quantity);
     }
 
-    user[collectionName] = collection;
     await user.save();
-    return collection;
+    return user[collection].toObject();
 };
 
-function addToCollection(collectionName, collection, furnitureId, quantity) {
-    const isInCollection = collection.some((el) => el.furnitureId === furnitureId);
+const getItemIndex = (collection, furnitureId) => {
+    return collection.findIndex(el => el.furnitureId.toString() === furnitureId);
+};
 
-    if (isInCollection) {
-        throw new Error(`Furniture is already in the ${collectionName}`)
+function addToCollection(collection, user, furnitureId, quantity) {
+    const itemIndex = getItemIndex(user[collection], furnitureId);
+
+    if (itemIndex !== -1) {
+        throw new Error(`Furniture is already in ${collection}`)
     }
 
-    const item = { furnitureId, ...(collectionName === 'cart' && { quantity }) };
-    collection.push(item);
-
-    return collection;
+    const item = { furnitureId, ...(collection === 'cart' && { quantity }) };
+    user[collection].push(item);
 }
 
-function updateItemQuantity(collection, furnitureId, quantity) {
-    const cartItemIndex = collection.findIndex(el => el.furnitureId.toString() === furnitureId);
+function updateItemQuantity(collection, user, furnitureId, quantity) {
+    const itemIndex = getItemIndex(user[collection], furnitureId);
 
-    if (cartItemIndex === -1) {
-        throw new Error('Can not update furniture quantity');
+    if (itemIndex === -1) {
+        throw new Error(`Item not found in ${collection}`);
     }
 
-    collection[cartItemIndex].quantity = quantity;
-    return collection;
+    user[collection][itemIndex].quantity = quantity;
+}
+
+function removeCollectionItem(collection, user, furnitureId) {
+    const itemIndex = getItemIndex(user[collection], furnitureId);
+
+    if (itemIndex === -1) {
+        throw new Error(`Item not found in ${collection}`);
+    }
+
+    user[collection].splice(itemIndex, 1);
 }
 
 module.exports = {

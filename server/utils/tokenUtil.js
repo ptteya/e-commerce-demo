@@ -11,7 +11,7 @@ exports.generateToken = (user) => {
         role: user.role,
     };
 
-    return jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
+    return jwt.sign(payload, JWT_SECRET);
 };
 
 exports.verifyToken = (token) => {

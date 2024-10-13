@@ -61,29 +61,26 @@ exports.toggleUserRole = async (req, res) => {
     }
 };
 
-exports.modifyFavorites = async (req, res) => modifyUserCollection(req, res, 'favorites');
-
-exports.modifyCart = async (req, res) => modifyUserCollection(req, res, 'cart');
+exports.addToCollection = async (req, res) => modifyUserCollection(req, res, 'add');
+exports.removeCollectionItem = async (req, res) => modifyUserCollection(req, res, 'remove');
+exports.updateCollectionItem = async (req, res) => modifyUserCollection(req, res, 'update');
 
 exports.emptyCollection = async (req, res) => {
     try {
-        await userService.emptyCollection(req.body.userId, req.params.collectionName);
+        await userService.emptyCollection(req.body.userId, req.params.collection);
         res.status(204).send();
     } catch (error) {
         handleErrorResponse({ res, statusCode: 500 });
     }
 };
 
-async function modifyUserCollection(req, res, collectionName) {
-    const { userId, furnitureId, quantity } = req.body;
-    const action = req.params.action;
-
-    if (action !== 'add' && action !== 'remove' && action !== 'update') {
-        return handleErrorResponse({ res, statusCode: 400, message: 'Invalid action' });
-    }
+async function modifyUserCollection(req, res, action) {
+    const { userId, quantity } = req.body;
+    const furnitureId = req.body.furnitureId || req.params.furnitureId;
+    const { collection } = req.params;
 
     try {
-        const result = await userService.modifyCollection(collectionName, action, userId, furnitureId, quantity);
+        const result = await userService.modifyCollection(collection, action, userId, furnitureId, quantity);
         res.status(200).json({ data: result });
     } catch (error) {
         handleErrorResponse({ res, statusCode: 500, error });
