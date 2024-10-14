@@ -19,7 +19,7 @@ export const modifyCollection = (action, collectionName, userId, furnitureId, qu
         case 'remove':
             return request.del(`users/${collectionName}/${furnitureId}`, { userId });
         case 'update':
-            return request.put(`users/${collectionName}/${furnitureId}`, { userId, quantity });
+            return request.patch(`users/${collectionName}/${furnitureId}`, { userId, quantity });
         default:
             return Promise.reject(new Error(`Invalid action: ${action}`));
     }

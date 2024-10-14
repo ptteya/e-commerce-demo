@@ -12,7 +12,7 @@ router.get('/users/me', requireAuth, userController.getUserData);
 // User Collection Routes
 router.post('/users/:collection', requireAuth, userController.addToCollection)
 router.delete('/users/:collection', requireAuth, userController.emptyCollection);
-router.put('/users/:collection/:furnitureId', requireAuth, userController.updateCollectionItem);
+router.patch('/users/:collection/:furnitureId', requireAuth, userController.updateCollectionItem);
 router.delete('/users/:collection/:furnitureId', requireAuth, userController.removeCollectionItem);
 
 // Admin routes
