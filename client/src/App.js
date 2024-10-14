@@ -82,7 +82,7 @@ function App() {
             <Route path='/favorites' element={<Favorites />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/cart/confirmation' element={<OrderSuccess />}></Route>
-            <Route path='/admin/promote-users' element={
+            <Route path='/admin/users/role' element={
               <AdminRoute>
                 <PromoteUser />
               </AdminRoute>

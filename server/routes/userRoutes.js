@@ -16,7 +16,7 @@ router.patch('/users/:collection/:furnitureId', requireAuth, userController.upda
 router.delete('/users/:collection/:furnitureId', requireAuth, userController.removeCollectionItem);
 
 // Admin routes
-router.post('/admin/promote', requireAdmin, userController.toggleUserRole);
 router.get('/admin/users', requireAdmin, userController.getAllUsers);
+router.patch('/admin/users/role', requireAdmin, userController.toggleUserRole);
 
 module.exports = router;

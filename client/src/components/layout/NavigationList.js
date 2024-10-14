@@ -5,7 +5,7 @@ import DropdownMenu from "./DropdownMenu";
 
 const getAdminNavItems = () => [
     { path: '/furniture/create', label: 'Create' },
-    { path: '/admin/promote-users', label: 'Promote' },
+    { path: '/admin/users/role', label: 'Promote' },
 ];
 
 const NavigationList = ({ listClassName, toggleDropdown, isDropdownOpen, toggleSidebar }) => {

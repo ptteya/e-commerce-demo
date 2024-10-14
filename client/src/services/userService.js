@@ -10,7 +10,7 @@ export const getUserData = () => request.get('users/me');
 
 export const getAll = () => request.get('admin/users');
 
-export const toggleUserRole = (userId, role) => request.post('admin/promote', { userId, role });
+export const toggleUserRole = (userId, role) => request.patch('admin/users/role', { userId, role });
 
 export const modifyCollection = (action, collectionName, userId, furnitureId, quantity) => {
     switch (action) {
