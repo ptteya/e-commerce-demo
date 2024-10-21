@@ -63,3 +63,5 @@ npm start
 ```
 > Client runs on http://localhost:3000.
 
+## API Documentation
+For detailed information about the API routes, including request and response formats, refer to the [API Routes Documentation](API_ROUTES.md).
